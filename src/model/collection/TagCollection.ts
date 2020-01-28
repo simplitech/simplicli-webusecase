@@ -14,19 +14,19 @@ export class TagCollection extends PageCollection<Tag> {
   }
 
   queryAsPage() {
-    return this.listCsvTag()
-  }
-
-  async listCsvTag() {
-    return await Request.get(`/user/tag/csv`, {params: this.params})
-      .name('listCsvTag')
-      .as(this)
-      .getResponse()
+    return this.listTag()
   }
 
   async listTag() {
     return await Request.get(`/user/tag`, {params: this.params})
       .name('listTag')
+      .as(this)
+      .getResponse()
+  }
+
+  async listCsvTag() {
+    return await Request.get(`/user/tag/csv`, {params: this.params})
+      .name('listCsvTag')
       .as(this)
       .getResponse()
   }

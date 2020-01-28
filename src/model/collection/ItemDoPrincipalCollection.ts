@@ -14,7 +14,14 @@ export class ItemDoPrincipalCollection extends PageCollection<ItemDoPrincipal> {
   }
 
   queryAsPage() {
-    return this.listCsvItemDoPrincipal()
+    return this.listItemDoPrincipal()
+  }
+
+  async listItemDoPrincipal() {
+    return await Request.get(`/user/item-do-principal`, {params: this.params})
+      .name('listItemDoPrincipal')
+      .as(this)
+      .getResponse()
   }
 
   async listCsvItemDoPrincipal() {
@@ -22,13 +29,6 @@ export class ItemDoPrincipalCollection extends PageCollection<ItemDoPrincipal> {
       params: this.params,
     })
       .name('listCsvItemDoPrincipal')
-      .as(this)
-      .getResponse()
-  }
-
-  async listItemDoPrincipal() {
-    return await Request.get(`/user/item-do-principal`, {params: this.params})
-      .name('listItemDoPrincipal')
       .as(this)
       .getResponse()
   }

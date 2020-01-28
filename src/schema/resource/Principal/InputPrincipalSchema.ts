@@ -5,12 +5,10 @@
 import {Schema, FieldSet, FieldComponent, Component} from 'simpli-web-sdk'
 import {Principal} from '@/model/resource/Principal'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
-import {TagCollection} from '@/model/collection/TagCollection'
 
 /* TODO: review generated schema */
 export class InputPrincipalSchema extends Schema {
   collectionGrupoDoPrincipal = new GrupoDoPrincipalCollection().noPagination()
-  collectionTag = new TagCollection().noPagination()
 
   readonly name = 'InputPrincipal'
 
@@ -27,13 +25,6 @@ export class InputPrincipalSchema extends Schema {
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionGrupoDoPrincipal.all(),
-      },
-    }),
-    tagPrincipal: (schema): FieldComponent => ({
-      is: Component.InputSelect,
-      bind: {
-        label: this.translateFrom(schema.fieldName),
-        items: this.collectionTag.all(),
       },
     }),
     textoObrigatorio: (schema): FieldComponent => ({

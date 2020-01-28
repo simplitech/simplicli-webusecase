@@ -27,12 +27,12 @@ export class Tag extends Resource {
   }
 
   /**
-   * Lists the instances of Tag to use it in a CSV file
+   * Gets a instance of a given ID of Tag
    */
-  static async listCsvTag(params: any) {
-    return await Request.get(`/user/tag/csv`, {params})
-      .name('listCsvTag')
-      .as(TagCollection)
+  async getTag(id: number) {
+    return await Request.get(`/user/tag/${id}`)
+      .name('getTag')
+      .as(this)
       .getData()
   }
 
@@ -58,12 +58,12 @@ export class Tag extends Resource {
   }
 
   /**
-   * Gets a instance of a given ID of Tag
+   * Lists the instances of Tag to use it in a CSV file
    */
-  async getTag(id: number) {
-    return await Request.get(`/user/tag/${id}`)
-      .name('getTag')
-      .as(this)
+  static async listCsvTag(params: any) {
+    return await Request.get(`/user/tag/csv`, {params})
+      .name('listCsvTag')
+      .as(TagCollection)
       .getData()
   }
 }

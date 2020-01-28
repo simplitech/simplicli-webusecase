@@ -58,7 +58,6 @@ export default class PersistPrincipalView extends Vue {
 
   populateResource() {
     this.schema.collectionGrupoDoPrincipal.listGrupoDoPrincipal()
-    this.schema.collectionTag.listTag()
   }
 
   async populate() {

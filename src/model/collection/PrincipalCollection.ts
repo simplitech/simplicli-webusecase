@@ -14,19 +14,19 @@ export class PrincipalCollection extends PageCollection<Principal> {
   }
 
   queryAsPage() {
-    return this.listCsvPrincipal()
-  }
-
-  async listCsvPrincipal() {
-    return await Request.get(`/user/principal/csv`, {params: this.params})
-      .name('listCsvPrincipal')
-      .as(this)
-      .getResponse()
+    return this.listPrincipal()
   }
 
   async listPrincipal() {
     return await Request.get(`/user/principal`, {params: this.params})
       .name('listPrincipal')
+      .as(this)
+      .getResponse()
+  }
+
+  async listCsvPrincipal() {
+    return await Request.get(`/user/principal/csv`, {params: this.params})
+      .name('listCsvPrincipal')
       .as(this)
       .getResponse()
   }

@@ -26,12 +26,12 @@ export class Endereco extends Resource {
   }
 
   /**
-   * Lists the instances of Endereco to use it in a CSV file
+   * Gets a instance of a given ID of Endereco
    */
-  static async listCsvEndereco(params: any) {
-    return await Request.get(`/user/endereco/csv`, {params})
-      .name('listCsvEndereco')
-      .as(EnderecoCollection)
+  async getEndereco(id: number) {
+    return await Request.get(`/user/endereco/${id}`)
+      .name('getEndereco')
+      .as(this)
       .getData()
   }
 
@@ -57,12 +57,12 @@ export class Endereco extends Resource {
   }
 
   /**
-   * Gets a instance of a given ID of Endereco
+   * Lists the instances of Endereco to use it in a CSV file
    */
-  async getEndereco(id: number) {
-    return await Request.get(`/user/endereco/${id}`)
-      .name('getEndereco')
-      .as(this)
+  static async listCsvEndereco(params: any) {
+    return await Request.get(`/user/endereco/csv`, {params})
+      .name('listCsvEndereco')
+      .as(EnderecoCollection)
       .getData()
   }
 }

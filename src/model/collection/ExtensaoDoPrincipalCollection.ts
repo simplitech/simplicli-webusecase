@@ -16,16 +16,7 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
   }
 
   queryAsPage() {
-    return this.listCsvExtensaoDoPrincipal()
-  }
-
-  async listCsvExtensaoDoPrincipal() {
-    return await Request.get(`/user/extensao-do-principal/csv`, {
-      params: this.params,
-    })
-      .name('listCsvExtensaoDoPrincipal')
-      .as(this)
-      .getResponse()
+    return this.listExtensaoDoPrincipal()
   }
 
   async listExtensaoDoPrincipal() {
@@ -33,6 +24,15 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
       params: this.params,
     })
       .name('listExtensaoDoPrincipal')
+      .as(this)
+      .getResponse()
+  }
+
+  async listCsvExtensaoDoPrincipal() {
+    return await Request.get(`/user/extensao-do-principal/csv`, {
+      params: this.params,
+    })
+      .name('listCsvExtensaoDoPrincipal')
       .as(this)
       .getResponse()
   }

@@ -35,16 +35,6 @@ export class ExtensaoDoPrincipal extends Resource {
   }
 
   /**
-   * Lists the instances of ExtensaoDoPrincipal to use it in a CSV file
-   */
-  static async listCsvExtensaoDoPrincipal(params: any) {
-    return await Request.get(`/user/extensao-do-principal/csv`, {params})
-      .name('listCsvExtensaoDoPrincipal')
-      .as(ExtensaoDoPrincipalCollection)
-      .getData()
-  }
-
-  /**
    * Lists the instances of ExtensaoDoPrincipal
    */
   static async listExtensaoDoPrincipal(params: any) {
@@ -72,6 +62,16 @@ export class ExtensaoDoPrincipal extends Resource {
     return await Request.get(`/user/extensao-do-principal/${id}`)
       .name('getExtensaoDoPrincipal')
       .as(this)
+      .getData()
+  }
+
+  /**
+   * Lists the instances of ExtensaoDoPrincipal to use it in a CSV file
+   */
+  static async listCsvExtensaoDoPrincipal(params: any) {
+    return await Request.get(`/user/extensao-do-principal/csv`, {params})
+      .name('listCsvExtensaoDoPrincipal')
+      .as(ExtensaoDoPrincipalCollection)
       .getData()
   }
 }

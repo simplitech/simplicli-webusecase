@@ -36,26 +36,6 @@ export class ItemDoPrincipal extends Resource {
   }
 
   /**
-   * Gets a instance of a given ID of ItemDoPrincipal
-   */
-  async getItemDoPrincipal(id: number) {
-    return await Request.get(`/user/item-do-principal/${id}`)
-      .name('getItemDoPrincipal')
-      .as(this)
-      .getData()
-  }
-
-  /**
-   * Lists the instances of ItemDoPrincipal to use it in a CSV file
-   */
-  static async listCsvItemDoPrincipal(params: any) {
-    return await Request.get(`/user/item-do-principal/csv`, {params})
-      .name('listCsvItemDoPrincipal')
-      .as(ItemDoPrincipalCollection)
-      .getData()
-  }
-
-  /**
    * Lists the instances of ItemDoPrincipal
    */
   static async listItemDoPrincipal(params: any) {
@@ -73,6 +53,26 @@ export class ItemDoPrincipal extends Resource {
     return await Request.post(`/user/item-do-principal`, this)
       .name('persistItemDoPrincipal')
       .asNumber()
+      .getData()
+  }
+
+  /**
+   * Lists the instances of ItemDoPrincipal to use it in a CSV file
+   */
+  static async listCsvItemDoPrincipal(params: any) {
+    return await Request.get(`/user/item-do-principal/csv`, {params})
+      .name('listCsvItemDoPrincipal')
+      .as(ItemDoPrincipalCollection)
+      .getData()
+  }
+
+  /**
+   * Gets a instance of a given ID of ItemDoPrincipal
+   */
+  async getItemDoPrincipal(id: number) {
+    return await Request.get(`/user/item-do-principal/${id}`)
+      .name('getItemDoPrincipal')
+      .as(this)
       .getData()
   }
 }

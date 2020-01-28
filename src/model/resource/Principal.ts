@@ -7,7 +7,6 @@
 import {$, Helper, Request, Resource} from 'simpli-web-sdk'
 import {ResponseExclude, ResponseSerialize} from 'simpli-web-sdk'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
-import {Tag} from '@/model/resource/Tag'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
@@ -19,9 +18,6 @@ export class Principal extends Resource {
 
   @ResponseSerialize(GrupoDoPrincipal)
   grupoDoPrincipal2: GrupoDoPrincipal | null = null
-
-  @ResponseSerialize(Tag)
-  tagPrincipal: Tag[] | null = null
 
   /**
    * principal’s mandatory text
@@ -93,16 +89,6 @@ export class Principal extends Resource {
   }
 
   /**
-   * Lists the instances of Principal to use it in a CSV file
-   */
-  static async listCsvPrincipal(params: any) {
-    return await Request.get(`/user/principal/csv`, {params})
-      .name('listCsvPrincipal')
-      .as(PrincipalCollection)
-      .getData()
-  }
-
-  /**
    * Lists the instances of Principal
    */
   static async listPrincipal(params: any) {
@@ -120,6 +106,16 @@ export class Principal extends Resource {
     return await Request.post(`/user/principal`, this)
       .name('persistPrincipal')
       .asNumber()
+      .getData()
+  }
+
+  /**
+   * Lists the instances of Principal to use it in a CSV file
+   */
+  static async listCsvPrincipal(params: any) {
+    return await Request.get(`/user/principal/csv`, {params})
+      .name('listCsvPrincipal')
+      .as(PrincipalCollection)
       .getData()
   }
 }

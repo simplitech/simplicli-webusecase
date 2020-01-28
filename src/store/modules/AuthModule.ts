@@ -71,18 +71,15 @@ export class AuthModule implements Module<AuthState, RootState> {
         `/user/notification/${token}`
       )
 
-      /* eslint-disable */
-      connection.onOpen(() => {
+      connection.onOpen(() =>
         console.info(`Socket connection with client id=${id} established`)
-      })
-      connection.onClose(() => {
+      )
+      connection.onClose(() =>
         console.info(`Socket connection with client id=${id} lost`)
-      })
-      connection.onError(() => {
+      )
+      connection.onError(() =>
         console.error(`Error with socket connection(client id=${id})`)
-      })
-      /* eslint-enable */
-
+      )
       connection.onData(resp => $.snotify.info(resp as string))
 
       context.commit('POPULATE', authResponse)

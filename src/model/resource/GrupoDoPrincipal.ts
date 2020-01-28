@@ -22,6 +22,16 @@ export class GrupoDoPrincipal extends Resource {
   }
 
   /**
+   * Gets a instance of a given ID of GrupoDoPrincipal
+   */
+  async getGrupoDoPrincipal(id: number) {
+    return await Request.get(`/user/grupo-do-principal/${id}`)
+      .name('getGrupoDoPrincipal')
+      .as(this)
+      .getData()
+  }
+
+  /**
    * Lists the instances of GrupoDoPrincipal to use it in a CSV file
    */
   static async listCsvGrupoDoPrincipal(params: any) {
@@ -49,16 +59,6 @@ export class GrupoDoPrincipal extends Resource {
     return await Request.post(`/user/grupo-do-principal`, this)
       .name('persistGrupoDoPrincipal')
       .asNumber()
-      .getData()
-  }
-
-  /**
-   * Gets a instance of a given ID of GrupoDoPrincipal
-   */
-  async getGrupoDoPrincipal(id: number) {
-    return await Request.get(`/user/grupo-do-principal/${id}`)
-      .name('getGrupoDoPrincipal')
-      .as(this)
       .getData()
   }
 }

@@ -14,13 +14,11 @@ import {Lang, Currency, LocaleOptions} from 'simpli-web-sdk'
  * App languages pack
  */
 import enUs from '@/locale/en-US/lang'
-import ptBr from '@/locale/pt-BR/lang'
 
 /**
  * Moment JS languages pack
  * Note: US English is already imported by default
  */
-import 'moment/locale/pt-br'
 
 /**
  * App default language
@@ -37,7 +35,6 @@ export const defaultCurrency = process.env.VUE_APP_CURRENCY as Currency
  */
 export const localeVueI18n: LocaleOptions = {
   [Lang.EN_US]: enUs,
-  [Lang.PT_BR]: ptBr,
 }
 
 /**

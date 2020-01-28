@@ -14,19 +14,19 @@ export class EnderecoCollection extends PageCollection<Endereco> {
   }
 
   queryAsPage() {
-    return this.listCsvEndereco()
-  }
-
-  async listCsvEndereco() {
-    return await Request.get(`/user/endereco/csv`, {params: this.params})
-      .name('listCsvEndereco')
-      .as(this)
-      .getResponse()
+    return this.listEndereco()
   }
 
   async listEndereco() {
     return await Request.get(`/user/endereco`, {params: this.params})
       .name('listEndereco')
+      .as(this)
+      .getResponse()
+  }
+
+  async listCsvEndereco() {
+    return await Request.get(`/user/endereco/csv`, {params: this.params})
+      .name('listCsvEndereco')
       .as(this)
       .getResponse()
   }
