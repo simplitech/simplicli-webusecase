@@ -2,14 +2,14 @@
  * ConectorPrincipal
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseSerialize} from 'simpli-web-sdk'
+import {Request, ResponseSerialize} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Conectado} from '@/model/resource/Conectado'
 import {Principal} from '@/model/resource/Principal'
 import {ConectorPrincipalCollection} from '@/model/collection/ConectorPrincipalCollection'
 
 /* TODO: review generated class */
-export class ConectorPrincipal extends Resource {
+export class ConectorPrincipal implements IResource {
   @ResponseSerialize(Conectado)
   conectado: Conectado | null = null
 
@@ -27,6 +27,9 @@ export class ConectorPrincipal extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   get idPrincipalFk() {

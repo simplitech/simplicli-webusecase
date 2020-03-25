@@ -41,7 +41,7 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {$} from 'simpli-web-sdk'
+import {$} from '@/config/framework.config'
 import {Dialog} from '@/helpers/dialog/Dialog'
 
 @Component

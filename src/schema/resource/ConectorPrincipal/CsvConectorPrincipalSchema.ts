@@ -1,12 +1,13 @@
 /**
- * Csv Schema of ConectorPrincipal
+ * Csv DefaultSchema of ConectorPrincipal
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 
-/* TODO: review generated schema */
-export class CsvConectorPrincipalSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class CsvConectorPrincipalSchema extends DefaultSchema {
   readonly name = 'CsvConectorPrincipal'
 
   readonly fieldSet: FieldSet<ConectorPrincipal> = {

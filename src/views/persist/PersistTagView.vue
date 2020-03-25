@@ -35,7 +35,8 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
+import {$} from '@/config/framework.config'
 import {Tag} from '@/model/resource/Tag'
 import {InputTagSchema} from '@/schema/resource/Tag/InputTagSchema'
 

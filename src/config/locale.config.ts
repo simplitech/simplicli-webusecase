@@ -8,17 +8,12 @@
  * This configuration will be set in @/bootstrap/app.ts
  */
 
-import {Lang, Currency, LocaleOptions} from 'simpli-web-sdk'
-
-/**
- * App languages pack
- */
+import {Currency, Lang} from '@/enums'
 import enUs from '@/locale/en-US/lang'
 
-/**
- * Moment JS languages pack
- * Note: US English is already imported by default
- */
+export interface LocaleOptions {
+  readonly [key: string]: any
+}
 
 /**
  * App default language

@@ -13,7 +13,8 @@
 <script lang="ts">
 import {MetaInfo} from 'vue-meta'
 import {Component, Vue} from 'vue-property-decorator'
-import {$, ToastConfig} from 'simpli-web-sdk'
+import {$} from '@/config/framework.config'
+import {ToastConfig} from '@/config/toast.config'
 import ModalDialog from '@/components/modals/ModalDialog.vue'
 
 const metaInfo = (): MetaInfo => ({

@@ -2,11 +2,13 @@
  * Csv Schema of Principal
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 import {Principal} from '@/model/resource/Principal'
 
 /* TODO: review generated schema */
-export class CsvPrincipalSchema extends Schema {
+export class CsvPrincipalSchema extends DefaultSchema {
   readonly name = 'CsvPrincipal'
 
   readonly fieldSet: FieldSet<Principal> = {

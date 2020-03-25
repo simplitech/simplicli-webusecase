@@ -1,12 +1,13 @@
 /**
- * Csv Schema of ExtensaoDoPrincipal
+ * Csv DefaultSchema of ExtensaoDoPrincipal
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 
-/* TODO: review generated schema */
-export class CsvExtensaoDoPrincipalSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class CsvExtensaoDoPrincipalSchema extends DefaultSchema {
   readonly name = 'CsvExtensaoDoPrincipal'
 
   readonly fieldSet: FieldSet<ExtensaoDoPrincipal> = {

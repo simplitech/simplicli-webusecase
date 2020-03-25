@@ -1,12 +1,12 @@
 import Vue from 'vue'
 import App from './App.vue'
 
+import '@/setup/vendor'
 import '@/setup/simpli'
 import '@/setup/settings'
-import '@/setup/vendor'
 
-import {$} from 'simpli-web-sdk'
 import {store} from '@/store'
+import {$} from '@/config/framework.config'
 
 new Vue({
   router: $.router,

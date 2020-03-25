@@ -1,7 +1,8 @@
 import {ActionContext, Module} from 'vuex'
 import {getStoreAccessors} from 'vuex-typescript'
 import {AuthState, RootState} from '@/types/store'
-import {$, Helper} from 'simpli-web-sdk'
+import {$} from '@/config/framework.config'
+import {Helper} from '@/helpers'
 import {AuthRequest} from '@/model/request/AuthRequest'
 import {AuthResponse} from '@/model/response/AuthResponse'
 

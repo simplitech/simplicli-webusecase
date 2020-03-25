@@ -2,12 +2,12 @@
  * AuthRequest
  * @author Simpli CLI generator
  */
-import {$, Helper, Model, Request} from 'simpli-web-sdk'
-import {ResponseExclude} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
+import {Request, ResponseExclude} from '@simpli/serialized-request'
 import {AuthResponse} from '@/model/response/AuthResponse'
 
 /* TODO: review generated class */
-export class AuthRequest extends Model {
+export class AuthRequest {
   email: string | null = null
 
   @ResponseExclude()
@@ -27,7 +27,7 @@ export class AuthRequest extends Model {
    * Submits the user authentication
    */
   async signIn() {
-    const request = this.$clone()
+    const request = Helper.clone(this)
     request.senha = Helper.encrypt(this.senha ?? '')
 
     return await Request.post(`/user/auth`, request)

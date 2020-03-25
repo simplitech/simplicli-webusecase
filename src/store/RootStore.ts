@@ -1,6 +1,7 @@
 import {ActionContext, ModuleTree, StoreOptions} from 'vuex'
 import {getStoreAccessors} from 'vuex-typescript'
-import Simpli, {Enum} from 'simpli-web-sdk'
+import {Simpli} from '@/config/framework.config'
+import {Currency, Lang} from '@/enums'
 import {RootState} from '@/types/store'
 import {defaultCurrency, defaultLang} from '@/config/locale.config'
 const app = require('../../package.json')
@@ -30,7 +31,7 @@ export class RootStore implements StoreOptions<RootState> {
     /**
      * Change app language
      */
-    setLang(context: RootContext, lang: Enum.Lang) {
+    setLang(context: RootContext, lang: Lang) {
       Simpli.changeLocale(lang)
       context.commit('SET_LANG', lang)
     },
@@ -38,18 +39,18 @@ export class RootStore implements StoreOptions<RootState> {
     /**
      * Change app currency
      */
-    setCurrency(context: RootContext, currency: Enum.Currency) {
+    setCurrency(context: RootContext, currency: Currency) {
       Simpli.changeCurrency(currency)
       context.commit('SET_CURRENCY', currency)
     },
   }
 
   mutations = {
-    SET_LANG(state: RootState, lang: Enum.Lang) {
+    SET_LANG(state: RootState, lang: Lang) {
       state.language = lang
     },
 
-    SET_CURRENCY(state: RootState, currency: Enum.Currency) {
+    SET_CURRENCY(state: RootState, currency: Currency) {
       state.currency = currency
     },
   }

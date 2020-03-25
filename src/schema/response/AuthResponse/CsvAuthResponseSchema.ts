@@ -2,11 +2,12 @@
  * Csv Schema of AuthResponse
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 import {AuthResponse} from '@/model/response/AuthResponse'
 
 /* TODO: review generated schema */
-export class CsvAuthResponseSchema extends Schema {
+export class CsvAuthResponseSchema extends DefaultSchema {
   readonly name = 'CsvAuthResponse'
 
   readonly fieldSet: FieldSet<AuthResponse> = {

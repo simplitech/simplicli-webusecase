@@ -16,7 +16,7 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
@@ -67,7 +67,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -104,14 +104,15 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
+import {Helper} from '@/helpers'
 import {User} from '@/model/resource/User'
 import {UserCollection} from '@/model/collection/UserCollection'
 import {ListUserSchema} from '@/schema/resource/User/ListUserSchema'
 import {CsvUserSchema} from '@/schema/resource/User/CsvUserSchema'
 
 @Component
-export default class ListUserView extends Mixins(MixinQueryRouter) {
+export default class ListUserView extends Mixins(MixinAdapRoute) {
   schema = new ListUserSchema()
   collection = new UserCollection()
 
@@ -133,7 +134,7 @@ export default class ListUserView extends Mixins(MixinQueryRouter) {
     const csv = new UserCollection().clearFilters().addFilter(params)
 
     await csv.listCsvUser()
-    new CsvUserSchema().downloadCsv(csv.all())
+    Helper.downloadCsv(csv.items, new CsvUserSchema())
   }
 }
 </script>

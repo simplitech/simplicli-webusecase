@@ -16,7 +16,7 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
@@ -67,7 +67,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -104,14 +104,15 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
 import {Conectado} from '@/model/resource/Conectado'
 import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
 import {ListConectadoSchema} from '@/schema/resource/Conectado/ListConectadoSchema'
 import {CsvConectadoSchema} from '@/schema/resource/Conectado/CsvConectadoSchema'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 
 @Component
-export default class ListConectadoView extends Mixins(MixinQueryRouter) {
+export default class ListConectadoView extends Mixins(MixinAdapRoute) {
   schema = new ListConectadoSchema()
   collection = new ConectadoCollection()
 
@@ -133,7 +134,7 @@ export default class ListConectadoView extends Mixins(MixinQueryRouter) {
     const csv = new ConectadoCollection().clearFilters().addFilter(params)
 
     await csv.listCsvConectado()
-    new CsvConectadoSchema().downloadCsv(csv.all())
+    Helper.downloadCsv(csv.items, new CsvConectadoSchema())
   }
 }
 </script>

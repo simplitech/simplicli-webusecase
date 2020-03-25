@@ -2,11 +2,12 @@
  * Endereco
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
+import {Request} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {EnderecoCollection} from '@/model/collection/EnderecoCollection'
 
 /* TODO: review generated class */
-export class Endereco extends Resource {
+export class Endereco implements IResource {
   idEnderecoPk: number = 0
 
   cep: string | null = null
@@ -23,6 +24,12 @@ export class Endereco extends Resource {
   }
   set $id(val) {
     this.idEnderecoPk = val
+  }
+  get $tag() {
+    return String(this.cep)
+  }
+  set $tag(val) {
+    this.cep = val
   }
 
   /**

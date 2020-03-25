@@ -1,5 +1,5 @@
 import {root, store} from '@/store'
-import {Enum} from 'simpli-web-sdk'
+import {Currency, Lang} from '@/enums'
 
 const {read, dispatch, commit} = root.accessors
 const {getters, actions, mutations} = root
@@ -17,11 +17,11 @@ export abstract class App {
     return read(getters.currency)(store)
   }
 
-  static setLang(lang: Enum.Lang) {
+  static setLang(lang: Lang) {
     return dispatch(actions.setLang)(store, lang)
   }
 
-  static setCurrency(currency: Enum.Currency) {
+  static setCurrency(currency: Currency) {
     return dispatch(actions.setCurrency)(store, currency)
   }
 }

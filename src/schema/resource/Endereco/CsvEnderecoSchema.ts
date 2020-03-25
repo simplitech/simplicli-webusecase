@@ -1,12 +1,13 @@
 /**
- * Csv Schema of Endereco
+ * Csv DefaultSchema of Endereco
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 import {Endereco} from '@/model/resource/Endereco'
 
-/* TODO: review generated schema */
-export class CsvEnderecoSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class CsvEnderecoSchema extends DefaultSchema {
   readonly name = 'CsvEndereco'
 
   readonly fieldSet: FieldSet<Endereco> = {

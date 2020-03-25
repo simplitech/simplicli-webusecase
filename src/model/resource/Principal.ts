@@ -4,13 +4,17 @@
  *
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseExclude, ResponseSerialize} from 'simpli-web-sdk'
+import {
+  Request,
+  ResponseExclude,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
-export class Principal extends Resource {
+export class Principal implements IResource {
   idPrincipalPk: number = 0
 
   @ResponseSerialize(GrupoDoPrincipal)
@@ -66,6 +70,9 @@ export class Principal extends Resource {
   }
   get $tag() {
     return String(this.nome)
+  }
+  set $tag(val) {
+    this.nome = val
   }
 
   /**

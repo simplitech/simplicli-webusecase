@@ -16,7 +16,7 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
@@ -70,7 +70,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -107,7 +107,8 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
+import {Helper} from '@/helpers'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 import {ExtensaoDoPrincipalCollection} from '@/model/collection/ExtensaoDoPrincipalCollection'
 import {ListExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipal/ListExtensaoDoPrincipalSchema'
@@ -115,7 +116,7 @@ import {CsvExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipa
 
 @Component
 export default class ListExtensaoDoPrincipalView extends Mixins(
-  MixinQueryRouter
+  MixinAdapRoute
 ) {
   schema = new ListExtensaoDoPrincipalSchema()
   collection = new ExtensaoDoPrincipalCollection()
@@ -140,7 +141,7 @@ export default class ListExtensaoDoPrincipalView extends Mixins(
       .addFilter(params)
 
     await csv.listCsvExtensaoDoPrincipal()
-    new CsvExtensaoDoPrincipalSchema().downloadCsv(csv.all())
+    Helper.downloadCsv(csv.items, new CsvExtensaoDoPrincipalSchema())
   }
 }
 </script>

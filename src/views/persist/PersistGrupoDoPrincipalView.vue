@@ -38,7 +38,8 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
+import {$} from '@/config/framework.config'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 import {InputGrupoDoPrincipalSchema} from '@/schema/resource/GrupoDoPrincipal/InputGrupoDoPrincipalSchema'
 

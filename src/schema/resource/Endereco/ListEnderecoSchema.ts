@@ -1,47 +1,43 @@
 /**
- * List Schema of Endereco
+ * List DefaultSchema of Endereco
  * @author Simpli CLI generator
  */
-import {
-  Helper,
-  Schema,
-  FieldSet,
-  FieldComponent,
-  Component,
-} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldComponent, FieldSet} from '@simpli/meta-schema'
+import {Render} from '@simpli/vue-render-schema'
 import {Endereco} from '@/model/resource/Endereco'
 
-/* TODO: review generated schema */
-export class ListEnderecoSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class ListEnderecoSchema extends DefaultSchema {
   readonly name = 'ListEndereco'
 
   readonly fieldSet: FieldSet<Endereco> = {
     idEnderecoPk: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     cep: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     zipcode: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     rua: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     nro: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     cidade: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     uf: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     latitude: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     longitude: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
   }
 }

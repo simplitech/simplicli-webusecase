@@ -3,8 +3,10 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
 @HttpExclude()

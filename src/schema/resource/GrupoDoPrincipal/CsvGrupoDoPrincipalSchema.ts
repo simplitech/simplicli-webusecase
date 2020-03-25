@@ -1,12 +1,13 @@
 /**
- * Csv Schema of GrupoDoPrincipal
+ * Csv DefaultSchema of GrupoDoPrincipal
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 
-/* TODO: review generated schema */
-export class CsvGrupoDoPrincipalSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class CsvGrupoDoPrincipalSchema extends DefaultSchema {
   readonly name = 'CsvGrupoDoPrincipal'
 
   readonly fieldSet: FieldSet<GrupoDoPrincipal> = {

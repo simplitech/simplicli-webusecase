@@ -38,9 +38,10 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {Conectado} from '@/model/resource/Conectado'
 import {InputConectadoSchema} from '@/schema/resource/Conectado/InputConectadoSchema'
+import {Helper} from '@/helpers'
+import {$} from '@/config/framework.config'
 
 @Component
 export default class PersistConectadoView extends Vue {

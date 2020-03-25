@@ -6,7 +6,9 @@
  */
 
 import Vue from 'vue'
-import {$, Schema, PageCollection, ToastConfig} from 'simpli-web-sdk'
+import {$} from '@/config/framework.config'
+import {PageCollection} from '@simpli/resource-collection'
+import {ToastConfig} from '@/config/toast.config'
 
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import GridLoader from 'vue-spinner/src/GridLoader.vue'
@@ -64,20 +66,11 @@ $.modal.defaultBackgroundTransition = 'fade'
 $.modal.defaultClosable = true
 $.modal.defaultCloseOutside = true
 
-$.tip.defaultMessage = ''
-$.tip.defaultTransition = 'fade'
-$.tip.defaultWidth = 'auto'
-$.tip.defaultOffset = 0
-
 $.snotify.setDefaults({
   global: ToastConfig.ToastGlobalConfig,
   toast: ToastConfig.ToastDefaultConfig,
 })
 
-Schema.defaultI18nPath = 'schema.{schemaName}.{fieldName}'
-
 PageCollection.defaultMinCharToSearch = 3
 PageCollection.defaultCurrentPage = 0
 PageCollection.defaultPerPage = 10
-
-// InputText.addPreset('customMaskPreset', CustomMaskPreset)

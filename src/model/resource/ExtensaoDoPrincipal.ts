@@ -2,13 +2,13 @@
  * ExtensaoDoPrincipal
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseSerialize} from 'simpli-web-sdk'
+import {Request, ResponseSerialize} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
 import {ExtensaoDoPrincipalCollection} from '@/model/collection/ExtensaoDoPrincipalCollection'
 
 /* TODO: review generated class */
-export class ExtensaoDoPrincipal extends Resource {
+export class ExtensaoDoPrincipal implements IResource {
   @ResponseSerialize(Principal)
   principal: Principal | null = null
 
@@ -23,6 +23,9 @@ export class ExtensaoDoPrincipal extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   get idPrincipalFk() {

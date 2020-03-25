@@ -1,12 +1,13 @@
 /**
- * Csv Schema of User
+ * Csv DefaultSchema of User
  * @author Simpli CLI generator
  */
-import {Helper, Schema, FieldSet} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet} from '@simpli/meta-schema'
 import {User} from '@/model/resource/User'
 
-/* TODO: review generated schema */
-export class CsvUserSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class CsvUserSchema extends DefaultSchema {
   readonly name = 'CsvUser'
 
   readonly fieldSet: FieldSet<User> = {

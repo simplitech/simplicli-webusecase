@@ -2,13 +2,13 @@
  * ItemDoPrincipal
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseSerialize} from 'simpli-web-sdk'
+import {Request, ResponseSerialize} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
 import {ItemDoPrincipalCollection} from '@/model/collection/ItemDoPrincipalCollection'
 
 /* TODO: review generated class */
-export class ItemDoPrincipal extends Resource {
+export class ItemDoPrincipal implements IResource {
   idItemDoPrincipalPk: number = 0
 
   @ResponseSerialize(Principal)
@@ -24,6 +24,9 @@ export class ItemDoPrincipal extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   get idPrincipalFk() {

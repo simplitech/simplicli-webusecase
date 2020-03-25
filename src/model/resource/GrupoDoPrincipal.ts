@@ -2,11 +2,12 @@
  * GrupoDoPrincipal
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
+import {Request} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
 
 /* TODO: review generated class */
-export class GrupoDoPrincipal extends Resource {
+export class GrupoDoPrincipal implements IResource {
   idGrupoDoPrincipalPk: number = 0
 
   titulo: string | null = null
@@ -19,6 +20,9 @@ export class GrupoDoPrincipal extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   /**

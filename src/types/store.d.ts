@@ -1,4 +1,4 @@
-import {Currency, Lang} from 'simpli-web-sdk'
+import {Currency, Lang} from '@/enums'
 import {User} from '@/model/resource/User'
 
 /**

@@ -9,10 +9,15 @@
  */
 
 import axios, {AxiosError} from 'axios'
-import {$, Helper, Enum, socket} from 'simpli-web-sdk'
+import {$} from '@/config/framework.config'
+import {Helper} from '@/helpers'
+import {HttpStatus} from '@/enums'
+import socket from '@/helpers/socket'
 import {Env} from '@/helpers/Env'
 import {App} from '@/helpers/vuex/App'
 import {Auth} from '@/helpers/vuex/Auth'
+import {RequestConfig, RequestListener} from '@simpli/serialized-request'
+import {$await} from '@simpli/vue-await'
 
 /**
  * Web Server request & response config
@@ -55,7 +60,7 @@ axiosInstance.interceptors.response.use(
   (error: AxiosError) => {
     const response = error.response
 
-    if (error.config.headers['X-Ignore-Errors']) {
+    if (error.config?.headers?.['X-Ignore-Errors']) {
       return Promise.reject('')
     }
 
@@ -64,7 +69,7 @@ axiosInstance.interceptors.response.use(
       return Promise.reject($.t('system.error.noServer'))
     }
 
-    if (response.status === Enum.HttpStatus.UNAUTHORIZED) {
+    if (response.status === HttpStatus.UNAUTHORIZED) {
       Auth.signOut()
     }
 
@@ -79,5 +84,10 @@ axiosInstance.interceptors.response.use(
     return Promise.reject(error)
   }
 )
+
+RequestListener.onRequestStart(reqName => $await.init(reqName))
+RequestListener.onRequestEnd(reqName => $await.done(reqName))
+
+RequestConfig.axios = axiosInstance
 
 export {axiosInstance, socketInstance}

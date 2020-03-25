@@ -2,11 +2,12 @@
  * Conectado
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
 import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
+import {Request} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 
 /* TODO: review generated class */
-export class Conectado extends Resource {
+export class Conectado implements IResource {
   idConectadoPk: number = 0
 
   titulo: string | null = null
@@ -19,6 +20,9 @@ export class Conectado extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   /**

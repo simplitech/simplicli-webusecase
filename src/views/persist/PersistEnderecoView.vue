@@ -38,7 +38,8 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
+import {$} from '@/config/framework.config'
 import {Endereco} from '@/model/resource/Endereco'
 import {InputEnderecoSchema} from '@/schema/resource/Endereco/InputEnderecoSchema'
 

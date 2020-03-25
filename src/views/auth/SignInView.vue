@@ -40,7 +40,7 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {Helper} from 'simpli-web-sdk'
+import {Helper} from '@/helpers'
 import {AuthRequest} from '@/model/request/AuthRequest'
 import {InputAuthRequestSchema} from '@/schema/request/AuthRequest/InputAuthRequestSchema'
 
