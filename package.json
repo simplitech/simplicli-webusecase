@@ -21,6 +21,7 @@
     "@simpli/vue-input": "^1.0.4",
     "@simpli/vue-modal": "^1.0.4",
     "@simpli/vue-render-schema": "^1.0.1",
+    "@simpli/vuex-typescript": "^1.0.0",
     "@types/lodash": "^4.14.149",
     "@types/papaparse": "^4.5.9",
     "axios": "^0.19.2",
@@ -54,8 +55,7 @@
     "vue-transition-expand": "0.0.5",
     "vue-upload-component": "^2.8.20",
     "vuex": "^3.0.1",
-    "vuex-class": "^0.3.1",
-    "vuex-typescript": "^3.0.2"
+    "vuex-class": "^0.3.1"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",

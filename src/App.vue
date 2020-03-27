@@ -6,29 +6,26 @@
 
     <modal-dialog />
 
-    <vue-snotify :class="toastStyle" />
+    <vue-snotify :class="$config.toast.style" />
   </div>
 </template>
 
 <script lang="ts">
 import {MetaInfo} from 'vue-meta'
 import {Component, Vue} from 'vue-property-decorator'
-import {$} from '@/config/framework.config'
-import {ToastConfig} from '@/config/toast.config'
 import ModalDialog from '@/components/modals/ModalDialog.vue'
 
-const metaInfo = (): MetaInfo => ({
-  title: $.t('app.subtitle') as string,
-  titleTemplate: `%s | ${$.t('app.title')}`,
-})
+Component.registerHooks(['metaInfo'])
 
 @Component({
-  metaInfo,
   components: {ModalDialog},
 })
 export default class App extends Vue {
-  get toastStyle() {
-    return ToastConfig.ToastDefaultStyle
+  metaInfo(): MetaInfo {
+    return {
+      title: this.$t('app.title') as string,
+      titleTemplate: `%s | ${this.$t('app.title')}`,
+    }
   }
 
   created() {

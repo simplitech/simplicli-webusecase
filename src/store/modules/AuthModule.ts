@@ -1,16 +1,14 @@
 import {ActionContext, Module} from 'vuex'
-import {getStoreAccessors} from 'vuex-typescript'
+import {$} from '@/simpli'
+import {AccessorHandler} from '@simpli/vuex-typescript'
 import {AuthState, RootState} from '@/types/store'
-import {$} from '@/config/framework.config'
-import {Helper} from '@/helpers'
 import {AuthRequest} from '@/model/request/AuthRequest'
 import {AuthResponse} from '@/model/response/AuthResponse'
 
 export type AuthContext = ActionContext<AuthState, RootState>
 
+@AccessorHandler
 export class AuthModule implements Module<AuthState, RootState> {
-  readonly accessors = getStoreAccessors<AuthState, RootState>('auth')
-
   namespaced = true
 
   state: AuthState = {
@@ -36,12 +34,15 @@ export class AuthModule implements Module<AuthState, RootState> {
       if (authResponse.token) localStorage.setItem('token', authResponse.token)
 
       context.commit('POPULATE_TOKEN')
+      context.commit('POPULATE', authResponse)
 
       const uri =
         context.getters.cachePath && $.route.name !== 'signIn'
           ? context.getters.cachePath
           : '/dashboard'
-      await Helper.infoAndPush('system.info.welcome', uri)
+
+      $.toast.info('system.info.welcome')
+      await $.nav.push(uri)
 
       context.commit('SET_CACHE_PATH', null)
 
@@ -58,7 +59,7 @@ export class AuthModule implements Module<AuthState, RootState> {
         context.commit('SET_CACHE_PATH', $.route.path)
 
         await context.dispatch('signOut')
-        Helper.abort('system.error.unauthorized')
+        $.toast.abort('system.error.unauthorized')
       }
 
       const authResponse = await AuthRequest.authenticate()
@@ -92,7 +93,7 @@ export class AuthModule implements Module<AuthState, RootState> {
      * Sign out account
      */
     async signOut(context: AuthContext) {
-      await Helper.push('/sign-in')
+      await $.nav.push('/sign-in')
 
       // TODO: verify the need of a socket connection
       $.socket.disconnect('notification')

@@ -108,7 +108,6 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {Helper} from '@/helpers'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
 import {ConectorPrincipalCollection} from '@/model/collection/ConectorPrincipalCollection'
 import {ListConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/ListConectorPrincipalSchema'
@@ -124,7 +123,7 @@ export default class ListConectorPrincipalView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: ConectorPrincipal) {
-    Helper.pushByName(
+    this.$nav.pushByName(
       'editConectorPrincipal',
       item.idPrincipalFk,
       item.idConectadoFk
@@ -143,7 +142,7 @@ export default class ListConectorPrincipalView extends Mixins(MixinAdapRoute) {
       .addFilter(params)
 
     await csv.listCsvConectorPrincipal()
-    Helper.downloadCsv(csv.items, new CsvConectorPrincipalSchema())
+    this.$file.downloadCsv(csv.items, new CsvConectorPrincipalSchema())
   }
 }
 </script>

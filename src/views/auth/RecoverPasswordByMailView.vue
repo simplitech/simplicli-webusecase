@@ -40,7 +40,6 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {Helper} from '@/helpers'
 import {RecoverPasswordByMailRequest} from '@/model/request/RecoverPasswordByMailRequest'
 import {InputRecoverPasswordByMailRequestSchema} from '@/schema/request/RecoverPasswordByMailRequest/InputRecoverPasswordByMailRequestSchema'
 
@@ -51,10 +50,8 @@ export default class RecoverPasswordByMailView extends Vue {
 
   async submit() {
     await this.request.recoverPasswordByMail()
-    await Helper.successAndPush(
-      'system.success.recoverPasswordByMail',
-      '/sign-in'
-    )
+    this.$toast.success('system.success.recoverPasswordByMail')
+    await this.$nav.push('/sign-in')
   }
 }
 </script>

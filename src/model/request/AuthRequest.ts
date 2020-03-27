@@ -2,7 +2,7 @@
  * AuthRequest
  * @author Simpli CLI generator
  */
-import {Helper} from '@/helpers'
+import {$} from '@/simpli'
 import {Request, ResponseExclude} from '@simpli/serialized-request'
 import {AuthResponse} from '@/model/response/AuthResponse'
 
@@ -27,8 +27,8 @@ export class AuthRequest {
    * Submits the user authentication
    */
   async signIn() {
-    const request = Helper.clone(this)
-    request.senha = Helper.encrypt(this.senha ?? '')
+    const request = $.utils.clone(this)
+    request.senha = $.utils.sha256(this.senha)
 
     return await Request.post(`/user/auth`, request)
       .name('signIn')

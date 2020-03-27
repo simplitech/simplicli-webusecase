@@ -105,7 +105,6 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {Helper} from '@/helpers'
 import {User} from '@/model/resource/User'
 import {UserCollection} from '@/model/collection/UserCollection'
 import {ListUserSchema} from '@/schema/resource/User/ListUserSchema'
@@ -121,7 +120,7 @@ export default class ListUserView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: User) {
-    Helper.pushByName('editUser', item.$id)
+    this.$nav.pushByName('editUser', item.$id)
   }
 
   async downloadCsv() {
@@ -134,7 +133,7 @@ export default class ListUserView extends Mixins(MixinAdapRoute) {
     const csv = new UserCollection().clearFilters().addFilter(params)
 
     await csv.listCsvUser()
-    Helper.downloadCsv(csv.items, new CsvUserSchema())
+    this.$file.downloadCsv(csv.items, new CsvUserSchema())
   }
 }
 </script>

@@ -40,8 +40,6 @@
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
 import {Conectado} from '@/model/resource/Conectado'
 import {InputConectadoSchema} from '@/schema/resource/Conectado/InputConectadoSchema'
-import {Helper} from '@/helpers'
-import {$} from '@/config/framework.config'
 
 @Component
 export default class PersistConectadoView extends Vue {
@@ -63,18 +61,18 @@ export default class PersistConectadoView extends Vue {
       await this.conectado.getConectado(id)
     }
 
-    $.await.done('getConectado')
+    this.$await.done('getConectado')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
-    await this.conectado.persistConectado()
-    await Helper.successAndPush('system.success.persist', '/conectado/list')
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/conectado/list')
   }
 }
 </script>

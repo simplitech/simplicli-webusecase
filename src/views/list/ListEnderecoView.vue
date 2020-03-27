@@ -105,7 +105,6 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {Helper} from '@/helpers'
 import {Endereco} from '@/model/resource/Endereco'
 import {EnderecoCollection} from '@/model/collection/EnderecoCollection'
 import {ListEnderecoSchema} from '@/schema/resource/Endereco/ListEnderecoSchema'
@@ -121,7 +120,7 @@ export default class ListEnderecoView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: Endereco) {
-    Helper.pushByName('editEndereco', item.$id)
+    this.$nav.pushByName('editEndereco', item.$id)
   }
 
   async downloadCsv() {
@@ -134,7 +133,7 @@ export default class ListEnderecoView extends Mixins(MixinAdapRoute) {
     const csv = new EnderecoCollection().clearFilters().addFilter(params)
 
     await csv.listCsvEndereco()
-    Helper.downloadCsv(csv.items, new CsvEnderecoSchema())
+    this.$file.downloadCsv(csv.items, new CsvEnderecoSchema())
   }
 }
 </script>

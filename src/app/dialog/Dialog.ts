@@ -1,4 +1,4 @@
-import {$} from '@/config/framework.config'
+import {$} from '@/simpli'
 
 export class Dialog {
   title: string = ''

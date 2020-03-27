@@ -105,7 +105,6 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {Helper} from '@/helpers'
 import {Tag} from '@/model/resource/Tag'
 import {TagCollection} from '@/model/collection/TagCollection'
 import {ListTagSchema} from '@/schema/resource/Tag/ListTagSchema'
@@ -121,7 +120,7 @@ export default class ListTagView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: Tag) {
-    Helper.pushByName('editTag', item.$id)
+    this.$nav.pushByName('editTag', item.$id)
   }
 
   async downloadCsv() {
@@ -134,7 +133,7 @@ export default class ListTagView extends Mixins(MixinAdapRoute) {
     const csv = new TagCollection().clearFilters().addFilter(params)
 
     await csv.listCsvTag()
-    Helper.downloadCsv(csv.items, new CsvTagSchema())
+    this.$file.downloadCsv(csv.items, new CsvTagSchema())
   }
 }
 </script>

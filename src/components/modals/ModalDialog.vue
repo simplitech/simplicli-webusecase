@@ -41,8 +41,7 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {$} from '@/config/framework.config'
-import {Dialog} from '@/helpers/dialog/Dialog'
+import {Dialog} from '@/app/dialog/Dialog'
 
 @Component
 export default class ModalDialog extends Vue {
@@ -61,13 +60,13 @@ export default class ModalDialog extends Vue {
 
   async confirmEvent() {
     this.$emit('confirm')
-    await $.await.run('processing', () => this.options?.onConfirm())
+    await this.$await.run('processing', () => this.options?.onConfirm())
     this.close()
   }
 
   async cancelEvent() {
     this.$emit('cancel')
-    await $.await.run('processing', () => this.options?.onCancel())
+    await this.$await.run('processing', () => this.options?.onCancel())
     this.close()
   }
 

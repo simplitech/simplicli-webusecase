@@ -3,7 +3,7 @@
  * @author Simpli CLI generator
  */
 import {Schema} from '@simpli/meta-schema'
-import {$} from '@/config/framework.config'
+import {$} from '@/simpli'
 
 export abstract class DefaultSchema extends Schema {
   abstract readonly name: string
