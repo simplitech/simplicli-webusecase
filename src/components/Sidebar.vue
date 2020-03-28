@@ -4,7 +4,7 @@
       <img src="@/assets/img/logo.png" alt="Logo" class="w-8" />
 
       <div class="weight-1 mx-2 font-bold text-xl text-white opacity-75">
-        Usecase
+        {{ $t('app.title') }}
       </div>
 
       <a

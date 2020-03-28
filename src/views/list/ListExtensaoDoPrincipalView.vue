@@ -108,7 +108,6 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {Helper} from '@/helpers'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 import {ExtensaoDoPrincipalCollection} from '@/model/collection/ExtensaoDoPrincipalCollection'
 import {ListExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipal/ListExtensaoDoPrincipalSchema'
@@ -126,7 +125,7 @@ export default class ListExtensaoDoPrincipalView extends Mixins(
   }
 
   goToPersistView(item: ExtensaoDoPrincipal) {
-    Helper.pushByName('editExtensaoDoPrincipal', item.idPrincipalFk)
+    this.$nav.pushByName('editExtensaoDoPrincipal', item.idPrincipalFk)
   }
 
   async downloadCsv() {
@@ -141,7 +140,7 @@ export default class ListExtensaoDoPrincipalView extends Mixins(
       .addFilter(params)
 
     await csv.listCsvExtensaoDoPrincipal()
-    Helper.downloadCsv(csv.items, new CsvExtensaoDoPrincipalSchema())
+    this.$file.downloadCsv(csv.items, new CsvExtensaoDoPrincipalSchema())
   }
 }
 </script>

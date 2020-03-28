@@ -38,8 +38,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$} from '@/config/framework.config'
-import {Helper} from '@/helpers'
 import {Principal} from '@/model/resource/Principal'
 import {InputPrincipalSchema} from '@/schema/resource/Principal/InputPrincipalSchema'
 
@@ -68,18 +66,20 @@ export default class PersistPrincipalView extends Vue {
       await this.principal.getPrincipal(id)
     }
 
-    $.await.done('getPrincipal')
+    this.$await.done('getPrincipal')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.principal.persistPrincipal()
-    await Helper.successAndPush('system.success.persist', '/principal/list')
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/principal/list')
   }
 }
 </script>

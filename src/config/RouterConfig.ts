@@ -7,8 +7,7 @@
  * See https://router.vuejs.org/guide/#javascript
  * This configuration will be set in @/bootstrap/app.ts
  */
-
-import {RouterOptions} from 'vue-router'
+import {RouterOptions} from 'vue-router/types/router'
 
 import DefaultLayout from '@/views/layouts/DefaultLayout.vue'
 import DashboardView from '@/views/DashboardView.vue'
@@ -35,11 +34,14 @@ import PersistTagView from '@/views/persist/PersistTagView.vue'
 import PersistExtensaoDoPrincipalView from '@/views/persist/PersistExtensaoDoPrincipalView.vue'
 import PersistItemDoPrincipalView from '@/views/persist/PersistItemDoPrincipalView.vue'
 import PersistPrincipalView from '@/views/persist/PersistPrincipalView.vue'
+
 /**
  * VUE Router Configuration
  */
-export const router: RouterOptions = {
-  routes: [
+export class RouterConfig implements RouterOptions {
+  readonly mode = 'history'
+
+  readonly routes = [
     {
       path: '/sign-in',
       name: 'signIn',
@@ -108,7 +110,10 @@ export const router: RouterOptions = {
           props: true,
         },
 
-        {path: '/grupo-do-principal/list', component: ListGrupoDoPrincipalView},
+        {
+          path: '/grupo-do-principal/list',
+          component: ListGrupoDoPrincipalView,
+        },
         {
           path: '/grupo-do-principal/new',
           component: PersistGrupoDoPrincipalView,
@@ -145,7 +150,10 @@ export const router: RouterOptions = {
         },
 
         {path: '/item-do-principal/list', component: ListItemDoPrincipalView},
-        {path: '/item-do-principal/new', component: PersistItemDoPrincipalView},
+        {
+          path: '/item-do-principal/new',
+          component: PersistItemDoPrincipalView,
+        },
         {
           path: '/item-do-principal/edit/:id',
           name: 'editItemDoPrincipal',
@@ -165,5 +173,5 @@ export const router: RouterOptions = {
     },
     {path: '/', redirect: '/sign-in'},
     {path: '*', redirect: '/dashboard'},
-  ],
+  ]
 }

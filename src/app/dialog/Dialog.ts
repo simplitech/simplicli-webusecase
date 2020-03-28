@@ -1,4 +1,4 @@
-import {$} from '@/config/framework.config'
+import {$} from '@/facade'
 
 export class Dialog {
   title: string = ''

@@ -1,19 +1,13 @@
-import Vue from 'vue'
-import App from './App.vue'
+import '@/registerServiceWorker'
 
-import '@/setup/vendor'
-import '@/setup/simpli'
-import '@/setup/settings'
+import '@fortawesome/fontawesome-free/css/fontawesome.min.css'
+import '@fortawesome/fontawesome-free/css/solid.min.css'
+import '@fortawesome/fontawesome-free/css/regular.min.css'
+import '@fortawesome/fontawesome-free/css/brands.min.css'
+import 'vue-transition-expand/dist/vue-transition-expand.css'
 
-import {store} from '@/store'
-import {$} from '@/config/framework.config'
-
-new Vue({
-  router: $.router,
-  i18n: $.i18n,
-  store,
-  render: h => h(App),
-}).$mount('#app')
+import {Setup} from '@/app/Setup'
+Setup.init()
 
 // @ts-ignore
 window.appLoader.finish()

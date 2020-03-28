@@ -2,7 +2,7 @@
  * Csv Schema of Principal
  * @author Simpli CLI generator
  */
-import {Helper} from '@/helpers'
+import {$} from '@/facade'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet} from '@simpli/meta-schema'
 import {Principal} from '@/model/resource/Principal'
@@ -20,12 +20,12 @@ export class CsvPrincipalSchema extends DefaultSchema {
     unico: schema => schema.model.unico,
     decimalObrigatorio: schema => schema.model.decimalObrigatorio,
     booleanoObrigatorio: schema =>
-      Helper.bool(schema.model.booleanoObrigatorio),
-    dataObrigatoria: schema => Helper.datetime(schema.model.dataObrigatoria),
+      $.filter.bool(schema.model.booleanoObrigatorio),
+    dataObrigatoria: schema => $.filter.datetime(schema.model.dataObrigatoria),
     datahoraObrigatoria: schema =>
-      Helper.datetime(schema.model.datahoraObrigatoria),
-    ativo: schema => Helper.bool(schema.model.ativo),
-    dataCriacao: schema => Helper.datetime(schema.model.dataCriacao),
+      $.filter.datetime(schema.model.datahoraObrigatoria),
+    ativo: schema => $.filter.bool(schema.model.ativo),
+    dataCriacao: schema => $.filter.datetime(schema.model.dataCriacao),
     textoFacultativo: schema => schema.model.textoFacultativo,
     inteiroFacultativo: schema => schema.model.inteiroFacultativo,
     email: schema => schema.model.email,
@@ -33,19 +33,19 @@ export class CsvPrincipalSchema extends DefaultSchema {
     url: schema => schema.model.url,
     nome: schema => schema.model.nome,
     titulo: schema => schema.model.titulo,
-    cpf: schema => Helper.cpf(schema.model.cpf),
-    cnpj: schema => Helper.cnpj(schema.model.cnpj),
-    rg: schema => Helper.rg(schema.model.rg),
-    celular: schema => Helper.phone(schema.model.celular),
+    cpf: schema => $.filter.cpf(schema.model.cpf),
+    cnpj: schema => $.filter.cnpj(schema.model.cnpj),
+    rg: schema => $.filter.rg(schema.model.rg),
+    celular: schema => $.filter.phone(schema.model.celular),
     textoGrande: schema => schema.model.textoGrande,
     snakeCase: schema => schema.model.snakeCase,
     decimalFacultativo: schema => schema.model.decimalFacultativo,
     booleanoFacultativo: schema =>
-      Helper.bool(schema.model.booleanoFacultativo),
-    dataFacultativa: schema => Helper.datetime(schema.model.dataFacultativa),
+      $.filter.bool(schema.model.booleanoFacultativo),
+    dataFacultativa: schema => $.filter.datetime(schema.model.dataFacultativa),
     datahoraFacultativa: schema =>
-      Helper.datetime(schema.model.datahoraFacultativa),
-    dataAlteracao: schema => Helper.datetime(schema.model.dataAlteracao),
+      $.filter.datetime(schema.model.datahoraFacultativa),
+    dataAlteracao: schema => $.filter.datetime(schema.model.dataAlteracao),
     preco: schema => schema.model.preco,
   }
 }

@@ -104,7 +104,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {Helper} from '@/helpers'
 import {Conectado} from '@/model/resource/Conectado'
 import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
 import {ListConectadoSchema} from '@/schema/resource/Conectado/ListConectadoSchema'
@@ -121,7 +120,7 @@ export default class ListConectadoView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: Conectado) {
-    Helper.pushByName('editConectado', item.$id)
+    this.$nav.pushByName('editConectado', item.$id)
   }
 
   async downloadCsv() {
@@ -134,7 +133,7 @@ export default class ListConectadoView extends Mixins(MixinAdapRoute) {
     const csv = new ConectadoCollection().clearFilters().addFilter(params)
 
     await csv.listCsvConectado()
-    Helper.downloadCsv(csv.items, new CsvConectadoSchema())
+    this.$file.downloadCsv(csv.items, new CsvConectadoSchema())
   }
 }
 </script>

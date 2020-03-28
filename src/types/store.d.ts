@@ -1,20 +1,21 @@
-import {Currency, Lang} from '@/enums'
 import {User} from '@/model/resource/User'
+import {Lang} from '@/enums/Lang'
+import {Currency} from '@/enums/Currency'
 
 /**
  * Root
  */
 export interface RootState {
   version: string
-  language: Lang
-  currency: Currency
+  language: Lang | null
+  currency: Currency | null
 }
 
 /**
  * Auth Module
  */
 export interface AuthState {
-  token: string | null | null
+  token: string | null
   user: User | null
   cachePath: string | null
 }

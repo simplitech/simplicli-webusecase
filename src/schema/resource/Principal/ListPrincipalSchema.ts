@@ -2,7 +2,7 @@
  * List Schema of Principal
  * @author Simpli CLI generator
  */
-import {Helper} from '@/helpers'
+import {$} from '@/facade'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet, FieldComponent} from '@simpli/meta-schema'
 import {Render, RenderAnchor, RenderImage} from '@simpli/vue-render-schema'
@@ -43,31 +43,31 @@ export class ListPrincipalSchema extends DefaultSchema {
     booleanoObrigatorio: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.bool(schema.model.booleanoObrigatorio),
+        content: $.filter.bool(schema.model.booleanoObrigatorio),
       },
     }),
     dataObrigatoria: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataObrigatoria),
+        content: $.filter.datetime(schema.model.dataObrigatoria),
       },
     }),
     datahoraObrigatoria: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.datetime(schema.model.datahoraObrigatoria),
+        content: $.filter.datetime(schema.model.datahoraObrigatoria),
       },
     }),
     ativo: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.bool(schema.model.ativo),
+        content: $.filter.bool(schema.model.ativo),
       },
     }),
     dataCriacao: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataCriacao),
+        content: $.filter.datetime(schema.model.dataCriacao),
       },
     }),
     textoFacultativo: (): FieldComponent => ({
@@ -104,25 +104,25 @@ export class ListPrincipalSchema extends DefaultSchema {
     cpf: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.cpf(schema.model.cpf),
+        content: $.filter.cpf(schema.model.cpf),
       },
     }),
     cnpj: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.cnpj(schema.model.cnpj),
+        content: $.filter.cnpj(schema.model.cnpj),
       },
     }),
     rg: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.rg(schema.model.rg),
+        content: $.filter.rg(schema.model.rg),
       },
     }),
     celular: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.phone(schema.model.celular),
+        content: $.filter.phone(schema.model.celular),
       },
     }),
     textoGrande: (): FieldComponent => ({
@@ -137,25 +137,25 @@ export class ListPrincipalSchema extends DefaultSchema {
     booleanoFacultativo: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.bool(schema.model.booleanoFacultativo),
+        content: $.filter.bool(schema.model.booleanoFacultativo),
       },
     }),
     dataFacultativa: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataFacultativa),
+        content: $.filter.datetime(schema.model.dataFacultativa),
       },
     }),
     datahoraFacultativa: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.datetime(schema.model.datahoraFacultativa),
+        content: $.filter.datetime(schema.model.datahoraFacultativa),
       },
     }),
     dataAlteracao: (schema): FieldComponent => ({
       is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataAlteracao),
+        content: $.filter.datetime(schema.model.dataAlteracao),
       },
     }),
     preco: (): FieldComponent => ({

@@ -53,7 +53,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th></th>
+                  <th />
 
                   <th v-for="(value, key) in schema.header" :key="key">
                     <adap-orderby
@@ -109,9 +109,8 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {Helper} from '@/helpers'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {DialogRemove} from '@/helpers/dialog/DialogRemove'
+import {DialogRemove} from '@/app/dialog/DialogRemove'
 import {Principal} from '@/model/resource/Principal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 import {ListPrincipalSchema} from '@/schema/resource/Principal/ListPrincipalSchema'
@@ -128,7 +127,7 @@ export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: Principal) {
-    Helper.pushByName('editPrincipal', item.$id)
+    this.$nav.pushByName('editPrincipal', item.$id)
   }
 
   async removeItem(item: Principal) {
@@ -146,7 +145,7 @@ export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
     const csv = new PrincipalCollection().clearFilters().addFilter(params)
 
     await csv.listCsvPrincipal()
-    Helper.downloadCsv(csv.items, new CsvPrincipalSchema())
+    this.$file.downloadCsv(csv.items, new CsvPrincipalSchema())
   }
 }
 </script>

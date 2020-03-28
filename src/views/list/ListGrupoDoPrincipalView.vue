@@ -108,7 +108,6 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {Helper} from '@/helpers'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
 import {ListGrupoDoPrincipalSchema} from '@/schema/resource/GrupoDoPrincipal/ListGrupoDoPrincipalSchema'
@@ -124,7 +123,7 @@ export default class ListGrupoDoPrincipalView extends Mixins(MixinAdapRoute) {
   }
 
   goToPersistView(item: GrupoDoPrincipal) {
-    Helper.pushByName('editGrupoDoPrincipal', item.$id)
+    this.$nav.pushByName('editGrupoDoPrincipal', item.$id)
   }
 
   async downloadCsv() {
@@ -139,7 +138,7 @@ export default class ListGrupoDoPrincipalView extends Mixins(MixinAdapRoute) {
       .addFilter(params)
 
     await csv.listCsvGrupoDoPrincipal()
-    Helper.downloadCsv(csv.items, new CsvGrupoDoPrincipalSchema())
+    this.$file.downloadCsv(csv.items, new CsvGrupoDoPrincipalSchema())
   }
 }
 </script>

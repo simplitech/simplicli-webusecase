@@ -1,9 +1,11 @@
 /**
  * Environment variables defined in .env[.*]
  */
-import {Currency, Lang} from '@/enums'
+import {Lang} from '@/enums/Lang'
+import {Currency} from '@/enums/Currency'
 
-export abstract class Env {
+export abstract class EnvHelper {
+  static readonly BASE_URL = process.env.BASE_URL!
   static readonly APP_ENV = process.env.VUE_APP_ENV!
 
   static readonly API_URL = process.env.VUE_APP_API_URL!

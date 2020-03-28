@@ -4,19 +4,19 @@ import {
   SnotifyToastConfig,
 } from 'vue-snotify'
 
-export abstract class ToastConfig {
-  static ToastDefaultStyle:
+export class ToastConfig {
+  readonly style:
     | 'vue-notify--material'
     | 'vue-notify--simple'
     | 'vue-notify--dark' = 'vue-notify--material'
 
-  static ToastGlobalConfig: SnotifyGlobalConfig = {
+  readonly global: SnotifyGlobalConfig = {
     newOnTop: true, // true = stack, false = queue
     maxOnScreen: 5,
     maxAtPosition: 5,
   }
 
-  static ToastDefaultConfig: SnotifyToastConfig = {
+  readonly default: SnotifyToastConfig = {
     timeout: 5000, // 0 is infinite
     position: SnotifyPosition.rightBottom,
     showProgressBar: true,

@@ -1,6 +1,6 @@
-import {$} from '@/config/framework.config'
+import {$} from '@/facade'
 import {IResource} from '@simpli/resource-collection'
-import {Dialog} from '@/helpers/dialog/Dialog'
+import {Dialog} from '@/app/dialog/Dialog'
 
 export class DialogRemove extends Dialog {
   constructor(public resource: IResource) {

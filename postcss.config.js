@@ -7,6 +7,7 @@ const purgecss = require('@fullhuman/postcss-purgecss')({
     './node_modules/simpli-web-sdk/**/*.css',
     './node_modules/normalize-scss/**/*.scss',
     './node_modules/pretty-checkbox/**/*.scss',
+    './node_modules/vue-transition-expand/dist/vue-transition-expand.css',
   ],
   whitelistPatterns: [
     /^v-[A-Za-z0-9-_:/]+/,
