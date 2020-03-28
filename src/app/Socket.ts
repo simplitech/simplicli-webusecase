@@ -2,15 +2,15 @@ import {SocketConnection} from '@simpli/serialized-request'
 import {Dictionary} from '@simpli/vue-await/lib/Dictionary'
 import {ClassType} from 'class-transformer/ClassTransformer'
 
-export interface SocketConfig {
+export interface SocketOptions {
   baseURL?: string
 }
 
 export class Socket {
   socketConnection: Dictionary<SocketConnection<any>> = {}
-  config: SocketConfig = {}
+  config: SocketOptions = {}
 
-  constructor(config?: SocketConfig) {
+  constructor(config?: SocketOptions) {
     if (config) {
       this.config = config
     }

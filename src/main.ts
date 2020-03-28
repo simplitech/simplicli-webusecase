@@ -6,8 +6,8 @@ import 'vue-transition-expand/dist/vue-transition-expand.css'
 
 import '@/registerServiceWorker'
 
-import {ApplicationSetup} from '@/setup/ApplicationSetup'
 import {PluginSetup} from '@/setup/PluginSetup'
+import {ApplicationSetup} from '@/setup/ApplicationSetup'
 
 PluginSetup.init()
 ApplicationSetup.init()

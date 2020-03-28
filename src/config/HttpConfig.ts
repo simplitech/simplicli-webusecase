@@ -62,7 +62,9 @@ export class HttpConfig {
         const response = error.response
 
         if (error.config?.headers?.['X-Ignore-Errors']) {
-          return Promise.reject('')
+          return Promise.reject(
+            response?.data.message ?? response?.statusText ?? ''
+          )
         }
 
         if (!response) {
@@ -76,10 +78,10 @@ export class HttpConfig {
 
         if (response.status >= 400) {
           $.snotify.error(
-            response.data.message || response.statusText,
+            response.data.message ?? response.statusText,
             response.status.toString()
           )
-          return Promise.reject(response.data.message || response.statusText)
+          return Promise.reject(response.data.message ?? response.statusText)
         }
 
         return Promise.reject(error)

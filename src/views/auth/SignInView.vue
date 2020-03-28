@@ -50,7 +50,7 @@ export default class SignInView extends Vue {
 
   created() {
     if (this.$auth.isLogged) {
-      this.$nav.push('/dashboard')
+      this.$nav.replace('/dashboard')
     }
   }
 }

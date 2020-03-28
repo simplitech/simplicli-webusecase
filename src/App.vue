@@ -23,7 +23,7 @@ Component.registerHooks(['metaInfo'])
 export default class App extends Vue {
   metaInfo(): MetaInfo {
     return {
-      title: this.$t('app.title') as string,
+      title: this.$t('app.subtitle') as string,
       titleTemplate: `%s | ${this.$t('app.title')}`,
     }
   }

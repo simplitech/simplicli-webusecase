@@ -1,7 +1,9 @@
 import {snakeCase, mapKeys} from 'lodash'
 import {unparse} from 'papaparse'
+import {$} from '@/simpli'
 import {Dictionary, FieldData} from '@simpli/meta-schema'
 import {DefaultSchema} from '@/schema/DefaultSchema'
+import Compressor from 'compressorjs'
 
 export abstract class FileHelper {
   static downloadCsv<M>(
@@ -65,5 +67,53 @@ export abstract class FileHelper {
       link.click()
       document.body.removeChild(link)
     }
+  }
+
+  static canvasToBlob(canvas: HTMLCanvasElement) {
+    return new Promise<Blob | null>(resolve => {
+      canvas.toBlob((blob: Blob | null) => {
+        resolve(blob)
+      })
+    })
+  }
+
+  static compressImage(file: Blob | File, options: Compressor.Options) {
+    return new Promise<Blob>(resolve => {
+      const success = (file: Blob) => resolve(file)
+      return new Compressor(file, {...options, ...{success}})
+    })
+  }
+
+  static getExtension(file: Blob | File) {
+    return file.type.includes('jpeg') ? 'jpg' : file.type.split('/')[1]
+  }
+
+  static uniqueFilename(file: Blob | File, prefix = '') {
+    const extension = this.getExtension(file)
+    return $.utils.uid(`${prefix}_`, extension)
+  }
+
+  static async uploadImage(
+    file: Blob | File,
+    uploadUrl: string,
+    options: Compressor.Options = {}
+  ) {
+    const blob = await this.compressImage(file, options)
+
+    // @ts-ignore
+    const arrBuffer = await blob.arrayBuffer()
+
+    await fetch(uploadUrl, {
+      method: 'PUT',
+      mode: 'cors',
+      credentials: 'omit',
+      headers: {
+        'content-type': 'application/octet-stream',
+        'sec-fetch-mode': 'cors',
+      },
+      body: arrBuffer,
+    })
+
+    return uploadUrl.split('?')[0]
   }
 }
