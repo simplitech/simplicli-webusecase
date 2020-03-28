@@ -9,7 +9,7 @@
  */
 
 import axios, {AxiosError} from 'axios'
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {App} from '@/app/vuex/App'
 import {Auth} from '@/app/vuex/Auth'
 import {HttpStatus} from '@/enums/HttpStatus'

@@ -1,9 +1,9 @@
 import Vue from 'vue'
 import VueRouter from 'vue-router'
 import VueI18n from 'vue-i18n'
-import {store} from '@/store'
-import AppVue from '@/App.vue'
 
+import AppVue from '@/App.vue'
+import {store} from '@/store'
 import {Config} from '@/app/Config'
 import {App} from '@/app/vuex/App'
 import {Auth} from '@/app/vuex/Auth'

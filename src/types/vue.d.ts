@@ -1,8 +1,7 @@
+import {Validator} from 'vee-validate'
 import {Config} from '@/app/Config'
 import {App} from '@/app/vuex/App'
 import {Auth} from '@/app/vuex/Auth'
-import {Dialog} from '@/app/dialog/Dialog'
-import {DialogRemove} from '@/app/dialog/DialogRemove'
 import {EnvHelper} from '@/helpers/EnvHelper'
 import {FileHelper} from '@/helpers/FileHelper'
 import {FilterHelper} from '@/helpers/FilterHelper'
@@ -12,7 +11,6 @@ import {UtilsHelper} from '@/helpers/UtilsHelper'
 import {SnotifyService} from 'vue-snotify/SnotifyService'
 import {AwaitController} from '@simpli/vue-await/lib/Await'
 import {ModalController} from '@simpli/vue-modal/lib/Modal'
-import {Validator} from 'vee-validate'
 
 declare module 'vue/types/vue' {
   interface Vue {

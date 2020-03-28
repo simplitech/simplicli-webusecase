@@ -8,7 +8,7 @@
  * This configuration will be set in @/bootstrap/app.ts
  */
 
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {InputType} from '@simpli/vue-input/lib/InputType'
 
 /**

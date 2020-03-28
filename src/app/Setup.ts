@@ -1,12 +1,15 @@
+import Vue from 'vue'
+import VueRouter from 'vue-router'
+import VueI18n from 'vue-i18n'
+import VueMeta from 'vue-meta'
+import VueMoment from 'vue-moment'
+import VueSnotify from 'vue-snotify'
+import VueTheMask from 'vue-the-mask'
+import VueMoney from 'v-money'
+import TransitionExpand from 'vue-transition-expand'
 import VeeValidate from 'vee-validate'
 import * as moment from 'moment'
-// @ts-ignore
-import * as validators from '@brazilian-utils/validators'
-
-import {$} from '@/simpli'
-import {Config} from '@/app/Config'
-import {PageCollection} from '@simpli/resource-collection'
-import {RequestConfig, RequestListener} from '@simpli/serialized-request'
+import {merge} from 'lodash'
 
 import PulseLoader from 'vue-spinner/src/PulseLoader.vue'
 import GridLoader from 'vue-spinner/src/GridLoader.vue'
@@ -25,11 +28,61 @@ import RingLoader from 'vue-spinner/src/RingLoader.vue'
 import BounceLoader from 'vue-spinner/src/BounceLoader.vue'
 import DotLoader from 'vue-spinner/src/DotLoader.vue'
 
-export abstract class ApplicationSetup {
-  static init() {
-    moment.locale(Config.i18n.locale)
+import {$} from '@/facade'
+import {Lang} from '@/enums/Lang'
+import {Currency} from '@/enums/Currency'
+import VueAdapTable from '@simpli/vue-adap-table'
+import VueAwait from '@simpli/vue-await'
+import VueModal from '@simpli/vue-modal'
+import VueRenderSchema from '@simpli/vue-render-schema'
+import {PageCollection} from '@simpli/resource-collection'
+import {RequestConfig, RequestListener} from '@simpli/serialized-request'
+import * as validators from '@brazilian-utils/brazilian-utils'
 
-    RequestConfig.axios = Config.http.axiosInstance
+export abstract class Setup {
+  static init() {
+    Vue.config.productionTip = false
+
+    Vue.prototype.$config = $.config
+    Vue.prototype.$app = $.app
+    Vue.prototype.$auth = $.auth
+    Vue.prototype.$env = $.env
+    Vue.prototype.$file = $.file
+    Vue.prototype.$filter = $.filter
+    Vue.prototype.$nav = $.nav
+    Vue.prototype.$toast = $.toast
+    Vue.prototype.$utils = $.utils
+
+    Vue.use(VueAdapTable)
+    Vue.use(VueAwait)
+    Vue.use(VueModal)
+    Vue.use(VueRenderSchema)
+    Vue.use(VueI18n)
+    Vue.use(VueMeta)
+    Vue.use(VueMoment)
+    Vue.use(VueRouter)
+    Vue.use(VueSnotify)
+    Vue.use(VueTheMask)
+    Vue.use(TransitionExpand)
+    Vue.use(VeeValidate, {
+      i18n: new VueI18n($.config.i18n),
+      useConstraintAttrs: false,
+      dictionary: merge(
+        $.config.i18n.messagesVeeValidate,
+        $.config.i18n.messages
+      ),
+    })
+
+    const filter: any = $.config.filter
+    for (const key in filter) {
+      if (filter.hasOwnProperty(key)) {
+        Vue.filter(key, filter[key])
+      }
+    }
+
+    moment.locale($.config.i18n.locale)
+
+    RequestConfig.axios = $.config.http.axiosInstance
     RequestListener.onRequestStart(reqName => $.await.init(reqName))
     RequestListener.onRequestEnd(reqName => $.await.done(reqName))
 
@@ -38,19 +91,19 @@ export abstract class ApplicationSetup {
     PageCollection.defaultPerPage = 10
 
     VeeValidate.Validator.extend('cpf', {
-      validate: (value?: string) => validators.isValidCpf(value),
+      validate: (value?: string) => validators.isValidCPF(value ?? ''),
     })
     VeeValidate.Validator.extend('cnpj', {
-      validate: (value?: string) => validators.isValidCnpj(value),
+      validate: (value?: string) => validators.isValidCNPJ(value ?? ''),
     })
     VeeValidate.Validator.extend('phone', {
-      validate: (value?: string) => validators.isValidPhone(value),
+      validate: (value?: string) => validators.isValidPhone(value ?? ''),
     })
     VeeValidate.Validator.extend('cep', {
-      validate: (value?: string) => validators.isValidCep(value),
+      validate: (value?: string) => validators.isValidCEP(value ?? ''),
     })
     VeeValidate.Validator.extend('boleto', {
-      validate: (value?: string) => validators.isValidBoleto(value),
+      validate: (value?: string) => validators.isValidBoleto(value ?? ''),
     })
 
     $.await.addLoader('PulseLoader', PulseLoader)
@@ -83,13 +136,26 @@ export abstract class ApplicationSetup {
     $.modal.defaultCloseOutside = true
 
     $.snotify.setDefaults({
-      global: Config.toast.global,
-      toast: Config.toast.default,
+      global: $.config.toast.global,
+      toast: $.config.toast.default,
     })
-
-    $.vm.$mount('#app')
 
     $.app.language = $.config.i18n.locale
     $.app.currency = $.config.i18n.currency
+
+    $.vm.$mount('#app')
+  }
+
+  static changeLocale(lang: Lang) {
+    $.vm.$i18n.locale = lang
+  }
+
+  static changeCurrency(currency: Currency) {
+    Vue.use(VueMoney, {
+      decimal: $.t('lang.decimal') as string,
+      thousands: $.t('lang.thousands') as string,
+      prefix: $.t(`currency.${currency}.prefix`) as string,
+      precision: Number($.t(`currency.${currency}.precision`) as string),
+    })
   }
 }

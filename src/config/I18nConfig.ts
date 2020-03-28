@@ -13,9 +13,6 @@ import {I18nOptions} from 'vue-i18n'
 import {Lang} from '@/enums/Lang'
 import {Currency} from '@/enums/Currency'
 
-import enUs from '@/locale/en-US/lang'
-import ptBr from '@/locale/pt-BR/lang'
-
 /**
  * VUE I18n Configuration
  */
@@ -24,8 +21,8 @@ export class I18nConfig implements I18nOptions {
   readonly currency = process.env.VUE_APP_CURRENCY! as Currency
 
   readonly messages = {
-    [Lang.EN_US]: enUs,
-    [Lang.PT_BR]: ptBr,
+    [Lang.EN_US]: require('../locale/en-US/lang.json'),
+    [Lang.PT_BR]: require('../locale/pt-BR/lang.json'),
   }
 
   readonly messagesVeeValidate = {

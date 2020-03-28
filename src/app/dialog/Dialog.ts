@@ -1,4 +1,4 @@
-import {$} from '@/simpli'
+import {$} from '@/facade'
 
 export class Dialog {
   title: string = ''

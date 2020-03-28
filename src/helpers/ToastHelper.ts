@@ -1,5 +1,5 @@
 import {SnotifyToastConfig} from 'vue-snotify'
-import {$} from '@/simpli'
+import {$} from '@/facade'
 
 export abstract class ToastHelper {
   static success(

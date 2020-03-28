@@ -3,7 +3,7 @@
  * @author Simpli CLI generator
  */
 import {Request} from '@simpli/serialized-request'
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {ResponseExclude} from '@simpli/serialized-request'
 
 /* TODO: review generated class */

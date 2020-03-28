@@ -2,7 +2,7 @@
  * ResetPasswordRequest
  * @author Simpli CLI generator
  */
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {Request} from '@simpli/serialized-request'
 import {ResponseExclude} from '@simpli/serialized-request'
 

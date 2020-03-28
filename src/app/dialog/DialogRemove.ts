@@ -1,4 +1,4 @@
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {IResource} from '@simpli/resource-collection'
 import {Dialog} from '@/app/dialog/Dialog'
 

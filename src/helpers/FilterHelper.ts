@@ -1,5 +1,5 @@
 import moment from 'moment'
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {InputType} from '@simpli/vue-input/lib/InputType'
 
 export abstract class FilterHelper {

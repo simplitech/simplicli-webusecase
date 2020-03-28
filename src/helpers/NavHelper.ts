@@ -1,4 +1,4 @@
-import {$} from '@/simpli'
+import {$} from '@/facade'
 
 export abstract class NavHelper {
   static push(uri: string) {

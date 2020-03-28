@@ -2,7 +2,7 @@
  * AuthRequest
  * @author Simpli CLI generator
  */
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {Request, ResponseExclude} from '@simpli/serialized-request'
 import {AuthResponse} from '@/model/response/AuthResponse'
 

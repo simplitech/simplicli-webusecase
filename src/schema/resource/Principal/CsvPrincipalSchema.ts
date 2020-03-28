@@ -2,7 +2,7 @@
  * Csv Schema of Principal
  * @author Simpli CLI generator
  */
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet} from '@simpli/meta-schema'
 import {Principal} from '@/model/resource/Principal'

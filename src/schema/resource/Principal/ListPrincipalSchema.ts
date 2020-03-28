@@ -2,7 +2,7 @@
  * List Schema of Principal
  * @author Simpli CLI generator
  */
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet, FieldComponent} from '@simpli/meta-schema'
 import {Render, RenderAnchor, RenderImage} from '@simpli/vue-render-schema'

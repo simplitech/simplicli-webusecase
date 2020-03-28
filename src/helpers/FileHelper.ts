@@ -1,6 +1,6 @@
 import {snakeCase, mapKeys} from 'lodash'
 import {unparse} from 'papaparse'
-import {$} from '@/simpli'
+import {$} from '@/facade'
 import {Dictionary, FieldData} from '@simpli/meta-schema'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import Compressor from 'compressorjs'
