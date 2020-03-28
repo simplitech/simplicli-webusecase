@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvEndereco" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportEndereco" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -108,7 +108,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {Endereco} from '@/model/resource/Endereco'
 import {EnderecoCollection} from '@/model/collection/EnderecoCollection'
 import {ListEnderecoSchema} from '@/schema/resource/Endereco/ListEnderecoSchema'
-import {CsvEnderecoSchema} from '@/schema/resource/Endereco/CsvEnderecoSchema'
+import {ExportEnderecoSchema} from '@/schema/resource/Endereco/ExportEnderecoSchema'
 
 @Component
 export default class ListEnderecoView extends Mixins(MixinAdapRoute) {
@@ -123,17 +123,17 @@ export default class ListEnderecoView extends Mixins(MixinAdapRoute) {
     this.$nav.pushByName('editEndereco', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new EnderecoCollection().clearFilters().addFilter(params)
+    const coll = new EnderecoCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvEndereco()
-    this.$file.downloadCsv(csv.items, new CsvEnderecoSchema())
+    await coll.listExportEndereco()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportEnderecoSchema())
   }
 }
 </script>

@@ -1,5 +1,5 @@
 /**
- * Csv DefaultSchema of Endereco
+ * Export DefaultSchema of Endereco
  * @author Simpli CLI generator
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
@@ -7,8 +7,8 @@ import {FieldSet} from '@simpli/meta-schema'
 import {Endereco} from '@/model/resource/Endereco'
 
 /* TODO: review generated DefaultSchema */
-export class CsvEnderecoSchema extends DefaultSchema {
-  readonly name = 'CsvEndereco'
+export class ExportEnderecoSchema extends DefaultSchema {
+  readonly name = 'ExportEndereco'
 
   readonly fieldSet: FieldSet<Endereco> = {
     idEnderecoPk: schema => schema.model.idEnderecoPk,

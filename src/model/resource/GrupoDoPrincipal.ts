@@ -36,11 +36,11 @@ export class GrupoDoPrincipal implements IResource {
   }
 
   /**
-   * Lists the instances of GrupoDoPrincipal to use it in a CSV file
+   * Lists the instances of GrupoDoPrincipal to use it in a XLSX file
    */
-  static async listCsvGrupoDoPrincipal(params: any) {
-    return await Request.get(`/user/grupo-do-principal/csv`, {params})
-      .name('listCsvGrupoDoPrincipal')
+  static async listExportGrupoDoPrincipal(params: any) {
+    return await Request.get(`/user/grupo-do-principal/export`, {params})
+      .name('listExportGrupoDoPrincipal')
       .as(GrupoDoPrincipalCollection)
       .getData()
   }

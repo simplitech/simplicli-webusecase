@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvGrupoDoPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportGrupoDoPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -111,7 +111,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
 import {ListGrupoDoPrincipalSchema} from '@/schema/resource/GrupoDoPrincipal/ListGrupoDoPrincipalSchema'
-import {CsvGrupoDoPrincipalSchema} from '@/schema/resource/GrupoDoPrincipal/CsvGrupoDoPrincipalSchema'
+import {ExportGrupoDoPrincipalSchema} from '@/schema/resource/GrupoDoPrincipal/ExportGrupoDoPrincipalSchema'
 
 @Component
 export default class ListGrupoDoPrincipalView extends Mixins(MixinAdapRoute) {
@@ -126,19 +126,22 @@ export default class ListGrupoDoPrincipalView extends Mixins(MixinAdapRoute) {
     this.$nav.pushByName('editGrupoDoPrincipal', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new GrupoDoPrincipalCollection()
+    const coll = new GrupoDoPrincipalCollection()
       .clearFilters()
       .addFilter(params)
 
-    await csv.listCsvGrupoDoPrincipal()
-    this.$file.downloadCsv(csv.items, new CsvGrupoDoPrincipalSchema())
+    await coll.listExportGrupoDoPrincipal()
+    this.$xlsx.downloadFromSchema(
+      coll.items,
+      new ExportGrupoDoPrincipalSchema()
+    )
   }
 }
 </script>

@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvUser" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportUser" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -108,7 +108,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {User} from '@/model/resource/User'
 import {UserCollection} from '@/model/collection/UserCollection'
 import {ListUserSchema} from '@/schema/resource/User/ListUserSchema'
-import {CsvUserSchema} from '@/schema/resource/User/CsvUserSchema'
+import {ExportUserSchema} from '@/schema/resource/User/ExportUserSchema'
 
 @Component
 export default class ListUserView extends Mixins(MixinAdapRoute) {
@@ -123,17 +123,17 @@ export default class ListUserView extends Mixins(MixinAdapRoute) {
     this.$nav.pushByName('editUser', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new UserCollection().clearFilters().addFilter(params)
+    const coll = new UserCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvUser()
-    this.$file.downloadCsv(csv.items, new CsvUserSchema())
+    await coll.listExportUser()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportUserSchema())
   }
 }
 </script>

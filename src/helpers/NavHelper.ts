@@ -28,16 +28,4 @@ export abstract class NavHelper {
   static historyBack() {
     return window.history.back()
   }
-
-  static isiOS() {
-    return Boolean(/iPad|iPhone|iPod/.test(navigator.userAgent))
-  }
-
-  static isAndroid() {
-    return Boolean(/Android/i.test(navigator.userAgent))
-  }
-
-  static isSafari() {
-    return Boolean(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))
-  }
 }

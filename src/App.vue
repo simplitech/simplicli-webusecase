@@ -4,8 +4,6 @@
       <router-view />
     </transition>
 
-    <modal-dialog />
-
     <vue-snotify :class="$config.toast.style" />
   </div>
 </template>
@@ -13,13 +11,10 @@
 <script lang="ts">
 import {MetaInfo} from 'vue-meta'
 import {Component, Vue} from 'vue-property-decorator'
-import ModalDialog from '@/components/modals/ModalDialog.vue'
 
 Component.registerHooks(['metaInfo'])
 
-@Component({
-  components: {ModalDialog},
-})
+@Component
 export default class App extends Vue {
   metaInfo(): MetaInfo {
     return {

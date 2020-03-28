@@ -26,9 +26,9 @@ export class TagCollection extends PageCollection<Tag> {
       .getResponse()
   }
 
-  async listCsvTag() {
-    return await Request.get(`/user/tag/csv`, {params: this.params})
-      .name('listCsvTag')
+  async listExportTag() {
+    return await Request.get(`/user/tag/export`, {params: this.params})
+      .name('listExportTag')
       .as(this)
       .getResponse()
   }

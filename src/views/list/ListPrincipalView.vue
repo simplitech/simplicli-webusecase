@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -110,11 +110,10 @@
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinAdapRoute} from '@simpli/vue-adap-table'
-import {DialogRemove} from '@/app/dialog/DialogRemove'
 import {Principal} from '@/model/resource/Principal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 import {ListPrincipalSchema} from '@/schema/resource/Principal/ListPrincipalSchema'
-import {CsvPrincipalSchema} from '@/schema/resource/Principal/CsvPrincipalSchema'
+import {ExportPrincipalSchema} from '@/schema/resource/Principal/ExportPrincipalSchema'
 
 @Component
 export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
@@ -131,21 +130,18 @@ export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
   }
 
   async removeItem(item: Principal) {
-    await new DialogRemove(item).confirm(() => item.removePrincipal())
+    await this.$dialog.remove(item)
+    await item.removePrincipal()
     await this.collection.listPrincipal()
   }
 
-  async downloadCsv() {
-    const {params} = this.collection
-    delete params.ascending
-    delete params.orderBy
-    delete params.page
-    delete params.limit
+  async downloadXlsx() {
+    const {ascending, orderBy, page, limit, ...params} = this.collection.params
 
-    const csv = new PrincipalCollection().clearFilters().addFilter(params)
+    const coll = new PrincipalCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvPrincipal()
-    this.$file.downloadCsv(csv.items, new CsvPrincipalSchema())
+    await coll.listExportPrincipal()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportPrincipalSchema())
   }
 }
 </script>

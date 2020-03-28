@@ -61,11 +61,11 @@ export class User implements IResource {
   }
 
   /**
-   * Lists the instances of User to use it in a CSV file
+   * Lists the instances of User to use it in a XLSX file
    */
-  static async listCsvUser(params: any) {
-    return await Request.get(`/user/user/csv`, {params})
-      .name('listCsvUser')
+  static async listExportUser(params: any) {
+    return await Request.get(`/user/user/export`, {params})
+      .name('listExportUser')
       .as(UserCollection)
       .getData()
   }

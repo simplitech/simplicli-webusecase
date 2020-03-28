@@ -117,11 +117,11 @@ export class Principal implements IResource {
   }
 
   /**
-   * Lists the instances of Principal to use it in a CSV file
+   * Lists the instances of Principal to use it in a XLSX file
    */
-  static async listCsvPrincipal(params: any) {
-    return await Request.get(`/user/principal/csv`, {params})
-      .name('listCsvPrincipal')
+  static async listExportPrincipal(params: any) {
+    return await Request.get(`/user/principal/export`, {params})
+      .name('listExportPrincipal')
       .as(PrincipalCollection)
       .getData()
   }

@@ -16,12 +16,12 @@ export class ConectadoCollection extends PageCollection<Conectado> {
   }
 
   queryAsPage() {
-    return this.listCsvConectado()
+    return this.listExportConectado()
   }
 
-  async listCsvConectado() {
-    return await Request.get(`/user/conectado/csv`, {params: this.params})
-      .name('listCsvConectado')
+  async listExportConectado() {
+    return await Request.get(`/user/conectado/export`, {params: this.params})
+      .name('listExportConectado')
       .as(this)
       .getResponse()
   }

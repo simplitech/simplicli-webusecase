@@ -11,7 +11,7 @@
     "confirm": "Confirmar",
     "cancel": "Cancelar",
     "noDataToShow": "Nenhum dado para apresentar",
-    "downloadCsv": "Baixar CSV",
+    "downloadXlsx": "Baixar XLSX",
     "search": "Buscar",
     "submit": "Enviar",
     "totalLines": "{total} entradas no total",
@@ -22,7 +22,8 @@
   },
   "system": {
     "question": {
-      "confirmRemove": "Tem certeza que deseja remover este item?"
+      "confirmRemove": "Tem certeza que deseja remover este item?",
+      "yesRemove": "Sim, remover!"
     },
     "info": {
       "welcome": "Bem-vindo"
@@ -149,6 +150,13 @@
       "format": "$1-$2"
     }
   },
+  "messages": {
+    "cpf": "O campo {0} deve ser um CPF válido",
+    "cnpj": "O campo {0} deve ser um CNPJ válido",
+    "phone": "O campo {0} deve ser um telefone válido",
+    "cep": "O campo {0} deve ser um CEP válido",
+    "boleto": "O campo {0} deve ser um Boleto válido"
+  },
   "view": {
     "signIn": {
       "title": "Fazer Login",
@@ -201,7 +209,7 @@
       "token": "Token",
       "user": "User"
     },
-    "CsvAuthResponse": {
+    "ExportAuthResponse": {
       "token": "Token",
       "user": "User"
     },
@@ -219,7 +227,7 @@
       "principal": "Principal",
       "titulo": "Titulo"
     },
-    "CsvConectorPrincipal": {
+    "ExportConectorPrincipal": {
       "idPrincipalFk": "Id Principal Fk",
       "idConectadoFk": "Id Conectado Fk",
       "conectado": "Conectado",
@@ -236,7 +244,7 @@
       "email": "Email",
       "senha": "Senha"
     },
-    "CsvUser": {
+    "ExportUser": {
       "idUserPk": "Id User Pk",
       "email": "Email",
       "senha": "Senha"
@@ -249,7 +257,7 @@
       "idConectadoPk": "Id Conectado Pk",
       "titulo": "Titulo"
     },
-    "CsvConectado": {
+    "ExportConectado": {
       "idConectadoPk": "Id Conectado Pk",
       "titulo": "Titulo"
     },
@@ -275,7 +283,7 @@
       "latitude": "Latitude",
       "longitude": "Longitude"
     },
-    "CsvEndereco": {
+    "ExportEndereco": {
       "idEnderecoPk": "Id Endereco Pk",
       "cep": "Cep",
       "zipcode": "Zipcode",
@@ -294,7 +302,7 @@
       "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
       "titulo": "Titulo"
     },
-    "CsvGrupoDoPrincipal": {
+    "ExportGrupoDoPrincipal": {
       "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
       "titulo": "Titulo"
     },
@@ -308,7 +316,7 @@
       "tagPrincipal": "Tag Principal",
       "titulo": "Titulo"
     },
-    "CsvTag": {
+    "ExportTag": {
       "idTagPk": "Id Tag Pk",
       "tagPrincipal": "Tag Principal",
       "titulo": "Titulo"
@@ -323,7 +331,7 @@
       "principal": "Principal",
       "titulo": "Titulo"
     },
-    "CsvExtensaoDoPrincipal": {
+    "ExportExtensaoDoPrincipal": {
       "idPrincipalFk": "Id Principal Fk",
       "principal": "Principal",
       "titulo": "Titulo"
@@ -340,7 +348,7 @@
       "titulo": "Titulo",
       "idPrincipalFk": "Id Principal Fk"
     },
-    "CsvItemDoPrincipal": {
+    "ExportItemDoPrincipal": {
       "idItemDoPrincipalPk": "Id Item Do Principal Pk",
       "principal": "Principal",
       "titulo": "Titulo",
@@ -418,7 +426,7 @@
       "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
       "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
     },
-    "CsvPrincipal": {
+    "ExportPrincipal": {
       "idPrincipalPk": "Id Principal Pk",
       "grupoDoPrincipal1": "Grupo Do Principal 1",
       "grupoDoPrincipal2": "Grupo Do Principal 2",

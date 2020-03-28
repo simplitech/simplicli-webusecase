@@ -60,11 +60,11 @@ export class ItemDoPrincipal implements IResource {
   }
 
   /**
-   * Lists the instances of ItemDoPrincipal to use it in a CSV file
+   * Lists the instances of ItemDoPrincipal to use it in a XLSX file
    */
-  static async listCsvItemDoPrincipal(params: any) {
-    return await Request.get(`/user/item-do-principal/csv`, {params})
-      .name('listCsvItemDoPrincipal')
+  static async listExportItemDoPrincipal(params: any) {
+    return await Request.get(`/user/item-do-principal/export`, {params})
+      .name('listExportItemDoPrincipal')
       .as(ItemDoPrincipalCollection)
       .getData()
   }

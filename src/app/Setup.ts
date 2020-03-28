@@ -4,6 +4,7 @@ import VueI18n from 'vue-i18n'
 import VueMeta from 'vue-meta'
 import VueMoment from 'vue-moment'
 import VueSnotify from 'vue-snotify'
+import VueSweetalert2 from 'vue-sweetalert2'
 import VueTheMask from 'vue-the-mask'
 import VueMoney from 'v-money'
 import TransitionExpand from 'vue-transition-expand'
@@ -48,6 +49,9 @@ export abstract class Setup {
     Vue.prototype.$auth = $.auth
     Vue.prototype.$env = $.env
     Vue.prototype.$file = $.file
+    Vue.prototype.$xlsx = $.xlsx
+    Vue.prototype.$dialog = $.dialog
+    Vue.prototype.$file = $.file
     Vue.prototype.$filter = $.filter
     Vue.prototype.$nav = $.nav
     Vue.prototype.$toast = $.toast
@@ -62,6 +66,7 @@ export abstract class Setup {
     Vue.use(VueMoment)
     Vue.use(VueRouter)
     Vue.use(VueSnotify)
+    Vue.use(VueSweetalert2)
     Vue.use(VueTheMask)
     Vue.use(TransitionExpand)
     Vue.use(VeeValidate, {

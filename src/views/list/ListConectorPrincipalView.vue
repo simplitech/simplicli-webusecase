@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvConectorPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportConectorPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -111,7 +111,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
 import {ConectorPrincipalCollection} from '@/model/collection/ConectorPrincipalCollection'
 import {ListConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/ListConectorPrincipalSchema'
-import {CsvConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/CsvConectorPrincipalSchema'
+import {ExportConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/ExportConectorPrincipalSchema'
 
 @Component
 export default class ListConectorPrincipalView extends Mixins(MixinAdapRoute) {
@@ -130,19 +130,22 @@ export default class ListConectorPrincipalView extends Mixins(MixinAdapRoute) {
     )
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new ConectorPrincipalCollection()
+    const coll = new ConectorPrincipalCollection()
       .clearFilters()
       .addFilter(params)
 
-    await csv.listCsvConectorPrincipal()
-    this.$file.downloadCsv(csv.items, new CsvConectorPrincipalSchema())
+    await coll.listExportConectorPrincipal()
+    this.$xlsx.downloadFromSchema(
+      coll.items,
+      new ExportConectorPrincipalSchema()
+    )
   }
 }
 </script>

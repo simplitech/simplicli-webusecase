@@ -36,11 +36,11 @@ export class Conectado implements IResource {
   }
 
   /**
-   * Lists the instances of Conectado to use it in a CSV file
+   * Lists the instances of Conectado to use it in a XLSX file
    */
-  static async listCsvConectado(params: any) {
-    return await Request.get(`/user/conectado/csv`, {params})
-      .name('listCsvConectado')
+  static async listExportConectado(params: any) {
+    return await Request.get(`/user/conectado/export`, {params})
+      .name('listExportConectado')
       .as(ConectadoCollection)
       .getData()
   }

@@ -1,5 +1,5 @@
 /**
- * Csv Schema of Principal
+ * Export Schema of Principal
  * @author Simpli CLI generator
  */
 import {$} from '@/facade'
@@ -8,8 +8,8 @@ import {FieldSet} from '@simpli/meta-schema'
 import {Principal} from '@/model/resource/Principal'
 
 /* TODO: review generated schema */
-export class CsvPrincipalSchema extends DefaultSchema {
-  readonly name = 'CsvPrincipal'
+export class ExportPrincipalSchema extends DefaultSchema {
+  readonly name = 'ExportPrincipal'
 
   readonly fieldSet: FieldSet<Principal> = {
     idPrincipalPk: schema => schema.model.idPrincipalPk,

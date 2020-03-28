@@ -61,11 +61,11 @@ export class Tag implements IResource {
   }
 
   /**
-   * Lists the instances of Tag to use it in a CSV file
+   * Lists the instances of Tag to use it in a XLSX file
    */
-  static async listCsvTag(params: any) {
-    return await Request.get(`/user/tag/csv`, {params})
-      .name('listCsvTag')
+  static async listExportTag(params: any) {
+    return await Request.get(`/user/tag/export`, {params})
+      .name('listExportTag')
       .as(TagCollection)
       .getData()
   }

@@ -22,4 +22,16 @@ export abstract class UtilsHelper {
   static clone<T>(fromEntity: T, options?: ClassTransformOptions): T {
     return classToClass(fromEntity, options)
   }
+
+  static isiOS() {
+    return Boolean(/iPad|iPhone|iPod/.test(navigator.userAgent))
+  }
+
+  static isAndroid() {
+    return Boolean(/Android/i.test(navigator.userAgent))
+  }
+
+  static isSafari() {
+    return Boolean(/^((?!chrome|android).)*safari/i.test(navigator.userAgent))
+  }
 }

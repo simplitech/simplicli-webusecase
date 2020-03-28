@@ -26,11 +26,11 @@ export class ItemDoPrincipalCollection extends PageCollection<ItemDoPrincipal> {
       .getResponse()
   }
 
-  async listCsvItemDoPrincipal() {
-    return await Request.get(`/user/item-do-principal/csv`, {
+  async listExportItemDoPrincipal() {
+    return await Request.get(`/user/item-do-principal/export`, {
       params: this.params,
     })
-      .name('listCsvItemDoPrincipal')
+      .name('listExportItemDoPrincipal')
       .as(this)
       .getResponse()
   }

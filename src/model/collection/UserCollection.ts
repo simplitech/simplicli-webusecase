@@ -26,9 +26,9 @@ export class UserCollection extends PageCollection<User> {
       .getResponse()
   }
 
-  async listCsvUser() {
-    return await Request.get(`/user/user/csv`, {params: this.params})
-      .name('listCsvUser')
+  async listExportUser() {
+    return await Request.get(`/user/user/export`, {params: this.params})
+      .name('listExportUser')
       .as(this)
       .getResponse()
   }

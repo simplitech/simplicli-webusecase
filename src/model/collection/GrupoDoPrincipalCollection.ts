@@ -18,14 +18,14 @@ export class GrupoDoPrincipalCollection extends PageCollection<
   }
 
   queryAsPage() {
-    return this.listCsvGrupoDoPrincipal()
+    return this.listExportGrupoDoPrincipal()
   }
 
-  async listCsvGrupoDoPrincipal() {
-    return await Request.get(`/user/grupo-do-principal/csv`, {
+  async listExportGrupoDoPrincipal() {
+    return await Request.get(`/user/grupo-do-principal/export`, {
       params: this.params,
     })
-      .name('listCsvGrupoDoPrincipal')
+      .name('listExportGrupoDoPrincipal')
       .as(this)
       .getResponse()
   }

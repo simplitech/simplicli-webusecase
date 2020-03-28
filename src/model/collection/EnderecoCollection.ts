@@ -26,9 +26,9 @@ export class EnderecoCollection extends PageCollection<Endereco> {
       .getResponse()
   }
 
-  async listCsvEndereco() {
-    return await Request.get(`/user/endereco/csv`, {params: this.params})
-      .name('listCsvEndereco')
+  async listExportEndereco() {
+    return await Request.get(`/user/endereco/export`, {params: this.params})
+      .name('listExportEndereco')
       .as(this)
       .getResponse()
   }

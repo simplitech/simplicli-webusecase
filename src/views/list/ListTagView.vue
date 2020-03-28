@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvTag" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportTag" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -108,7 +108,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {Tag} from '@/model/resource/Tag'
 import {TagCollection} from '@/model/collection/TagCollection'
 import {ListTagSchema} from '@/schema/resource/Tag/ListTagSchema'
-import {CsvTagSchema} from '@/schema/resource/Tag/CsvTagSchema'
+import {ExportTagSchema} from '@/schema/resource/Tag/ExportTagSchema'
 
 @Component
 export default class ListTagView extends Mixins(MixinAdapRoute) {
@@ -123,17 +123,17 @@ export default class ListTagView extends Mixins(MixinAdapRoute) {
     this.$nav.pushByName('editTag', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new TagCollection().clearFilters().addFilter(params)
+    const coll = new TagCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvTag()
-    this.$file.downloadCsv(csv.items, new CsvTagSchema())
+    await coll.listExportTag()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportTagSchema())
   }
 }
 </script>

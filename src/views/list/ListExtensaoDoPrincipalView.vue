@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvExtensaoDoPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportExtensaoDoPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -111,7 +111,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 import {ExtensaoDoPrincipalCollection} from '@/model/collection/ExtensaoDoPrincipalCollection'
 import {ListExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipal/ListExtensaoDoPrincipalSchema'
-import {CsvExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipal/CsvExtensaoDoPrincipalSchema'
+import {ExportExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipal/ExportExtensaoDoPrincipalSchema'
 
 @Component
 export default class ListExtensaoDoPrincipalView extends Mixins(
@@ -128,19 +128,22 @@ export default class ListExtensaoDoPrincipalView extends Mixins(
     this.$nav.pushByName('editExtensaoDoPrincipal', item.idPrincipalFk)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new ExtensaoDoPrincipalCollection()
+    const coll = new ExtensaoDoPrincipalCollection()
       .clearFilters()
       .addFilter(params)
 
-    await csv.listCsvExtensaoDoPrincipal()
-    this.$file.downloadCsv(csv.items, new CsvExtensaoDoPrincipalSchema())
+    await coll.listExportExtensaoDoPrincipal()
+    this.$xlsx.downloadFromSchema(
+      coll.items,
+      new ExportExtensaoDoPrincipalSchema()
+    )
   }
 }
 </script>

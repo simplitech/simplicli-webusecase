@@ -20,9 +20,9 @@
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvItemDoPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportItemDoPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -111,7 +111,7 @@ import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {ItemDoPrincipal} from '@/model/resource/ItemDoPrincipal'
 import {ItemDoPrincipalCollection} from '@/model/collection/ItemDoPrincipalCollection'
 import {ListItemDoPrincipalSchema} from '@/schema/resource/ItemDoPrincipal/ListItemDoPrincipalSchema'
-import {CsvItemDoPrincipalSchema} from '@/schema/resource/ItemDoPrincipal/CsvItemDoPrincipalSchema'
+import {ExportItemDoPrincipalSchema} from '@/schema/resource/ItemDoPrincipal/ExportItemDoPrincipalSchema'
 
 @Component
 export default class ListItemDoPrincipalView extends Mixins(MixinAdapRoute) {
@@ -126,17 +126,19 @@ export default class ListItemDoPrincipalView extends Mixins(MixinAdapRoute) {
     this.$nav.pushByName('editItemDoPrincipal', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new ItemDoPrincipalCollection().clearFilters().addFilter(params)
+    const coll = new ItemDoPrincipalCollection()
+      .clearFilters()
+      .addFilter(params)
 
-    await csv.listCsvItemDoPrincipal()
-    this.$file.downloadCsv(csv.items, new CsvItemDoPrincipalSchema())
+    await coll.listExportItemDoPrincipal()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportItemDoPrincipalSchema())
   }
 }
 </script>

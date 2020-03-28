@@ -30,11 +30,11 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
       .getResponse()
   }
 
-  async listCsvExtensaoDoPrincipal() {
-    return await Request.get(`/user/extensao-do-principal/csv`, {
+  async listExportExtensaoDoPrincipal() {
+    return await Request.get(`/user/extensao-do-principal/export`, {
       params: this.params,
     })
-      .name('listCsvExtensaoDoPrincipal')
+      .name('listExportExtensaoDoPrincipal')
       .as(this)
       .getResponse()
   }

@@ -64,11 +64,11 @@ export class Endereco implements IResource {
   }
 
   /**
-   * Lists the instances of Endereco to use it in a CSV file
+   * Lists the instances of Endereco to use it in a XLSX file
    */
-  static async listCsvEndereco(params: any) {
-    return await Request.get(`/user/endereco/csv`, {params})
-      .name('listCsvEndereco')
+  static async listExportEndereco(params: any) {
+    return await Request.get(`/user/endereco/export`, {params})
+      .name('listExportEndereco')
       .as(EnderecoCollection)
       .getData()
   }

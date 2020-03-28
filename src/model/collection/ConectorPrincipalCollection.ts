@@ -28,11 +28,11 @@ export class ConectorPrincipalCollection extends PageCollection<
       .getResponse()
   }
 
-  async listCsvConectorPrincipal() {
-    return await Request.get(`/user/conector-principal/csv`, {
+  async listExportConectorPrincipal() {
+    return await Request.get(`/user/conector-principal/export`, {
       params: this.params,
     })
-      .name('listCsvConectorPrincipal')
+      .name('listExportConectorPrincipal')
       .as(this)
       .getResponse()
   }

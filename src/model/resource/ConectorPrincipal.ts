@@ -82,11 +82,11 @@ export class ConectorPrincipal implements IResource {
   }
 
   /**
-   * Lists the instances of ConectorPrincipal to use it in a CSV file
+   * Lists the instances of ConectorPrincipal to use it in a XLSX file
    */
-  static async listCsvConectorPrincipal(params: any) {
-    return await Request.get(`/user/conector-principal/csv`, {params})
-      .name('listCsvConectorPrincipal')
+  static async listExportConectorPrincipal(params: any) {
+    return await Request.get(`/user/conector-principal/export`, {params})
+      .name('listExportConectorPrincipal')
       .as(ConectorPrincipalCollection)
       .getData()
   }

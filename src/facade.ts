@@ -9,6 +9,8 @@ import {App} from '@/app/vuex/App'
 import {Auth} from '@/app/vuex/Auth'
 import {FilterHelper} from '@/helpers/FilterHelper'
 import {FileHelper} from '@/helpers/FileHelper'
+import {XlsxHelper} from '@/helpers/XlsxHelper'
+import {DialogHelper} from '@/helpers/DialogHelper'
 import {NavHelper} from '@/helpers/NavHelper'
 import {EnvHelper} from '@/helpers/EnvHelper'
 import {ToastHelper} from '@/helpers/ToastHelper'
@@ -33,6 +35,8 @@ export abstract class $ {
   // Helpers
   static readonly env = EnvHelper
   static readonly file = FileHelper
+  static readonly xlsx = XlsxHelper
+  static readonly dialog = DialogHelper
   static readonly filter = FilterHelper
   static readonly nav = NavHelper
   static readonly toast = ToastHelper

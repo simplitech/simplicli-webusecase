@@ -69,11 +69,11 @@ export class ExtensaoDoPrincipal implements IResource {
   }
 
   /**
-   * Lists the instances of ExtensaoDoPrincipal to use it in a CSV file
+   * Lists the instances of ExtensaoDoPrincipal to use it in a XLSX file
    */
-  static async listCsvExtensaoDoPrincipal(params: any) {
-    return await Request.get(`/user/extensao-do-principal/csv`, {params})
-      .name('listCsvExtensaoDoPrincipal')
+  static async listExportExtensaoDoPrincipal(params: any) {
+    return await Request.get(`/user/extensao-do-principal/export`, {params})
+      .name('listExportExtensaoDoPrincipal')
       .as(ExtensaoDoPrincipalCollection)
       .getData()
   }
