@@ -16,13 +16,13 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvEndereco" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportEndereco" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -67,7 +67,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -104,14 +104,14 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {Endereco} from '@/model/resource/Endereco'
 import {EnderecoCollection} from '@/model/collection/EnderecoCollection'
 import {ListEnderecoSchema} from '@/schema/resource/Endereco/ListEnderecoSchema'
-import {CsvEnderecoSchema} from '@/schema/resource/Endereco/CsvEnderecoSchema'
+import {ExportEnderecoSchema} from '@/schema/resource/Endereco/ExportEnderecoSchema'
 
 @Component
-export default class ListEnderecoView extends Mixins(MixinQueryRouter) {
+export default class ListEnderecoView extends Mixins(MixinAdapRoute) {
   schema = new ListEnderecoSchema()
   collection = new EnderecoCollection()
 
@@ -120,20 +120,20 @@ export default class ListEnderecoView extends Mixins(MixinQueryRouter) {
   }
 
   goToPersistView(item: Endereco) {
-    Helper.pushByName('editEndereco', item.$id)
+    this.$nav.pushByName('editEndereco', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new EnderecoCollection().clearFilters().addFilter(params)
+    const coll = new EnderecoCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvEndereco()
-    new CsvEnderecoSchema().downloadCsv(csv.all())
+    await coll.listExportEndereco()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportEnderecoSchema())
   }
 }
 </script>

@@ -16,13 +16,13 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvUser" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportUser" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -67,7 +67,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -104,14 +104,14 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {User} from '@/model/resource/User'
 import {UserCollection} from '@/model/collection/UserCollection'
 import {ListUserSchema} from '@/schema/resource/User/ListUserSchema'
-import {CsvUserSchema} from '@/schema/resource/User/CsvUserSchema'
+import {ExportUserSchema} from '@/schema/resource/User/ExportUserSchema'
 
 @Component
-export default class ListUserView extends Mixins(MixinQueryRouter) {
+export default class ListUserView extends Mixins(MixinAdapRoute) {
   schema = new ListUserSchema()
   collection = new UserCollection()
 
@@ -120,20 +120,20 @@ export default class ListUserView extends Mixins(MixinQueryRouter) {
   }
 
   goToPersistView(item: User) {
-    Helper.pushByName('editUser', item.$id)
+    this.$nav.pushByName('editUser', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new UserCollection().clearFilters().addFilter(params)
+    const coll = new UserCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvUser()
-    new CsvUserSchema().downloadCsv(csv.all())
+    await coll.listExportUser()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportUserSchema())
   }
 }
 </script>

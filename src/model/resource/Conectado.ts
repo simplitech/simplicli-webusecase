@@ -2,11 +2,12 @@
  * Conectado
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
 import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
+import {Request} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 
 /* TODO: review generated class */
-export class Conectado extends Resource {
+export class Conectado implements IResource {
   idConectadoPk: number = 0
 
   titulo: string | null = null
@@ -20,6 +21,9 @@ export class Conectado extends Resource {
   get $tag() {
     return String(this.titulo)
   }
+  set $tag(val) {
+    this.titulo = val
+  }
 
   /**
    * Gets a instance of a given ID of Conectado
@@ -32,11 +36,11 @@ export class Conectado extends Resource {
   }
 
   /**
-   * Lists the instances of Conectado to use it in a CSV file
+   * Lists the instances of Conectado to use it in a XLSX file
    */
-  static async listCsvConectado(params: any) {
-    return await Request.get(`/user/conectado/csv`, {params})
-      .name('listCsvConectado')
+  static async listExportConectado(params: any) {
+    return await Request.get(`/user/conectado/export`, {params})
+      .name('listExportConectado')
       .as(ConectadoCollection)
       .getData()
   }

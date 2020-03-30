@@ -2,10 +2,10 @@
  * RecoverPasswordByMailRequest
  * @author Simpli CLI generator
  */
-import {$, Helper, Model, Request} from 'simpli-web-sdk'
+import {Request} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
-export class RecoverPasswordByMailRequest extends Model {
+export class RecoverPasswordByMailRequest {
   email: string | null = null
 
   /**

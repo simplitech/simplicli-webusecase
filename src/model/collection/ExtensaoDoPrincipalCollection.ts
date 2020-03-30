@@ -3,7 +3,9 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 
 /* TODO: review generated class */
@@ -28,11 +30,11 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
       .getResponse()
   }
 
-  async listCsvExtensaoDoPrincipal() {
-    return await Request.get(`/user/extensao-do-principal/csv`, {
+  async listExportExtensaoDoPrincipal() {
+    return await Request.get(`/user/extensao-do-principal/export`, {
       params: this.params,
     })
-      .name('listCsvExtensaoDoPrincipal')
+      .name('listExportExtensaoDoPrincipal')
       .as(this)
       .getResponse()
   }

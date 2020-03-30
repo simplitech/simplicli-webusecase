@@ -34,7 +34,6 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {Helper} from 'simpli-web-sdk'
 import {ResetPasswordRequest} from '@/model/request/ResetPasswordRequest'
 import {InputResetPasswordRequestSchema} from '@/schema/request/ResetPasswordRequest/InputResetPasswordRequestSchema'
 
@@ -51,7 +50,8 @@ export default class ResetPasswordView extends Vue {
 
   async submit() {
     await this.request.resetPassword()
-    await Helper.successAndPush('system.success.resetPassword', '/sign-in')
+    this.$toast.success('system.success.resetPassword')
+    await this.$nav.push('/sign-in')
   }
 }
 </script>

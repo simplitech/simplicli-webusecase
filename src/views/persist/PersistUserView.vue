@@ -35,7 +35,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {User} from '@/model/resource/User'
 import {InputUserSchema} from '@/schema/resource/User/InputUserSchema'
 
@@ -59,18 +58,20 @@ export default class PersistUserView extends Vue {
       await this.user.getUser(id)
     }
 
-    $.await.done('getUser')
+    this.$await.done('getUser')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.user.persistUser()
-    await Helper.successAndPush('system.success.persist', '/user/list')
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/user/list')
   }
 }
 </script>

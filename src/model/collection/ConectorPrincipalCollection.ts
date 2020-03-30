@@ -3,8 +3,10 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -26,11 +28,11 @@ export class ConectorPrincipalCollection extends PageCollection<
       .getResponse()
   }
 
-  async listCsvConectorPrincipal() {
-    return await Request.get(`/user/conector-principal/csv`, {
+  async listExportConectorPrincipal() {
+    return await Request.get(`/user/conector-principal/export`, {
       params: this.params,
     })
-      .name('listCsvConectorPrincipal')
+      .name('listExportConectorPrincipal')
       .as(this)
       .getResponse()
   }

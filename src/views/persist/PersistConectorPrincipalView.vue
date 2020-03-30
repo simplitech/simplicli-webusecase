@@ -38,7 +38,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
 import {InputConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/InputConectorPrincipalSchema'
 
@@ -70,21 +69,20 @@ export default class PersistConectorPrincipalView extends Vue {
       await this.conectorPrincipal.getConectorPrincipal(id1, id2)
     }
 
-    $.await.done('getConectorPrincipal')
+    this.$await.done('getConectorPrincipal')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.conectorPrincipal.persistConectorPrincipal()
-    await Helper.successAndPush(
-      'system.success.persist',
-      '/conector-principal/list'
-    )
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/conector-principal/list')
   }
 }
 </script>

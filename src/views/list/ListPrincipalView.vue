@@ -16,13 +16,13 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -34,8 +34,7 @@
 
     <section class="weight-1 h-full bg-black-100">
       <await
-        init
-        name="query"
+        name="listPrincipal"
         class="relative h-full verti items-center"
         effect="fade-up"
         spinner="MoonLoader"
@@ -54,7 +53,7 @@
             <table class="table">
               <thead>
                 <tr>
-                  <th></th>
+                  <th />
 
                   <th v-for="(value, key) in schema.header" :key="key">
                     <adap-orderby
@@ -67,7 +66,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -87,7 +86,7 @@
 
                   <td v-for="field in schema.allFields" :key="field">
                     <render-schema
-                      v-model="collection.get(i)"
+                      v-model="collection.items[i]"
                       :schema="schema"
                       :field="field"
                     />
@@ -110,42 +109,39 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
-import {DialogRemove} from '@/helpers/dialog/DialogRemove'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {Principal} from '@/model/resource/Principal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 import {ListPrincipalSchema} from '@/schema/resource/Principal/ListPrincipalSchema'
-import {CsvPrincipalSchema} from '@/schema/resource/Principal/CsvPrincipalSchema'
+import {ExportPrincipalSchema} from '@/schema/resource/Principal/ExportPrincipalSchema'
 
 @Component
-export default class ListPrincipalView extends Mixins(MixinQueryRouter) {
+export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
   schema = new ListPrincipalSchema()
   collection = new PrincipalCollection()
 
   async created() {
+    this.initAdapRoute(this.collection)
     await this.query()
   }
 
   goToPersistView(item: Principal) {
-    Helper.pushByName('editPrincipal', item.$id)
+    this.$nav.pushByName('editPrincipal', item.$id)
   }
 
   async removeItem(item: Principal) {
-    await new DialogRemove(item).confirm(() => item.removePrincipal())
+    await this.$dialog.remove(item)
+    await item.removePrincipal()
     await this.collection.listPrincipal()
   }
 
-  async downloadCsv() {
-    const {params} = this.collection
-    delete params.ascending
-    delete params.orderBy
-    delete params.page
-    delete params.limit
+  async downloadXlsx() {
+    const {ascending, orderBy, page, limit, ...params} = this.collection.params
 
-    const csv = new PrincipalCollection().clearFilters().addFilter(params)
+    const coll = new PrincipalCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvPrincipal()
-    new CsvPrincipalSchema().downloadCsv(csv.all())
+    await coll.listExportPrincipal()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportPrincipalSchema())
   }
 }
 </script>

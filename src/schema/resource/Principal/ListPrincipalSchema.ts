@@ -2,88 +2,85 @@
  * List Schema of Principal
  * @author Simpli CLI generator
  */
-import {
-  Helper,
-  Schema,
-  FieldSet,
-  FieldComponent,
-  Component,
-} from 'simpli-web-sdk'
+import {$} from '@/facade'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet, FieldComponent} from '@simpli/meta-schema'
+import {Render, RenderAnchor, RenderImage} from '@simpli/vue-render-schema'
 import {Principal} from '@/model/resource/Principal'
 
 /* TODO: review generated schema */
-export class ListPrincipalSchema extends Schema {
+export class ListPrincipalSchema extends DefaultSchema {
   readonly name = 'ListPrincipal'
 
   readonly fieldSet: FieldSet<Principal> = {
     idPrincipalPk: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     grupoDoPrincipal1: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
         content: schema.model.grupoDoPrincipal1?.$id,
       },
     }),
     grupoDoPrincipal2: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
         content: schema.model.grupoDoPrincipal2?.$id,
       },
     }),
     textoObrigatorio: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     inteiroObrigatorio: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     unico: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     decimalObrigatorio: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     booleanoObrigatorio: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.bool(schema.model.booleanoObrigatorio),
+        content: $.filter.bool(schema.model.booleanoObrigatorio),
       },
     }),
     dataObrigatoria: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataObrigatoria),
+        content: $.filter.datetime(schema.model.dataObrigatoria),
       },
     }),
     datahoraObrigatoria: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.datetime(schema.model.datahoraObrigatoria),
+        content: $.filter.datetime(schema.model.datahoraObrigatoria),
       },
     }),
     ativo: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.bool(schema.model.ativo),
+        content: $.filter.bool(schema.model.ativo),
       },
     }),
     dataCriacao: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataCriacao),
+        content: $.filter.datetime(schema.model.dataCriacao),
       },
     }),
     textoFacultativo: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     inteiroFacultativo: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     email: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     urlImagem: (schema): FieldComponent => ({
-      is: Component.RenderImage,
+      is: RenderImage,
       bind: {
         src: schema.model.urlImagem,
         alt: this.translateFrom(schema.fieldName),
@@ -91,7 +88,7 @@ export class ListPrincipalSchema extends Schema {
       },
     }),
     url: (schema): FieldComponent => ({
-      is: Component.RenderAnchor,
+      is: RenderAnchor,
       bind: {
         href: schema.model.url,
         label: schema.model.url,
@@ -99,70 +96,70 @@ export class ListPrincipalSchema extends Schema {
       },
     }),
     nome: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     titulo: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     cpf: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.cpf(schema.model.cpf),
+        content: $.filter.cpf(schema.model.cpf),
       },
     }),
     cnpj: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.cnpj(schema.model.cnpj),
+        content: $.filter.cnpj(schema.model.cnpj),
       },
     }),
     rg: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.rg(schema.model.rg),
+        content: $.filter.rg(schema.model.rg),
       },
     }),
     celular: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.phone(schema.model.celular),
+        content: $.filter.phone(schema.model.celular),
       },
     }),
     textoGrande: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     snakeCase: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     decimalFacultativo: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     booleanoFacultativo: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.bool(schema.model.booleanoFacultativo),
+        content: $.filter.bool(schema.model.booleanoFacultativo),
       },
     }),
     dataFacultativa: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataFacultativa),
+        content: $.filter.datetime(schema.model.dataFacultativa),
       },
     }),
     datahoraFacultativa: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.datetime(schema.model.datahoraFacultativa),
+        content: $.filter.datetime(schema.model.datahoraFacultativa),
       },
     }),
     dataAlteracao: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
-        content: Helper.datetime(schema.model.dataAlteracao),
+        content: $.filter.datetime(schema.model.dataAlteracao),
       },
     }),
     preco: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
   }
 }

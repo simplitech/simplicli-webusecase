@@ -2,13 +2,13 @@
  * Tag
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseSerialize} from 'simpli-web-sdk'
+import {Request, ResponseSerialize} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
 import {TagCollection} from '@/model/collection/TagCollection'
 
 /* TODO: review generated class */
-export class Tag extends Resource {
+export class Tag implements IResource {
   idTagPk: number = 0
 
   @ResponseSerialize(Principal)
@@ -24,6 +24,9 @@ export class Tag extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   /**
@@ -58,11 +61,11 @@ export class Tag extends Resource {
   }
 
   /**
-   * Lists the instances of Tag to use it in a CSV file
+   * Lists the instances of Tag to use it in a XLSX file
    */
-  static async listCsvTag(params: any) {
-    return await Request.get(`/user/tag/csv`, {params})
-      .name('listCsvTag')
+  static async listExportTag(params: any) {
+    return await Request.get(`/user/tag/export`, {params})
+      .name('listExportTag')
       .as(TagCollection)
       .getData()
   }

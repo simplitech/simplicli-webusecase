@@ -16,13 +16,13 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvConectorPrincipal" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportConectorPrincipal" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -70,7 +70,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -107,16 +107,14 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
 import {ConectorPrincipalCollection} from '@/model/collection/ConectorPrincipalCollection'
 import {ListConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/ListConectorPrincipalSchema'
-import {CsvConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/CsvConectorPrincipalSchema'
+import {ExportConectorPrincipalSchema} from '@/schema/resource/ConectorPrincipal/ExportConectorPrincipalSchema'
 
 @Component
-export default class ListConectorPrincipalView extends Mixins(
-  MixinQueryRouter
-) {
+export default class ListConectorPrincipalView extends Mixins(MixinAdapRoute) {
   schema = new ListConectorPrincipalSchema()
   collection = new ConectorPrincipalCollection()
 
@@ -125,26 +123,29 @@ export default class ListConectorPrincipalView extends Mixins(
   }
 
   goToPersistView(item: ConectorPrincipal) {
-    Helper.pushByName(
+    this.$nav.pushByName(
       'editConectorPrincipal',
       item.idPrincipalFk,
       item.idConectadoFk
     )
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new ConectorPrincipalCollection()
+    const coll = new ConectorPrincipalCollection()
       .clearFilters()
       .addFilter(params)
 
-    await csv.listCsvConectorPrincipal()
-    new CsvConectorPrincipalSchema().downloadCsv(csv.all())
+    await coll.listExportConectorPrincipal()
+    this.$xlsx.downloadFromSchema(
+      coll.items,
+      new ExportConectorPrincipalSchema()
+    )
   }
 }
 </script>

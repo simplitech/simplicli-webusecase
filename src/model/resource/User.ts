@@ -2,12 +2,12 @@
  * User
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseExclude} from 'simpli-web-sdk'
 import {UserCollection} from '@/model/collection/UserCollection'
+import {ResponseExclude, Request} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection'
 
 /* TODO: review generated class */
-export class User extends Resource {
+export class User implements IResource {
   idUserPk: number = 0
 
   email: string | null = null
@@ -20,6 +20,13 @@ export class User extends Resource {
   }
   set $id(val) {
     this.idUserPk = val
+  }
+
+  get $tag() {
+    return this.email ?? '-'
+  }
+  set $tag(val) {
+    this.email = val
   }
 
   /**
@@ -54,11 +61,11 @@ export class User extends Resource {
   }
 
   /**
-   * Lists the instances of User to use it in a CSV file
+   * Lists the instances of User to use it in a XLSX file
    */
-  static async listCsvUser(params: any) {
-    return await Request.get(`/user/user/csv`, {params})
-      .name('listCsvUser')
+  static async listExportUser(params: any) {
+    return await Request.get(`/user/user/export`, {params})
+      .name('listExportUser')
       .as(UserCollection)
       .getData()
   }

@@ -16,13 +16,13 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvConectado" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportConectado" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -67,7 +67,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -104,14 +104,14 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
 import {Conectado} from '@/model/resource/Conectado'
 import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
 import {ListConectadoSchema} from '@/schema/resource/Conectado/ListConectadoSchema'
-import {CsvConectadoSchema} from '@/schema/resource/Conectado/CsvConectadoSchema'
+import {ExportConectadoSchema} from '@/schema/resource/Conectado/ExportConectadoSchema'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 
 @Component
-export default class ListConectadoView extends Mixins(MixinQueryRouter) {
+export default class ListConectadoView extends Mixins(MixinAdapRoute) {
   schema = new ListConectadoSchema()
   collection = new ConectadoCollection()
 
@@ -120,20 +120,20 @@ export default class ListConectadoView extends Mixins(MixinQueryRouter) {
   }
 
   goToPersistView(item: Conectado) {
-    Helper.pushByName('editConectado', item.$id)
+    this.$nav.pushByName('editConectado', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new ConectadoCollection().clearFilters().addFilter(params)
+    const coll = new ConectadoCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvConectado()
-    new CsvConectadoSchema().downloadCsv(csv.all())
+    await coll.listExportConectado()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportConectadoSchema())
   }
 }
 </script>

@@ -3,7 +3,9 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 import {User} from '@/model/resource/User'
 
 /* TODO: review generated class */
@@ -24,9 +26,9 @@ export class UserCollection extends PageCollection<User> {
       .getResponse()
   }
 
-  async listCsvUser() {
-    return await Request.get(`/user/user/csv`, {params: this.params})
-      .name('listCsvUser')
+  async listExportUser() {
+    return await Request.get(`/user/user/export`, {params: this.params})
+      .name('listExportUser')
       .as(this)
       .getResponse()
   }

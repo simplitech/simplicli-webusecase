@@ -38,7 +38,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 import {InputExtensaoDoPrincipalSchema} from '@/schema/resource/ExtensaoDoPrincipal/InputExtensaoDoPrincipalSchema'
 
@@ -67,21 +66,20 @@ export default class PersistExtensaoDoPrincipalView extends Vue {
       await this.extensaoDoPrincipal.getExtensaoDoPrincipal(id)
     }
 
-    $.await.done('getExtensaoDoPrincipal')
+    this.$await.done('getExtensaoDoPrincipal')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.extensaoDoPrincipal.persistExtensaoDoPrincipal()
-    await Helper.successAndPush(
-      'system.success.persist',
-      '/extensao-do-principal/list'
-    )
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/extensao-do-principal/list')
   }
 }
 </script>

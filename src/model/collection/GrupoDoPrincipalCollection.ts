@@ -3,7 +3,9 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 
 /* TODO: review generated class */
@@ -16,14 +18,14 @@ export class GrupoDoPrincipalCollection extends PageCollection<
   }
 
   queryAsPage() {
-    return this.listCsvGrupoDoPrincipal()
+    return this.listExportGrupoDoPrincipal()
   }
 
-  async listCsvGrupoDoPrincipal() {
-    return await Request.get(`/user/grupo-do-principal/csv`, {
+  async listExportGrupoDoPrincipal() {
+    return await Request.get(`/user/grupo-do-principal/export`, {
       params: this.params,
     })
-      .name('listCsvGrupoDoPrincipal')
+      .name('listExportGrupoDoPrincipal')
       .as(this)
       .getResponse()
   }

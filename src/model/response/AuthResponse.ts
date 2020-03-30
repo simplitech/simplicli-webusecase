@@ -2,12 +2,11 @@
  * AuthResponse
  * @author Simpli CLI generator
  */
-import {$, Helper, Model, Request} from 'simpli-web-sdk'
-import {ResponseSerialize} from 'simpli-web-sdk'
+import {ResponseSerialize} from '@simpli/serialized-request'
 import {User} from '@/model/resource/User'
 
 /* TODO: review generated class */
-export class AuthResponse extends Model {
+export class AuthResponse {
   @ResponseSerialize(User)
   user: User | null = null
 

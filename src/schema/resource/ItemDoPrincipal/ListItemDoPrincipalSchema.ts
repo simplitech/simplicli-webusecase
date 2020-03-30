@@ -1,32 +1,28 @@
 /**
- * List Schema of ItemDoPrincipal
+ * List DefaultSchema of ItemDoPrincipal
  * @author Simpli CLI generator
  */
-import {
-  Helper,
-  Schema,
-  FieldSet,
-  FieldComponent,
-  Component,
-} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldComponent, FieldSet} from '@simpli/meta-schema'
+import {Render} from '@simpli/vue-render-schema'
 import {ItemDoPrincipal} from '@/model/resource/ItemDoPrincipal'
 
-/* TODO: review generated schema */
-export class ListItemDoPrincipalSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class ListItemDoPrincipalSchema extends DefaultSchema {
   readonly name = 'ListItemDoPrincipal'
 
   readonly fieldSet: FieldSet<ItemDoPrincipal> = {
     idItemDoPrincipalPk: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
     principal: (schema): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
       bind: {
         content: schema.model.principal?.$id,
       },
     }),
     titulo: (): FieldComponent => ({
-      is: Component.Render,
+      is: Render,
     }),
   }
 }

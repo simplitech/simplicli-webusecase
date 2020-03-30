@@ -16,13 +16,13 @@
 
         <div class="weight-1"></div>
 
-        <span v-if="collection.isNotEmpty()">
+        <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
         </span>
 
-        <await name="listCsvTag" :spinnerScale="0.8">
-          <button @click="downloadCsv" class="btn btn--solid">
-            {{ $t('app.downloadCsv') }}
+        <await name="listExportTag" :spinnerScale="0.8">
+          <button @click="downloadXlsx" class="btn btn--solid">
+            {{ $t('app.downloadXlsx') }}
           </button>
         </await>
 
@@ -67,7 +67,7 @@
               </thead>
 
               <tbody>
-                <tr v-for="(item, i) in collection.all()" :key="item.$id">
+                <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
                     <div class="grid grid-columns-2 grid-gap-1">
                       <a
@@ -104,14 +104,14 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {$, Helper, MixinQueryRouter} from 'simpli-web-sdk'
+import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {Tag} from '@/model/resource/Tag'
 import {TagCollection} from '@/model/collection/TagCollection'
 import {ListTagSchema} from '@/schema/resource/Tag/ListTagSchema'
-import {CsvTagSchema} from '@/schema/resource/Tag/CsvTagSchema'
+import {ExportTagSchema} from '@/schema/resource/Tag/ExportTagSchema'
 
 @Component
-export default class ListTagView extends Mixins(MixinQueryRouter) {
+export default class ListTagView extends Mixins(MixinAdapRoute) {
   schema = new ListTagSchema()
   collection = new TagCollection()
 
@@ -120,20 +120,20 @@ export default class ListTagView extends Mixins(MixinQueryRouter) {
   }
 
   goToPersistView(item: Tag) {
-    Helper.pushByName('editTag', item.$id)
+    this.$nav.pushByName('editTag', item.$id)
   }
 
-  async downloadCsv() {
+  async downloadXlsx() {
     const {params} = this.collection
     delete params.ascending
     delete params.orderBy
     delete params.page
     delete params.limit
 
-    const csv = new TagCollection().clearFilters().addFilter(params)
+    const coll = new TagCollection().clearFilters().addFilter(params)
 
-    await csv.listCsvTag()
-    new CsvTagSchema().downloadCsv(csv.all())
+    await coll.listExportTag()
+    this.$xlsx.downloadFromSchema(coll.items, new ExportTagSchema())
   }
 }
 </script>

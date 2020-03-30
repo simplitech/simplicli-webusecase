@@ -3,7 +3,9 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 import {Endereco} from '@/model/resource/Endereco'
 
 /* TODO: review generated class */
@@ -24,9 +26,9 @@ export class EnderecoCollection extends PageCollection<Endereco> {
       .getResponse()
   }
 
-  async listCsvEndereco() {
-    return await Request.get(`/user/endereco/csv`, {params: this.params})
-      .name('listCsvEndereco')
+  async listExportEndereco() {
+    return await Request.get(`/user/endereco/export`, {params: this.params})
+      .name('listExportEndereco')
       .as(this)
       .getResponse()
   }

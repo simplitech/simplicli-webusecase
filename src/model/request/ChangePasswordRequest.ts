@@ -2,11 +2,12 @@
  * ChangePasswordRequest
  * @author Simpli CLI generator
  */
-import {$, Helper, Model, Request} from 'simpli-web-sdk'
-import {ResponseExclude} from 'simpli-web-sdk'
+import {Request} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {ResponseExclude} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
-export class ChangePasswordRequest extends Model {
+export class ChangePasswordRequest {
   @ResponseExclude()
   currentPassword: string | null = null
 
@@ -20,10 +21,10 @@ export class ChangePasswordRequest extends Model {
    * Changes the password with a given new password
    */
   async changePassword() {
-    const request = this.$clone()
-    request.currentPassword = Helper.encrypt(this.currentPassword ?? '')
-    request.newPassword = Helper.encrypt(this.newPassword ?? '')
-    request.confirmPassword = Helper.encrypt(this.confirmPassword ?? '')
+    const request = $.utils.clone(this)
+    request.currentPassword = $.utils.sha256(this.currentPassword)
+    request.newPassword = $.utils.sha256(this.newPassword)
+    request.confirmPassword = $.utils.sha256(this.confirmPassword)
 
     return await Request.post(`/user/auth/me/password`, request)
       .name('changePassword')

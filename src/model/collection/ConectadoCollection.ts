@@ -3,8 +3,10 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
 import {Conectado} from '@/model/resource/Conectado'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -14,12 +16,12 @@ export class ConectadoCollection extends PageCollection<Conectado> {
   }
 
   queryAsPage() {
-    return this.listCsvConectado()
+    return this.listExportConectado()
   }
 
-  async listCsvConectado() {
-    return await Request.get(`/user/conectado/csv`, {params: this.params})
-      .name('listCsvConectado')
+  async listExportConectado() {
+    return await Request.get(`/user/conectado/export`, {params: this.params})
+      .name('listExportConectado')
       .as(this)
       .getResponse()
   }

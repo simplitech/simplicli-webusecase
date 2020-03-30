@@ -2,11 +2,12 @@
  * ResetPasswordRequest
  * @author Simpli CLI generator
  */
-import {$, Helper, Model, Request} from 'simpli-web-sdk'
-import {ResponseExclude} from 'simpli-web-sdk'
+import {$} from '@/facade'
+import {Request} from '@simpli/serialized-request'
+import {ResponseExclude} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
-export class ResetPasswordRequest extends Model {
+export class ResetPasswordRequest {
   hash: string | null = null
 
   @ResponseExclude()
@@ -19,9 +20,9 @@ export class ResetPasswordRequest extends Model {
    * Recovers the password with a given hash
    */
   async resetPassword() {
-    const request = this.$clone()
-    request.newPassword = Helper.encrypt(this.newPassword ?? '')
-    request.confirmPassword = Helper.encrypt(this.confirmPassword ?? '')
+    const request = $.utils.clone(this)
+    request.newPassword = $.utils.sha256(this.newPassword)
+    request.confirmPassword = $.utils.sha256(this.confirmPassword)
 
     return await Request.post(`/user/auth/password`, request)
       .name('resetPassword')

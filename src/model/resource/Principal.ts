@@ -4,13 +4,17 @@
  *
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseExclude, ResponseSerialize} from 'simpli-web-sdk'
+import {
+  Request,
+  ResponseExclude,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
-export class Principal extends Resource {
+export class Principal implements IResource {
   idPrincipalPk: number = 0
 
   @ResponseSerialize(GrupoDoPrincipal)
@@ -67,6 +71,9 @@ export class Principal extends Resource {
   get $tag() {
     return String(this.nome)
   }
+  set $tag(val) {
+    this.nome = val
+  }
 
   /**
    * Gets a instance of a given ID of Principal
@@ -110,11 +117,11 @@ export class Principal extends Resource {
   }
 
   /**
-   * Lists the instances of Principal to use it in a CSV file
+   * Lists the instances of Principal to use it in a XLSX file
    */
-  static async listCsvPrincipal(params: any) {
-    return await Request.get(`/user/principal/csv`, {params})
-      .name('listCsvPrincipal')
+  static async listExportPrincipal(params: any) {
+    return await Request.get(`/user/principal/export`, {params})
+      .name('listExportPrincipal')
       .as(PrincipalCollection)
       .getData()
   }

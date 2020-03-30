@@ -3,7 +3,9 @@
  *
  * @author Simpli CLI generator
  */
-import {PageCollection, HttpExclude, Request} from 'simpli-web-sdk'
+import {HttpExclude} from '@simpli/serialized-request'
+import {PageCollection} from '@simpli/resource-collection'
+import {Request} from '@simpli/serialized-request'
 import {Tag} from '@/model/resource/Tag'
 
 /* TODO: review generated class */
@@ -24,9 +26,9 @@ export class TagCollection extends PageCollection<Tag> {
       .getResponse()
   }
 
-  async listCsvTag() {
-    return await Request.get(`/user/tag/csv`, {params: this.params})
-      .name('listCsvTag')
+  async listExportTag() {
+    return await Request.get(`/user/tag/export`, {params: this.params})
+      .name('listExportTag')
       .as(this)
       .getResponse()
   }

@@ -35,7 +35,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {Tag} from '@/model/resource/Tag'
 import {InputTagSchema} from '@/schema/resource/Tag/InputTagSchema'
 
@@ -64,18 +63,20 @@ export default class PersistTagView extends Vue {
       await this.tag.getTag(id)
     }
 
-    $.await.done('getTag')
+    this.$await.done('getTag')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.tag.persistTag()
-    await Helper.successAndPush('system.success.persist', '/tag/list')
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/tag/list')
   }
 }
 </script>

@@ -40,7 +40,6 @@
 
 <script lang="ts">
 import {Component, Prop, Vue} from 'vue-property-decorator'
-import {Helper} from 'simpli-web-sdk'
 import {AuthRequest} from '@/model/request/AuthRequest'
 import {InputAuthRequestSchema} from '@/schema/request/AuthRequest/InputAuthRequestSchema'
 
@@ -51,7 +50,7 @@ export default class SignInView extends Vue {
 
   created() {
     if (this.$auth.isLogged) {
-      Helper.push('/dashboard')
+      this.$nav.replace('/dashboard')
     }
   }
 }

@@ -38,7 +38,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 import {InputGrupoDoPrincipalSchema} from '@/schema/resource/GrupoDoPrincipal/InputGrupoDoPrincipalSchema'
 
@@ -62,21 +61,20 @@ export default class PersistGrupoDoPrincipalView extends Vue {
       await this.grupoDoPrincipal.getGrupoDoPrincipal(id)
     }
 
-    $.await.done('getGrupoDoPrincipal')
+    this.$await.done('getGrupoDoPrincipal')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.grupoDoPrincipal.persistGrupoDoPrincipal()
-    await Helper.successAndPush(
-      'system.success.persist',
-      '/grupo-do-principal/list'
-    )
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/grupo-do-principal/list')
   }
 }
 </script>

@@ -1,17 +1,19 @@
 /**
- * Input Schema of Endereco
+ * Input DefaultSchema of Endereco
  * @author Simpli CLI generator
  */
-import {Schema, FieldSet, FieldComponent, Component} from 'simpli-web-sdk'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldComponent, FieldSet} from '@simpli/meta-schema'
+import {InputSelect, InputText} from '@simpli/vue-input'
 import {Endereco} from '@/model/resource/Endereco'
 
-/* TODO: review generated schema */
-export class InputEnderecoSchema extends Schema {
+/* TODO: review generated DefaultSchema */
+export class InputEnderecoSchema extends DefaultSchema {
   readonly name = 'InputEndereco'
 
   readonly fieldSet: FieldSet<Endereco> = {
     cep: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'mask',
         maskPreset: 'zipcode',
@@ -20,7 +22,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     zipcode: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'mask',
         maskPreset: 'zipcode',
@@ -29,7 +31,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     rua: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'text',
         maxlength: 45,
@@ -37,7 +39,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     nro: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'number',
         maxlength: 11,
@@ -46,7 +48,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     cidade: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'text',
         maxlength: 45,
@@ -54,7 +56,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     uf: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'text',
         maxlength: 45,
@@ -62,7 +64,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     latitude: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'number',
         maxlength: 255,
@@ -71,7 +73,7 @@ export class InputEnderecoSchema extends Schema {
       },
     }),
     longitude: (schema): FieldComponent => ({
-      is: Component.InputText,
+      is: InputText,
       bind: {
         type: 'number',
         maxlength: 255,

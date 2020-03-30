@@ -38,7 +38,6 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Provide, Vue} from 'vue-property-decorator'
-import {$, Helper} from 'simpli-web-sdk'
 import {Endereco} from '@/model/resource/Endereco'
 import {InputEnderecoSchema} from '@/schema/resource/Endereco/InputEnderecoSchema'
 
@@ -62,18 +61,20 @@ export default class PersistEnderecoView extends Vue {
       await this.endereco.getEndereco(id)
     }
 
-    $.await.done('getEndereco')
+    this.$await.done('getEndereco')
   }
 
   async persist() {
     const isValid = await this.validator.validateAll()
 
     if (!isValid) {
-      Helper.abort('system.error.validation')
+      this.$toast.abort('system.error.validation')
     }
 
     await this.endereco.persistEndereco()
-    await Helper.successAndPush('system.success.persist', '/endereco/list')
+
+    this.$toast.success('system.success.persist')
+    await this.$nav.push('/endereco/list')
   }
 }
 </script>

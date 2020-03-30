@@ -2,13 +2,13 @@
  * ItemDoPrincipal
  * @author Simpli CLI generator
  */
-import {$, Helper, Request, Resource} from 'simpli-web-sdk'
-import {ResponseSerialize} from 'simpli-web-sdk'
+import {Request, ResponseSerialize} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
 import {ItemDoPrincipalCollection} from '@/model/collection/ItemDoPrincipalCollection'
 
 /* TODO: review generated class */
-export class ItemDoPrincipal extends Resource {
+export class ItemDoPrincipal implements IResource {
   idItemDoPrincipalPk: number = 0
 
   @ResponseSerialize(Principal)
@@ -24,6 +24,9 @@ export class ItemDoPrincipal extends Resource {
   }
   get $tag() {
     return String(this.titulo)
+  }
+  set $tag(val) {
+    this.titulo = val
   }
 
   get idPrincipalFk() {
@@ -57,11 +60,11 @@ export class ItemDoPrincipal extends Resource {
   }
 
   /**
-   * Lists the instances of ItemDoPrincipal to use it in a CSV file
+   * Lists the instances of ItemDoPrincipal to use it in a XLSX file
    */
-  static async listCsvItemDoPrincipal(params: any) {
-    return await Request.get(`/user/item-do-principal/csv`, {params})
-      .name('listCsvItemDoPrincipal')
+  static async listExportItemDoPrincipal(params: any) {
+    return await Request.get(`/user/item-do-principal/export`, {params})
+      .name('listExportItemDoPrincipal')
       .as(ItemDoPrincipalCollection)
       .getData()
   }
