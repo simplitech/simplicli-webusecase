@@ -90,6 +90,7 @@ export abstract class Setup {
     RequestConfig.axios = $.config.http.axiosInstance
     RequestListener.onRequestStart(reqName => $.await.init(reqName))
     RequestListener.onRequestEnd(reqName => $.await.done(reqName))
+    RequestListener.onRequestError(reqName => $.await.error(reqName))
 
     PageCollection.defaultMinCharToSearch = 3
     PageCollection.defaultCurrentPage = 0

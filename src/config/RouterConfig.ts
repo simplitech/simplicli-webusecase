@@ -5,7 +5,7 @@
  *
  * Use this file to register the App routes
  * See https://router.vuejs.org/guide/#javascript
- * This configuration will be set in @/bootstrap/app.ts
+ * This configuration will be set in @/app/Setup.ts
  */
 import {RouterOptions} from 'vue-router/types/router'
 

@@ -5,7 +5,7 @@
  *
  * This file controls the languages and currencies
  * See https://kazupon.github.io/vue-i18n/guide/started.html
- * This configuration will be set in @/bootstrap/app.ts
+ * This configuration will be set in @/app/Setup.ts
  */
 
 import {I18nOptions} from 'vue-i18n'

@@ -5,13 +5,11 @@
  *
  * This file provides the standard configuration to communicate with the server
  * See https://github.com/axios/axios
- * This configuration will be set in @/bootstrap/app.ts
+ * This configuration will be set in @/app/Setup.ts
  */
 
 import axios, {AxiosError} from 'axios'
 import {$} from '@/facade'
-import {App} from '@/app/vuex/App'
-import {Auth} from '@/app/vuex/Auth'
 import {HttpStatus} from '@/enums/HttpStatus'
 import {Socket} from '@/app/Socket'
 
@@ -42,11 +40,11 @@ export class HttpConfig {
       const isRelativeUrl = !pattern.exec(config.url ?? '')
 
       if (isRelativeUrl) {
-        config.headers['Accept-Language'] = App.language
-        config.headers['X-Client-Version'] = `w${App.version}` // w = web
+        config.headers['Accept-Language'] = $.app.language
+        config.headers['X-Client-Version'] = `w${$.app.version}` // w = web
 
-        if (Auth.isLogged) {
-          config.headers.Authorization = `Bearer ${Auth.token}`
+        if ($.auth.isLogged) {
+          config.headers.Authorization = `Bearer ${$.auth.token}`
         }
       }
 
