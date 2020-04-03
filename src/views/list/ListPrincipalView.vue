@@ -12,7 +12,9 @@
           class="input h-8"
         />
 
-        <await name="listPrincipal" :spinnerScale="0.8" />
+        <await name="listPrincipal" :spinnerScale="0.8" class="w-12" />
+
+        <filter-toggle v-model="filterOpen" />
 
         <div class="weight-1"></div>
 
@@ -30,6 +32,12 @@
           {{ $t('app.add') }}
         </router-link>
       </div>
+
+      <transition-expand>
+        <div v-show="filterOpen">
+          <principal-filter-component :collection="collection" />
+        </div>
+      </transition-expand>
     </header>
 
     <section class="weight-1 h-full bg-black-100">
@@ -49,7 +57,7 @@
         </template>
 
         <template v-else>
-          <div class="weight-1 w-full overflow-auto bg-primary">
+          <div class="weight-1 w-full overflow-auto">
             <table class="table">
               <thead>
                 <tr>
@@ -96,7 +104,7 @@
             </table>
           </div>
 
-          <div class="absolute bottom-4">
+          <div class="absolute bottom-8">
             <adap-pagination :collection="collection" class="m-auto" />
           </div>
         </template>
@@ -109,20 +117,27 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {MixinAdapRoute} from '@simpli/vue-adap-table'
 import {Principal} from '@/model/resource/Principal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 import {ListPrincipalSchema} from '@/schema/resource/Principal/ListPrincipalSchema'
 import {ExportPrincipalSchema} from '@/schema/resource/Principal/ExportPrincipalSchema'
+import PrincipalFilterComponent from '@/components/filter/PrincipalFilterComponent.vue'
+import FilterToggle from '@/components/FilterToggle.vue'
+import {MixinRouteMatch} from '@/mixins/MixinRouteMatch'
 
-@Component
-export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
+@Component({
+  components: {FilterToggle, PrincipalFilterComponent},
+})
+export default class ListPrincipalView extends Mixins(MixinRouteMatch) {
   schema = new ListPrincipalSchema()
   collection = new PrincipalCollection()
+  filterOpen = false
 
   async created() {
-    this.initAdapRoute(this.collection)
-    await this.query()
+    if (this.hasQueryParams) {
+      this.updateObjectFromRoute(this.collection)
+    }
+    await this.collection.queryAsPage()
   }
 
   goToPersistView(item: Principal) {
@@ -133,6 +148,11 @@ export default class ListPrincipalView extends Mixins(MixinAdapRoute) {
     await this.$dialog.remove(item)
     await item.removePrincipal()
     await this.collection.listPrincipal()
+  }
+
+  @Watch('collection', {deep: true})
+  onCollectionChange() {
+    this.updateRouteFromObject(this.collection)
   }
 
   async downloadXlsx() {
