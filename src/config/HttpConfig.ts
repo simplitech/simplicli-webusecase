@@ -12,6 +12,7 @@ import axios, {AxiosError} from 'axios'
 import {$} from '@/facade'
 import {HttpStatus} from '@/enums/HttpStatus'
 import {Socket} from '@/app/Socket'
+import qs from 'qs'
 
 /**
  * HTTP Configuration
@@ -22,6 +23,7 @@ export class HttpConfig {
    */
   readonly axiosInstance = axios.create({
     baseURL: process.env.VUE_APP_API_URL,
+    paramsSerializer: params => qs.stringify(params, {arrayFormat: 'repeat'}), // myendpoint?myarray=1&myarray=2
   })
 
   /**
