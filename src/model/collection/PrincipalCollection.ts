@@ -3,16 +3,11 @@
  *
  * @author Simpli CLI generator
  */
-import {
-  IResource,
-  PageCollection,
-  ResourceCollection,
-} from '@simpli/resource-collection'
+import {PageCollection} from '@simpli/resource-collection'
 import {HttpExclude, RequestExpose} from '@simpli/serialized-request'
 import {Request} from '@simpli/serialized-request'
 import {Principal} from '@/model/resource/Principal'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
-import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -88,7 +83,7 @@ export class PrincipalCollection extends PageCollection<Principal> {
       ) ?? null
     )
   }
-  set grupoDoPrincipal1(input: GrupoDoPrincipal[] | null) {
+  set grupoDoPrincipal1(input) {
     this.idGrupoDoPrincipalFk = input?.map(area => area?.$id) ?? []
   }
 
@@ -99,7 +94,7 @@ export class PrincipalCollection extends PageCollection<Principal> {
       ) ?? null
     )
   }
-  set grupoDoPrincipal2(input: GrupoDoPrincipal[] | null) {
+  set grupoDoPrincipal2(input) {
     this.idGrupoDoPrincipalFacultativoFk = input?.map(area => area?.$id) ?? []
   }
 }
