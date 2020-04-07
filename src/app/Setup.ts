@@ -78,7 +78,7 @@ export abstract class Setup {
       ),
     })
 
-    const filter: any = $.config.filter
+    const filter: any = $.filter
     for (const key in filter) {
       if (filter.hasOwnProperty(key)) {
         Vue.filter(key, filter[key])
@@ -150,6 +150,9 @@ export abstract class Setup {
     $.app.currency = $.config.i18n.currency
 
     $.vm.$mount('#app')
+
+    // @ts-ignore
+    window.appLoader.finish()
   }
 
   static changeLocale(lang: Lang) {

@@ -7,7 +7,5 @@ import '@fortawesome/fontawesome-free/css/brands.min.css'
 import 'vue-transition-expand/dist/vue-transition-expand.css'
 
 import {Setup} from '@/app/Setup'
-Setup.init()
 
-// @ts-ignore
-window.appLoader.finish()
+Setup.init()
