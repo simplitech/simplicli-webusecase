@@ -95,6 +95,9 @@ export abstract class Setup {
     PageCollection.defaultMinCharToSearch = 3
     PageCollection.defaultCurrentPage = 0
     PageCollection.defaultPerPage = 10
+    PageCollection.defaultBeforeQueryAction = () => $.await.init('softQuery')
+    PageCollection.defaultAfterQueryAction = () => $.await.done('softQuery')
+    PageCollection.defaultErrorQueryAction = () => $.await.error('softQuery')
 
     VeeValidate.Validator.extend('cpf', {
       validate: (value?: string) => validators.isValidCPF(value ?? ''),
@@ -152,7 +155,7 @@ export abstract class Setup {
     $.vm.$mount('#app')
 
     // @ts-ignore
-    window.appLoader.finish()
+    window.appLoader?.finish()
   }
 
   static changeLocale(lang: Lang) {
