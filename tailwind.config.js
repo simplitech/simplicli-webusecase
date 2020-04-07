@@ -95,6 +95,21 @@ module.exports = {
         })
       })
     },
+
+    // fix-truncate
+    ({addUtilities, variants}) => {
+      const newUtilities = {
+        '.fix-truncate': {
+          overflow: 'hidden',
+          'text-overflow': 'ellipsis',
+          'white-space': 'nowrap',
+          width: '0',
+          'min-width': '100%',
+        },
+      }
+
+      addUtilities(newUtilities, variants())
+    },
   ],
 
   theme: {
@@ -110,6 +125,7 @@ module.exports = {
       md: `${process.env.VUE_APP_MEDIUM_SCREEN}px`,
       lg: `${process.env.VUE_APP_LARGE_SCREEN}px`,
       xl: `${process.env.VUE_APP_EXTRA_LARGE_SCREEN}px`,
+      print: {raw: 'print'},
     },
     extend: {
       colors: {
@@ -167,4 +183,8 @@ module.exports = {
   },
 
   variants: ['responsive', 'hover', 'children'],
+
+  corePlugins: {
+    transitionProperty: false,
+  },
 }
