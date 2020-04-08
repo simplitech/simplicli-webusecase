@@ -57,7 +57,11 @@ export abstract class Setup {
     Vue.prototype.$toast = $.toast
     Vue.prototype.$utils = $.utils
 
-    Vue.use(VueAdapTable)
+    Vue.use(VueAdapTable, {
+      defaultBeforeQueryAction: () => $.await.init('softQuery'),
+      defaultAfterQueryAction: () => $.await.done('softQuery'),
+      defaultErrorQueryAction: () => $.await.error('softQuery'),
+    })
     Vue.use(VueAwait)
     Vue.use(VueModal)
     Vue.use(VueRenderSchema)
@@ -152,7 +156,7 @@ export abstract class Setup {
     $.vm.$mount('#app')
 
     // @ts-ignore
-    window.appLoader.finish()
+    window.appLoader?.finish()
   }
 
   static changeLocale(lang: Lang) {

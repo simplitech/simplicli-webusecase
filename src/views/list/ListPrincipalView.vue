@@ -42,7 +42,7 @@
 
     <section class="weight-1 h-full bg-black-100">
       <await
-        name="listPrincipal"
+        name="hardQuery"
         class="relative h-full verti items-center"
         effect="fade-up"
         spinner="MoonLoader"
@@ -109,7 +109,7 @@
           </div>
         </template>
 
-        <await name="adapQuery" class="z-20 await__spinner--screen-light" />
+        <await name="softQuery" class="z-20 await__spinner--screen-light" />
       </await>
     </section>
   </div>
@@ -137,7 +137,7 @@ export default class ListPrincipalView extends Mixins(MixinRouteMatch) {
     if (this.hasQueryParams) {
       this.updateObjectFromRoute(this.collection)
     }
-    await this.collection.queryAsPage()
+    await this.$await.run('hardQuery', () => this.collection.queryAsPage())
   }
 
   goToPersistView(item: Principal) {
