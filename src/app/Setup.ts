@@ -57,7 +57,11 @@ export abstract class Setup {
     Vue.prototype.$toast = $.toast
     Vue.prototype.$utils = $.utils
 
-    Vue.use(VueAdapTable)
+    Vue.use(VueAdapTable, {
+      defaultBeforeQueryAction: () => $.await.init('softQuery'),
+      defaultAfterQueryAction: () => $.await.done('softQuery'),
+      defaultErrorQueryAction: () => $.await.error('softQuery'),
+    })
     Vue.use(VueAwait)
     Vue.use(VueModal)
     Vue.use(VueRenderSchema)
@@ -95,9 +99,6 @@ export abstract class Setup {
     PageCollection.defaultMinCharToSearch = 3
     PageCollection.defaultCurrentPage = 0
     PageCollection.defaultPerPage = 10
-    PageCollection.defaultBeforeQueryAction = () => $.await.init('softQuery')
-    PageCollection.defaultAfterQueryAction = () => $.await.done('softQuery')
-    PageCollection.defaultErrorQueryAction = () => $.await.error('softQuery')
 
     VeeValidate.Validator.extend('cpf', {
       validate: (value?: string) => validators.isValidCPF(value ?? ''),
