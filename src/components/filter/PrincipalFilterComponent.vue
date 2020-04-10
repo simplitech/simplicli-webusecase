@@ -1,13 +1,12 @@
 <template>
-  <div class="verti p-4 border-b border-primary">
-    <div
-      class="mb-4 grid grid-columns-2 md:grid-columns-4 lg:grid-columns-5 grid-gap-4"
-    >
+  <div class="principal-filter-component">
+    <div class="principal-filter-component__content">
       <div v-for="field in schema.allFields" :key="field">
         <render-schema v-model="collection" :schema="schema" :field="field" />
       </div>
     </div>
-    <await name="adapQuery" spinner="MoonLoader" class="self-center">
+
+    <await name="softQuery" spinner="MoonLoader" class="self-center">
       <button @click="doFilter" class="lg:w-40 btn btn--contrast bg-secondary">
         {{ $t('app.filter') }}
       </button>
@@ -37,12 +36,34 @@ export default class PrincipalFilterComponent extends Vue {
       this.collection.resource.collectionGrupoDoPrincipal.queryAsPage(),
     ]
 
-    await this.$await.run('adapQuery', () => Promise.all(promises))
+    await this.$await.run('softQuery', () => Promise.all(promises))
   }
 
   async doFilter() {
     this.$emit('submit')
-    await this.$await.run('adapQuery', () => this.collection.queryAsPage())
+    await this.$await.run('softQuery', () => this.collection.queryAsPage())
   }
 }
 </script>
+
+<style lang="scss" scoped>
+.principal-filter-component {
+  @apply verti p-4 border-b border-primary;
+
+  .principal-filter-component__content {
+    @apply mb-4 grid grid-gap-4;
+
+    @screen sm {
+      @apply grid-columns-2;
+    }
+
+    @screen md {
+      @apply grid-columns-3;
+    }
+
+    @screen lg {
+      @apply grid-columns-5;
+    }
+  }
+}
+</style>

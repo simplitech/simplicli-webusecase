@@ -5,6 +5,7 @@
       class="filter-toggle__btn btn btn--flat"
       :class="btnClass"
     >
+      <i class="fas fa-sliders-h mr-2" />
       {{ $t('app.moreFilters') }}
       <i class="ml-2 icon icon-arrow-right" />
     </a>

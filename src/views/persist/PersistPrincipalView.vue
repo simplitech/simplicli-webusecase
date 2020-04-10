@@ -12,7 +12,9 @@
         class="absolute inset-0 px-4 py-8 overflow-y-auto"
       >
         <form class="container card" @submit.prevent="persist">
-          <div class="mb-8 grid grid-columns lg:grid-columns-2 grid-gap-4">
+          <div
+            class="mb-8 grid sm:grid-columns-2 md:grid-columns-3 lg:grid-columns-4 grid-gap-4"
+          >
             <render-schema
               v-for="field in schema.allFields"
               v-model="principal"

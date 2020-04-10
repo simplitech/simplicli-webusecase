@@ -12,9 +12,9 @@
           class="input h-8"
         />
 
-        <await name="listPrincipal" :spinnerScale="0.8" class="w-12" />
-
         <filter-toggle v-model="filterOpen" />
+
+        <await name="listPrincipal" :spinnerScale="0.8" class="w-12" />
 
         <div class="weight-1"></div>
 
@@ -104,7 +104,7 @@
             </table>
           </div>
 
-          <div class="absolute bottom-8">
+          <div class="absolute bottom-4">
             <adap-pagination :collection="collection" class="m-auto" />
           </div>
         </template>
