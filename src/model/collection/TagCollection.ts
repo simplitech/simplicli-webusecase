@@ -3,10 +3,16 @@
  *
  * @author Simpli CLI generator
  */
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
 import {Tag} from '@/model/resource/Tag'
+import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -14,6 +20,8 @@ export class TagCollection extends PageCollection<Tag> {
   constructor() {
     super(Tag)
   }
+
+  resource?: ITagCollectionResourcesHolder
 
   queryAsPage() {
     return this.listTag()
@@ -32,4 +40,8 @@ export class TagCollection extends PageCollection<Tag> {
       .as(this)
       .getResponse()
   }
+}
+
+export interface ITagCollectionResourcesHolder {
+  collectionPrincipal: PrincipalCollection
 }

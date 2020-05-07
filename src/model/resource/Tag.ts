@@ -2,6 +2,7 @@
  * Tag
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request, ResponseSerialize} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
@@ -24,19 +25,6 @@ export class Tag implements IResource {
   }
   get $tag() {
     return String(this.titulo)
-  }
-  set $tag(val) {
-    this.titulo = val
-  }
-
-  /**
-   * Gets a instance of a given ID of Tag
-   */
-  async getTag(id: number) {
-    return await Request.get(`/user/tag/${id}`)
-      .name('getTag')
-      .as(this)
-      .getData()
   }
 
   /**
@@ -61,12 +49,22 @@ export class Tag implements IResource {
   }
 
   /**
-   * Lists the instances of Tag to use it in a XLSX file
+   * Lists the instances of Tag to export as a file
    */
   static async listExportTag(params: any) {
     return await Request.get(`/user/tag/export`, {params})
       .name('listExportTag')
       .as(TagCollection)
+      .getData()
+  }
+
+  /**
+   * Gets a instance of a given ID of Tag
+   */
+  async getTag(id: number) {
+    return await Request.get(`/user/tag/${id}`)
+      .name('getTag')
+      .as(this)
       .getData()
   }
 }

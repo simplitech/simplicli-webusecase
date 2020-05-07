@@ -1,19 +1,19 @@
 /**
- * Input DefaultSchema of GrupoDoPrincipal
+ * Input Schema of GrupoDoPrincipal
  * @author Simpli CLI generator
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
-import {FieldComponent, FieldSet} from '@simpli/meta-schema'
-import {InputSelect, InputText} from '@simpli/vue-input'
+import {FieldSet, FieldComponent} from '@simpli/meta-schema'
+import * as Component from '@simpli/vue-input'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 
-/* TODO: review generated DefaultSchema */
+/* TODO: review generated schema */
 export class InputGrupoDoPrincipalSchema extends DefaultSchema {
   readonly name = 'InputGrupoDoPrincipal'
 
   readonly fieldSet: FieldSet<GrupoDoPrincipal> = {
     titulo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,

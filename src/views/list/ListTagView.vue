@@ -12,9 +12,11 @@
           class="input h-8"
         />
 
-        <await name="listTag" :spinnerScale="0.8" />
+        <filter-toggle v-model="filterOpen" />
 
-        <div class="weight-1"></div>
+        <await name="listTag" :spinnerScale="0.8" class="w-12" />
+
+        <div class="weight-1" />
 
         <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
@@ -30,13 +32,18 @@
           {{ $t('app.add') }}
         </router-link>
       </div>
+
+      <transition-expand>
+        <div v-show="filterOpen" class="z-10">
+          <filter-tag :collection="collection" />
+        </div>
+      </transition-expand>
     </header>
 
-    <section class="weight-1 h-full bg-black-100">
+    <section>
       <await
-        init
-        name="query"
-        class="relative h-full verti items-center"
+        name="hardQuery"
+        class="relative verti items-center"
         effect="fade-up"
         spinner="MoonLoader"
         spinnerPadding="20px"
@@ -50,11 +57,11 @@
         </template>
 
         <template v-else>
-          <div class="weight-1 w-full overflow-auto bg-primary">
+          <div class="w-full overflow-x-auto">
             <table class="table">
               <thead>
                 <tr>
-                  <th></th>
+                  <th />
 
                   <th v-for="(value, key) in schema.header" :key="key">
                     <adap-orderby
@@ -69,7 +76,7 @@
               <tbody>
                 <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
-                    <div class="grid grid-columns-2 grid-gap-1">
+                    <div class="horiz children:mx-1">
                       <a
                         @click="goToPersistView(item)"
                         class="btn btn--flat btn--icon"
@@ -81,7 +88,7 @@
 
                   <td v-for="field in schema.allFields" :key="field">
                     <render-schema
-                      v-model="collection.get(i)"
+                      v-model="collection.items[i]"
                       :schema="schema"
                       :field="field"
                     />
@@ -91,12 +98,12 @@
             </table>
           </div>
 
-          <div class="absolute bottom-4">
+          <div class="fixed z-10 bottom-4">
             <adap-pagination :collection="collection" class="m-auto" />
           </div>
         </template>
 
-        <await name="adapQuery" class="z-20 await__spinner--screen-light" />
+        <await name="softQuery" class="z-20 await__spinner--screen-light" />
       </await>
     </section>
   </div>
@@ -104,19 +111,32 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
-import {MixinAdapRoute} from '@simpli/vue-adap-table'
+import {MixinRouteMatch} from '@/components/mixins/MixinRouteMatch'
+import FilterToggle from '@/components/FilterToggle.vue'
+import FilterTag from '@/components/filters/FilterTag.vue'
 import {Tag} from '@/model/resource/Tag'
 import {TagCollection} from '@/model/collection/TagCollection'
 import {ListTagSchema} from '@/schema/resource/Tag/ListTagSchema'
 import {ExportTagSchema} from '@/schema/resource/Tag/ExportTagSchema'
 
-@Component
-export default class ListTagView extends Mixins(MixinAdapRoute) {
+@Component({
+  components: {FilterToggle, FilterTag},
+})
+export default class ListTagView extends Mixins(MixinRouteMatch) {
   schema = new ListTagSchema()
   collection = new TagCollection()
+  filterOpen = false
 
   async created() {
-    await this.query()
+    if (this.hasQueryParams) {
+      this.updateObjectFromRoute(this.collection)
+    }
+    await this.$await.run('hardQuery', () => this.collection.queryAsPage())
+  }
+
+  @Watch('collection', {deep: true})
+  collectionEvent() {
+    this.updateRouteFromObject(this.collection)
   }
 
   goToPersistView(item: Tag) {
@@ -124,11 +144,7 @@ export default class ListTagView extends Mixins(MixinAdapRoute) {
   }
 
   async downloadXlsx() {
-    const {params} = this.collection
-    delete params.ascending
-    delete params.orderBy
-    delete params.page
-    delete params.limit
+    const {ascending, orderBy, page, limit, ...params} = this.collection.params
 
     const coll = new TagCollection().clearFilters().addFilter(params)
 

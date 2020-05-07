@@ -1,6 +1,6 @@
 import {ActionContext, Module} from 'vuex'
-import {$} from '@/facade'
 import {AccessorHandler} from '@simpli/vuex-typescript'
+import {$} from '@/facade'
 import {AuthState, RootState} from '@/types/store'
 import {AuthRequest} from '@/model/request/AuthRequest'
 import {AuthResponse} from '@/model/response/AuthResponse'

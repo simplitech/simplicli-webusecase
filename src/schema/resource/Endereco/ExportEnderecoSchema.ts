@@ -1,12 +1,13 @@
 /**
- * Export DefaultSchema of Endereco
+ * Export Schema of Endereco
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet} from '@simpli/meta-schema'
 import {Endereco} from '@/model/resource/Endereco'
 
-/* TODO: review generated DefaultSchema */
+/* TODO: review generated schema */
 export class ExportEnderecoSchema extends DefaultSchema {
   readonly name = 'ExportEndereco'
 
@@ -15,9 +16,9 @@ export class ExportEnderecoSchema extends DefaultSchema {
     cep: schema => schema.model.cep,
     zipcode: schema => schema.model.zipcode,
     rua: schema => schema.model.rua,
-    nro: schema => schema.model.nro,
     cidade: schema => schema.model.cidade,
     uf: schema => schema.model.uf,
+    nro: schema => schema.model.nro,
     latitude: schema => schema.model.latitude,
     longitude: schema => schema.model.longitude,
   }

@@ -16,7 +16,7 @@
 
         <await name="listPrincipal" :spinnerScale="0.8" class="w-12" />
 
-        <div class="weight-1"></div>
+        <div class="weight-1" />
 
         <span v-if="!collection.isEmpty()">
           {{ $t('app.totalLines', {total: collection.total}) }}
@@ -34,16 +34,16 @@
       </div>
 
       <transition-expand>
-        <div v-show="filterOpen">
-          <principal-filter-component :collection="collection" />
+        <div v-show="filterOpen" class="z-10">
+          <filter-principal :collection="collection" />
         </div>
       </transition-expand>
     </header>
 
-    <section class="weight-1 h-full bg-black-100">
+    <section>
       <await
         name="hardQuery"
-        class="relative h-full verti items-center"
+        class="relative verti items-center"
         effect="fade-up"
         spinner="MoonLoader"
         spinnerPadding="20px"
@@ -57,7 +57,7 @@
         </template>
 
         <template v-else>
-          <div class="weight-1 w-full overflow-auto">
+          <div class="w-full overflow-x-auto">
             <table class="table">
               <thead>
                 <tr>
@@ -76,7 +76,7 @@
               <tbody>
                 <tr v-for="(item, i) in collection.items" :key="item.$id">
                   <td>
-                    <div class="grid grid-columns-2 grid-gap-1">
+                    <div class="horiz children:mx-1">
                       <a
                         @click="goToPersistView(item)"
                         class="btn btn--flat btn--icon"
@@ -104,7 +104,7 @@
             </table>
           </div>
 
-          <div class="absolute bottom-4">
+          <div class="fixed z-10 bottom-4">
             <adap-pagination :collection="collection" class="m-auto" />
           </div>
         </template>
@@ -117,16 +117,16 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
+import {MixinRouteMatch} from '@/components/mixins/MixinRouteMatch'
+import FilterToggle from '@/components/FilterToggle.vue'
+import FilterPrincipal from '@/components/filters/FilterPrincipal.vue'
 import {Principal} from '@/model/resource/Principal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 import {ListPrincipalSchema} from '@/schema/resource/Principal/ListPrincipalSchema'
 import {ExportPrincipalSchema} from '@/schema/resource/Principal/ExportPrincipalSchema'
-import PrincipalFilterComponent from '@/components/filter/PrincipalFilterComponent.vue'
-import FilterToggle from '@/components/FilterToggle.vue'
-import {MixinRouteMatch} from '@/mixins/MixinRouteMatch'
 
 @Component({
-  components: {FilterToggle, PrincipalFilterComponent},
+  components: {FilterToggle, FilterPrincipal},
 })
 export default class ListPrincipalView extends Mixins(MixinRouteMatch) {
   schema = new ListPrincipalSchema()
@@ -140,6 +140,11 @@ export default class ListPrincipalView extends Mixins(MixinRouteMatch) {
     await this.$await.run('hardQuery', () => this.collection.queryAsPage())
   }
 
+  @Watch('collection', {deep: true})
+  collectionEvent() {
+    this.updateRouteFromObject(this.collection)
+  }
+
   goToPersistView(item: Principal) {
     this.$nav.pushByName('editPrincipal', item.$id)
   }
@@ -147,12 +152,7 @@ export default class ListPrincipalView extends Mixins(MixinRouteMatch) {
   async removeItem(item: Principal) {
     await this.$dialog.remove(item)
     await item.removePrincipal()
-    await this.collection.listPrincipal()
-  }
-
-  @Watch('collection', {deep: true})
-  onCollectionChange() {
-    this.updateRouteFromObject(this.collection)
+    await this.collection.queryAsPage()
   }
 
   async downloadXlsx() {

@@ -2,9 +2,10 @@
  * Conectado
  * @author Simpli CLI generator
  */
-import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
+import {$} from '@/facade'
 import {Request} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
+import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
 
 /* TODO: review generated class */
 export class Conectado implements IResource {
@@ -21,9 +22,6 @@ export class Conectado implements IResource {
   get $tag() {
     return String(this.titulo)
   }
-  set $tag(val) {
-    this.titulo = val
-  }
 
   /**
    * Gets a instance of a given ID of Conectado
@@ -32,16 +30,6 @@ export class Conectado implements IResource {
     return await Request.get(`/user/conectado/${id}`)
       .name('getConectado')
       .as(this)
-      .getData()
-  }
-
-  /**
-   * Lists the instances of Conectado to use it in a XLSX file
-   */
-  static async listExportConectado(params: any) {
-    return await Request.get(`/user/conectado/export`, {params})
-      .name('listExportConectado')
-      .as(ConectadoCollection)
       .getData()
   }
 
@@ -63,6 +51,16 @@ export class Conectado implements IResource {
     return await Request.post(`/user/conectado`, this)
       .name('persistConectado')
       .asNumber()
+      .getData()
+  }
+
+  /**
+   * Lists the instances of Conectado to export as a file
+   */
+  static async listExportConectado(params: any) {
+    return await Request.get(`/user/conectado/export`, {params})
+      .name('listExportConectado')
+      .as(ConectadoCollection)
       .getData()
   }
 }

@@ -2,6 +2,7 @@
  * Endereco
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {EnderecoCollection} from '@/model/collection/EnderecoCollection'
@@ -13,9 +14,9 @@ export class Endereco implements IResource {
   cep: string | null = null
   zipcode: string | null = null
   rua: string | null = null
-  nro: number | null = null
   cidade: string | null = null
   uf: string | null = null
+  nro: number | null = null
   latitude: number | null = null
   longitude: number | null = null
 
@@ -26,10 +27,7 @@ export class Endereco implements IResource {
     this.idEnderecoPk = val
   }
   get $tag() {
-    return String(this.cep)
-  }
-  set $tag(val) {
-    this.cep = val
+    return String(this.$id)
   }
 
   /**
@@ -64,7 +62,7 @@ export class Endereco implements IResource {
   }
 
   /**
-   * Lists the instances of Endereco to use it in a XLSX file
+   * Lists the instances of Endereco to export as a file
    */
   static async listExportEndereco(params: any) {
     return await Request.get(`/user/endereco/export`, {params})

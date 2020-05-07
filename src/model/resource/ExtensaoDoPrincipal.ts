@@ -2,6 +2,7 @@
  * ExtensaoDoPrincipal
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request, ResponseSerialize} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
@@ -24,9 +25,6 @@ export class ExtensaoDoPrincipal implements IResource {
   get $tag() {
     return String(this.titulo)
   }
-  set $tag(val) {
-    this.titulo = val
-  }
 
   get idPrincipalFk() {
     if (!this.principal) return 0
@@ -35,6 +33,16 @@ export class ExtensaoDoPrincipal implements IResource {
   set idPrincipalFk(val) {
     if (!this.principal) this.principal = new Principal()
     this.principal.$id = val
+  }
+
+  /**
+   * Gets a instance of a given ID of ExtensaoDoPrincipal
+   */
+  async getExtensaoDoPrincipal(id: number) {
+    return await Request.get(`/user/extensao-do-principal/${id}`)
+      .name('getExtensaoDoPrincipal')
+      .as(this)
+      .getData()
   }
 
   /**
@@ -59,17 +67,7 @@ export class ExtensaoDoPrincipal implements IResource {
   }
 
   /**
-   * Gets a instance of a given ID of ExtensaoDoPrincipal
-   */
-  async getExtensaoDoPrincipal(id: number) {
-    return await Request.get(`/user/extensao-do-principal/${id}`)
-      .name('getExtensaoDoPrincipal')
-      .as(this)
-      .getData()
-  }
-
-  /**
-   * Lists the instances of ExtensaoDoPrincipal to use it in a XLSX file
+   * Lists the instances of ExtensaoDoPrincipal to export as a file
    */
   static async listExportExtensaoDoPrincipal(params: any) {
     return await Request.get(`/user/extensao-do-principal/export`, {params})

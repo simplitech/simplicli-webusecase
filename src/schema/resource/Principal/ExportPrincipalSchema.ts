@@ -13,12 +13,13 @@ export class ExportPrincipalSchema extends DefaultSchema {
 
   readonly fieldSet: FieldSet<Principal> = {
     idPrincipalPk: schema => schema.model.idPrincipalPk,
-    grupoDoPrincipal1: schema => schema.model.grupoDoPrincipal1?.$id ?? null,
-    grupoDoPrincipal2: schema => schema.model.grupoDoPrincipal2?.$id ?? null,
+    grupoDoPrincipal: schema => schema.model.grupoDoPrincipal?.$tag ?? null,
+    grupoDoPrincipalFacultativo: schema =>
+      schema.model.grupoDoPrincipalFacultativo?.$tag ?? null,
     textoObrigatorio: schema => schema.model.textoObrigatorio,
-    inteiroObrigatorio: schema => schema.model.inteiroObrigatorio,
     unico: schema => schema.model.unico,
     decimalObrigatorio: schema => schema.model.decimalObrigatorio,
+    inteiroObrigatorio: schema => schema.model.inteiroObrigatorio,
     booleanoObrigatorio: schema =>
       $.filter.bool(schema.model.booleanoObrigatorio),
     dataObrigatoria: schema => $.filter.datetime(schema.model.dataObrigatoria),
@@ -27,7 +28,6 @@ export class ExportPrincipalSchema extends DefaultSchema {
     ativo: schema => $.filter.bool(schema.model.ativo),
     dataCriacao: schema => $.filter.datetime(schema.model.dataCriacao),
     textoFacultativo: schema => schema.model.textoFacultativo,
-    inteiroFacultativo: schema => schema.model.inteiroFacultativo,
     email: schema => schema.model.email,
     urlImagem: schema => schema.model.urlImagem,
     url: schema => schema.model.url,
@@ -40,6 +40,7 @@ export class ExportPrincipalSchema extends DefaultSchema {
     textoGrande: schema => schema.model.textoGrande,
     snakeCase: schema => schema.model.snakeCase,
     decimalFacultativo: schema => schema.model.decimalFacultativo,
+    inteiroFacultativo: schema => schema.model.inteiroFacultativo,
     booleanoFacultativo: schema =>
       $.filter.bool(schema.model.booleanoFacultativo),
     dataFacultativa: schema => $.filter.datetime(schema.model.dataFacultativa),

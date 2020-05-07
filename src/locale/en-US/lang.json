@@ -159,340 +159,6 @@
     "cep": "The field {0} must be a valid CEP",
     "boleto": "The field {0} must be a valid Boleto"
   },
-  "view": {
-    "signIn": {
-      "title": "Sign-in",
-      "signin": "Sign in",
-      "forgotPassword": "Forgot password"
-    },
-    "recoverPasswordByMail": {
-      "title": "Forgot Password",
-      "submit": "Enviar",
-      "signIn": "Sign-in"
-    },
-    "resetPassword": {
-      "title": "Reset Password",
-      "submit": "Submit"
-    },
-    "dashboard": {
-      "title": "Dashboard"
-    }
-  },
-  "resource": {
-    "ConectorPrincipal": "Conector Principal",
-    "User": "User",
-    "Conectado": "Conectado",
-    "Endereco": "Endereco",
-    "GrupoDoPrincipal": "Grupo Do Principal",
-    "Tag": "Tag",
-    "ExtensaoDoPrincipal": "Extensao Do Principal",
-    "ItemDoPrincipal": "Item Do Principal",
-    "Principal": "Principal"
-  },
-  "schema": {
-    "InputAuthRequest": {
-      "email": "Email",
-      "senha": "Senha"
-    },
-    "InputChangePasswordRequest": {
-      "currentPassword": "Current Password",
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm Password"
-    },
-    "InputResetPasswordRequest": {
-      "newPassword": "New Password",
-      "confirmPassword": "Confirm Password",
-      "hash": "Hash"
-    },
-    "InputRecoverPasswordByMailRequest": {
-      "email": "Email"
-    },
-    "ListAuthResponse": {
-      "token": "Token",
-      "user": "User"
-    },
-    "ExportAuthResponse": {
-      "token": "Token",
-      "user": "User"
-    },
-    "InputConectorPrincipal": {
-      "idPrincipalFk": "Id Principal Fk",
-      "idConectadoFk": "Id Conectado Fk",
-      "conectado": "Conectado",
-      "principal": "Principal",
-      "titulo": "Titulo"
-    },
-    "ListConectorPrincipal": {
-      "idPrincipalFk": "Id Principal Fk",
-      "idConectadoFk": "Id Conectado Fk",
-      "conectado": "Conectado",
-      "principal": "Principal",
-      "titulo": "Titulo"
-    },
-    "ExportConectorPrincipal": {
-      "idPrincipalFk": "Id Principal Fk",
-      "idConectadoFk": "Id Conectado Fk",
-      "conectado": "Conectado",
-      "principal": "Principal",
-      "titulo": "Titulo"
-    },
-    "InputUser": {
-      "idUserPk": "Id User Pk",
-      "email": "Email",
-      "senha": "Senha"
-    },
-    "ListUser": {
-      "idUserPk": "Id User Pk",
-      "email": "Email",
-      "senha": "Senha"
-    },
-    "ExportUser": {
-      "idUserPk": "Id User Pk",
-      "email": "Email",
-      "senha": "Senha"
-    },
-    "InputConectado": {
-      "idConectadoPk": "Id Conectado Pk",
-      "titulo": "Titulo"
-    },
-    "ListConectado": {
-      "idConectadoPk": "Id Conectado Pk",
-      "titulo": "Titulo"
-    },
-    "ExportConectado": {
-      "idConectadoPk": "Id Conectado Pk",
-      "titulo": "Titulo"
-    },
-    "InputEndereco": {
-      "idEnderecoPk": "Id Endereco Pk",
-      "cep": "Cep",
-      "zipcode": "Zipcode",
-      "rua": "Rua",
-      "nro": "Nro",
-      "cidade": "Cidade",
-      "uf": "Uf",
-      "latitude": "Latitude",
-      "longitude": "Longitude"
-    },
-    "ListEndereco": {
-      "idEnderecoPk": "Id Endereco Pk",
-      "cep": "Cep",
-      "zipcode": "Zipcode",
-      "rua": "Rua",
-      "nro": "Nro",
-      "cidade": "Cidade",
-      "uf": "Uf",
-      "latitude": "Latitude",
-      "longitude": "Longitude"
-    },
-    "ExportEndereco": {
-      "idEnderecoPk": "Id Endereco Pk",
-      "cep": "Cep",
-      "zipcode": "Zipcode",
-      "rua": "Rua",
-      "nro": "Nro",
-      "cidade": "Cidade",
-      "uf": "Uf",
-      "latitude": "Latitude",
-      "longitude": "Longitude"
-    },
-    "InputGrupoDoPrincipal": {
-      "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
-      "titulo": "Titulo"
-    },
-    "ListGrupoDoPrincipal": {
-      "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
-      "titulo": "Titulo"
-    },
-    "ExportGrupoDoPrincipal": {
-      "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
-      "titulo": "Titulo"
-    },
-    "InputTag": {
-      "idTagPk": "Id Tag Pk",
-      "tagPrincipal": "Tag Principal",
-      "titulo": "Titulo"
-    },
-    "ListTag": {
-      "idTagPk": "Id Tag Pk",
-      "tagPrincipal": "Tag Principal",
-      "titulo": "Titulo"
-    },
-    "ExportTag": {
-      "idTagPk": "Id Tag Pk",
-      "tagPrincipal": "Tag Principal",
-      "titulo": "Titulo"
-    },
-    "InputExtensaoDoPrincipal": {
-      "idPrincipalFk": "Id Principal Fk",
-      "principal": "Principal",
-      "titulo": "Titulo"
-    },
-    "ListExtensaoDoPrincipal": {
-      "idPrincipalFk": "Id Principal Fk",
-      "principal": "Principal",
-      "titulo": "Titulo"
-    },
-    "ExportExtensaoDoPrincipal": {
-      "idPrincipalFk": "Id Principal Fk",
-      "principal": "Principal",
-      "titulo": "Titulo"
-    },
-    "InputItemDoPrincipal": {
-      "idItemDoPrincipalPk": "Id Item Do Principal Pk",
-      "principal": "Principal",
-      "titulo": "Titulo",
-      "idPrincipalFk": "Id Principal Fk"
-    },
-    "ListItemDoPrincipal": {
-      "idItemDoPrincipalPk": "Id Item Do Principal Pk",
-      "principal": "Principal",
-      "titulo": "Titulo",
-      "idPrincipalFk": "Id Principal Fk"
-    },
-    "ExportItemDoPrincipal": {
-      "idItemDoPrincipalPk": "Id Item Do Principal Pk",
-      "principal": "Principal",
-      "titulo": "Titulo",
-      "idPrincipalFk": "Id Principal Fk"
-    },
-    "InputPrincipal": {
-      "idPrincipalPk": "Id Principal Pk",
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
-      "textoObrigatorio": "Texto Obrigatorio",
-      "inteiroObrigatorio": "Inteiro Obrigatorio",
-      "unico": "Unico",
-      "decimalObrigatorio": "Decimal Obrigatorio",
-      "booleanoObrigatorio": "Booleano Obrigatorio",
-      "dataObrigatoria": "Data Obrigatoria",
-      "datahoraObrigatoria": "Datahora Obrigatoria",
-      "ativo": "Ativo",
-      "dataCriacao": "Data Criacao",
-      "textoFacultativo": "Texto Facultativo",
-      "inteiroFacultativo": "Inteiro Facultativo",
-      "email": "Email",
-      "urlImagem": "Url Imagem",
-      "url": "Url",
-      "nome": "Nome",
-      "titulo": "Titulo",
-      "cpf": "Cpf",
-      "cnpj": "Cnpj",
-      "rg": "Rg",
-      "celular": "Celular",
-      "textoGrande": "Texto Grande",
-      "snakeCase": "Snake Case",
-      "decimalFacultativo": "Decimal Facultativo",
-      "booleanoFacultativo": "Booleano Facultativo",
-      "dataFacultativa": "Data Facultativa",
-      "datahoraFacultativa": "Datahora Facultativa",
-      "dataAlteracao": "Data Alteracao",
-      "preco": "Preco",
-      "senha": "Senha",
-      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
-      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
-    },
-    "ListPrincipal": {
-      "idPrincipalPk": "Id Principal Pk",
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
-      "textoObrigatorio": "Texto Obrigatorio",
-      "inteiroObrigatorio": "Inteiro Obrigatorio",
-      "unico": "Unico",
-      "decimalObrigatorio": "Decimal Obrigatorio",
-      "booleanoObrigatorio": "Booleano Obrigatorio",
-      "dataObrigatoria": "Data Obrigatoria",
-      "datahoraObrigatoria": "Datahora Obrigatoria",
-      "ativo": "Ativo",
-      "dataCriacao": "Data Criacao",
-      "textoFacultativo": "Texto Facultativo",
-      "inteiroFacultativo": "Inteiro Facultativo",
-      "email": "Email",
-      "urlImagem": "Url Imagem",
-      "url": "Url",
-      "nome": "Nome",
-      "titulo": "Titulo",
-      "cpf": "Cpf",
-      "cnpj": "Cnpj",
-      "rg": "Rg",
-      "celular": "Celular",
-      "textoGrande": "Texto Grande",
-      "snakeCase": "Snake Case",
-      "decimalFacultativo": "Decimal Facultativo",
-      "booleanoFacultativo": "Booleano Facultativo",
-      "dataFacultativa": "Data Facultativa",
-      "datahoraFacultativa": "Datahora Facultativa",
-      "dataAlteracao": "Data Alteracao",
-      "preco": "Preco",
-      "senha": "Senha",
-      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
-      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
-    },
-    "ExportPrincipal": {
-      "idPrincipalPk": "Id Principal Pk",
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
-      "textoObrigatorio": "Texto Obrigatorio",
-      "inteiroObrigatorio": "Inteiro Obrigatorio",
-      "unico": "Unico",
-      "decimalObrigatorio": "Decimal Obrigatorio",
-      "booleanoObrigatorio": "Booleano Obrigatorio",
-      "dataObrigatoria": "Data Obrigatoria",
-      "datahoraObrigatoria": "Datahora Obrigatoria",
-      "ativo": "Ativo",
-      "dataCriacao": "Data Criacao",
-      "textoFacultativo": "Texto Facultativo",
-      "inteiroFacultativo": "Inteiro Facultativo",
-      "email": "Email",
-      "urlImagem": "Url Imagem",
-      "url": "Url",
-      "nome": "Nome",
-      "titulo": "Titulo",
-      "cpf": "Cpf",
-      "cnpj": "Cnpj",
-      "rg": "Rg",
-      "celular": "Celular",
-      "textoGrande": "Texto Grande",
-      "snakeCase": "Snake Case",
-      "decimalFacultativo": "Decimal Facultativo",
-      "booleanoFacultativo": "Booleano Facultativo",
-      "dataFacultativa": "Data Facultativa",
-      "datahoraFacultativa": "Datahora Facultativa",
-      "dataAlteracao": "Data Alteracao",
-      "preco": "Preco",
-      "senha": "Senha",
-      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
-      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
-    },
-    "InputPrincipalFilter": {
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
-      "minInteiroObrigatorio": "Min Inteiro Obrigatorio",
-      "maxInteiroObrigatorio": "Max Inteiro Obrigatorio",
-      "minDecimalObrigatorio": "Min Decimal Obrigatorio",
-      "maxDecimalObrigatorio": "Max Decimal Obrigatorio",
-      "booleanoObrigatorio": "Booleano Obrigatorio",
-      "minDataObrigatoria": "Min Data Obrigatoria",
-      "maxDataObrigatoria": "Max Data Obrigatoria",
-      "minDatahoraObrigatoria": "Min Datahora Obrigatoria",
-      "maxDatahoraObrigatoria": "Max Datahora Obrigatoria",
-      "minDataCriacao": "Min Data Criacao",
-      "maxDataCriacao": "Max Data Criacao",
-      "minInteiroFacultativo": "Min Inteiro Facultativo",
-      "maxInteiroFacultativo": "Max Inteiro Facultativo",
-      "minDecimalFacultativo": "Min Decimal Facultativo",
-      "maxDecimalFacultativo": "Max Decimal Facultativo",
-      "booleanoFacultativo": "Booleano Facultativo",
-      "minDataFacultativa": "Min Data Facultativa",
-      "maxDataFacultativa": "Max Data Facultativa",
-      "minDatahoraFacultativa": "Min Datahora Facultativa",
-      "maxDatahoraFacultativa": "Max Datahora Facultativa",
-      "minDataAlteracao": "Min Data Alteracao",
-      "maxDataAlteracao": "Max Data Alteracao",
-      "minPreco": "Min Preco",
-      "maxPreco": "Max Preco"
-    }
-  },
   "validation": {
     "messages": {
       "_default": "The {0} value is not valid",
@@ -536,6 +202,366 @@
       "date": "MM/DD/YYYY",
       "datetime": "MM/DD/YYYY HH:mm",
       "time": "HH:mm"
+    }
+  },
+  "view": {
+    "signIn": {
+      "title": "Sign-in",
+      "signin": "Sign in",
+      "forgotPassword": "Forgot password"
+    },
+    "recoverPasswordByMail": {
+      "title": "Forgot Password",
+      "submit": "Enviar",
+      "signIn": "Sign-in"
+    },
+    "resetPassword": {
+      "title": "Reset Password",
+      "submit": "Submit"
+    },
+    "dashboard": {
+      "title": "Dashboard"
+    }
+  },
+  "resource": {
+        "ConectorPrincipal": "Conector Principal",
+    "User": "User",
+    "Conectado": "Conectado",
+    "Endereco": "Endereco",
+    "GrupoDoPrincipal": "Grupo Do Principal",
+    "Tag": "Tag",
+    "ExtensaoDoPrincipal": "Extensao Do Principal",
+    "ItemDoPrincipal": "Item Do Principal",
+    "Principal": "Principal"
+  },
+  "schema": {
+        "InputAuthRequest": {
+      "email": "Email",
+      "senha": "Senha"
+    },
+    "InputChangePasswordRequest": {
+      "currentPassword": "Current Password",
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password"
+    },
+    "InputResetPasswordRequest": {
+      "newPassword": "New Password",
+      "confirmPassword": "Confirm Password",
+      "hash": "Hash"
+    },
+    "InputRecoverPasswordByMailRequest": {
+      "email": "Email"
+    },
+    "InputAuthResponse": {
+      "token": "Token",
+      "user": "User"
+    },
+    "ExportAuthResponse": {
+      "token": "Token",
+      "user": "User"
+    },
+    "FilterConectorPrincipal": {
+    },
+    "InputConectorPrincipal": {
+      "idPrincipalFk": "Id Principal Fk",
+      "idConectadoFk": "Id Conectado Fk",
+      "conectado": "Conectado",
+      "principal": "Principal",
+      "titulo": "Titulo"
+    },
+    "ListConectorPrincipal": {
+      "idPrincipalFk": "Id Principal Fk",
+      "idConectadoFk": "Id Conectado Fk",
+      "conectado": "Conectado",
+      "principal": "Principal",
+      "titulo": "Titulo"
+    },
+    "ExportConectorPrincipal": {
+      "idPrincipalFk": "Id Principal Fk",
+      "idConectadoFk": "Id Conectado Fk",
+      "conectado": "Conectado",
+      "principal": "Principal",
+      "titulo": "Titulo"
+    },
+    "FilterUser": {
+    },
+    "InputUser": {
+      "idUserPk": "Id User Pk",
+      "email": "Email",
+      "senha": "Senha"
+    },
+    "ListUser": {
+      "idUserPk": "Id User Pk",
+      "email": "Email",
+      "senha": "Senha"
+    },
+    "ExportUser": {
+      "idUserPk": "Id User Pk",
+      "email": "Email",
+      "senha": "Senha"
+    },
+    "FilterConectado": {
+    },
+    "InputConectado": {
+      "idConectadoPk": "Id Conectado Pk",
+      "titulo": "Titulo"
+    },
+    "ListConectado": {
+      "idConectadoPk": "Id Conectado Pk",
+      "titulo": "Titulo"
+    },
+    "ExportConectado": {
+      "idConectadoPk": "Id Conectado Pk",
+      "titulo": "Titulo"
+    },
+    "FilterEndereco": {
+      "minNro": "Min Nro",
+      "maxNro": "Max Nro",
+      "minLatitude": "Min Latitude",
+      "maxLatitude": "Max Latitude",
+      "minLongitude": "Min Longitude",
+      "maxLongitude": "Max Longitude"
+    },
+    "InputEndereco": {
+      "idEnderecoPk": "Id Endereco Pk",
+      "cep": "Cep",
+      "zipcode": "Zipcode",
+      "rua": "Rua",
+      "cidade": "Cidade",
+      "uf": "Uf",
+      "nro": "Nro",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "ListEndereco": {
+      "idEnderecoPk": "Id Endereco Pk",
+      "cep": "Cep",
+      "zipcode": "Zipcode",
+      "rua": "Rua",
+      "cidade": "Cidade",
+      "uf": "Uf",
+      "nro": "Nro",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "ExportEndereco": {
+      "idEnderecoPk": "Id Endereco Pk",
+      "cep": "Cep",
+      "zipcode": "Zipcode",
+      "rua": "Rua",
+      "cidade": "Cidade",
+      "uf": "Uf",
+      "nro": "Nro",
+      "latitude": "Latitude",
+      "longitude": "Longitude"
+    },
+    "FilterGrupoDoPrincipal": {
+    },
+    "InputGrupoDoPrincipal": {
+      "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
+      "titulo": "Titulo"
+    },
+    "ListGrupoDoPrincipal": {
+      "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
+      "titulo": "Titulo"
+    },
+    "ExportGrupoDoPrincipal": {
+      "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
+      "titulo": "Titulo"
+    },
+    "FilterTag": {
+    },
+    "InputTag": {
+      "idTagPk": "Id Tag Pk",
+      "tagPrincipal": "Tag Principal",
+      "titulo": "Titulo"
+    },
+    "ListTag": {
+      "idTagPk": "Id Tag Pk",
+      "tagPrincipal": "Tag Principal",
+      "titulo": "Titulo"
+    },
+    "ExportTag": {
+      "idTagPk": "Id Tag Pk",
+      "tagPrincipal": "Tag Principal",
+      "titulo": "Titulo"
+    },
+    "FilterExtensaoDoPrincipal": {
+    },
+    "InputExtensaoDoPrincipal": {
+      "idPrincipalFk": "Id Principal Fk",
+      "principal": "Principal",
+      "titulo": "Titulo"
+    },
+    "ListExtensaoDoPrincipal": {
+      "idPrincipalFk": "Id Principal Fk",
+      "principal": "Principal",
+      "titulo": "Titulo"
+    },
+    "ExportExtensaoDoPrincipal": {
+      "idPrincipalFk": "Id Principal Fk",
+      "principal": "Principal",
+      "titulo": "Titulo"
+    },
+    "FilterItemDoPrincipal": {
+      "principal": "Principal"
+    },
+    "InputItemDoPrincipal": {
+      "idItemDoPrincipalPk": "Id Item Do Principal Pk",
+      "principal": "Principal",
+      "titulo": "Titulo",
+      "idPrincipalFk": "Id Principal Fk"
+    },
+    "ListItemDoPrincipal": {
+      "idItemDoPrincipalPk": "Id Item Do Principal Pk",
+      "principal": "Principal",
+      "titulo": "Titulo",
+      "idPrincipalFk": "Id Principal Fk"
+    },
+    "ExportItemDoPrincipal": {
+      "idItemDoPrincipalPk": "Id Item Do Principal Pk",
+      "principal": "Principal",
+      "titulo": "Titulo",
+      "idPrincipalFk": "Id Principal Fk"
+    },
+    "FilterPrincipal": {
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "startDataObrigatoria": "Start Data Obrigatoria",
+      "endDataObrigatoria": "End Data Obrigatoria",
+      "startDataFacultativa": "Start Data Facultativa",
+      "endDataFacultativa": "End Data Facultativa",
+      "startDatahoraObrigatoria": "Start Datahora Obrigatoria",
+      "endDatahoraObrigatoria": "End Datahora Obrigatoria",
+      "startDatahoraFacultativa": "Start Datahora Facultativa",
+      "endDatahoraFacultativa": "End Datahora Facultativa",
+      "startDataCriacao": "Start Data Criacao",
+      "endDataCriacao": "End Data Criacao",
+      "startDataAlteracao": "Start Data Alteracao",
+      "endDataAlteracao": "End Data Alteracao",
+      "minDecimalObrigatorio": "Min Decimal Obrigatorio",
+      "maxDecimalObrigatorio": "Max Decimal Obrigatorio",
+      "minDecimalFacultativo": "Min Decimal Facultativo",
+      "maxDecimalFacultativo": "Max Decimal Facultativo",
+      "minInteiroObrigatorio": "Min Inteiro Obrigatorio",
+      "maxInteiroObrigatorio": "Max Inteiro Obrigatorio",
+      "minInteiroFacultativo": "Min Inteiro Facultativo",
+      "maxInteiroFacultativo": "Max Inteiro Facultativo",
+      "minPreco": "Min Preco",
+      "maxPreco": "Max Preco",
+      "booleanoObrigatorio": "Booleano Obrigatorio",
+      "booleanoFacultativo": "Booleano Facultativo"
+    },
+    "InputPrincipal": {
+      "idPrincipalPk": "Id Principal Pk",
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "tagPrincipal": "Tag Principal",
+      "textoObrigatorio": "Texto Obrigatorio",
+      "unico": "Unico",
+      "decimalObrigatorio": "Decimal Obrigatorio",
+      "inteiroObrigatorio": "Inteiro Obrigatorio",
+      "booleanoObrigatorio": "Booleano Obrigatorio",
+      "dataObrigatoria": "Data Obrigatoria",
+      "datahoraObrigatoria": "Datahora Obrigatoria",
+      "ativo": "Ativo",
+      "dataCriacao": "Data Criacao",
+      "textoFacultativo": "Texto Facultativo",
+      "email": "Email",
+      "urlImagem": "Url Imagem",
+      "url": "Url",
+      "nome": "Nome",
+      "titulo": "Titulo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "rg": "Rg",
+      "celular": "Celular",
+      "textoGrande": "Texto Grande",
+      "snakeCase": "Snake Case",
+      "decimalFacultativo": "Decimal Facultativo",
+      "inteiroFacultativo": "Inteiro Facultativo",
+      "booleanoFacultativo": "Booleano Facultativo",
+      "dataFacultativa": "Data Facultativa",
+      "datahoraFacultativa": "Datahora Facultativa",
+      "dataAlteracao": "Data Alteracao",
+      "preco": "Preco",
+      "senha": "Senha",
+      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk",
+      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk"
+    },
+    "ListPrincipal": {
+      "idPrincipalPk": "Id Principal Pk",
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "tagPrincipal": "Tag Principal",
+      "textoObrigatorio": "Texto Obrigatorio",
+      "unico": "Unico",
+      "decimalObrigatorio": "Decimal Obrigatorio",
+      "inteiroObrigatorio": "Inteiro Obrigatorio",
+      "booleanoObrigatorio": "Booleano Obrigatorio",
+      "dataObrigatoria": "Data Obrigatoria",
+      "datahoraObrigatoria": "Datahora Obrigatoria",
+      "ativo": "Ativo",
+      "dataCriacao": "Data Criacao",
+      "textoFacultativo": "Texto Facultativo",
+      "email": "Email",
+      "urlImagem": "Url Imagem",
+      "url": "Url",
+      "nome": "Nome",
+      "titulo": "Titulo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "rg": "Rg",
+      "celular": "Celular",
+      "textoGrande": "Texto Grande",
+      "snakeCase": "Snake Case",
+      "decimalFacultativo": "Decimal Facultativo",
+      "inteiroFacultativo": "Inteiro Facultativo",
+      "booleanoFacultativo": "Booleano Facultativo",
+      "dataFacultativa": "Data Facultativa",
+      "datahoraFacultativa": "Datahora Facultativa",
+      "dataAlteracao": "Data Alteracao",
+      "preco": "Preco",
+      "senha": "Senha",
+      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk",
+      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk"
+    },
+    "ExportPrincipal": {
+      "idPrincipalPk": "Id Principal Pk",
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "tagPrincipal": "Tag Principal",
+      "textoObrigatorio": "Texto Obrigatorio",
+      "unico": "Unico",
+      "decimalObrigatorio": "Decimal Obrigatorio",
+      "inteiroObrigatorio": "Inteiro Obrigatorio",
+      "booleanoObrigatorio": "Booleano Obrigatorio",
+      "dataObrigatoria": "Data Obrigatoria",
+      "datahoraObrigatoria": "Datahora Obrigatoria",
+      "ativo": "Ativo",
+      "dataCriacao": "Data Criacao",
+      "textoFacultativo": "Texto Facultativo",
+      "email": "Email",
+      "urlImagem": "Url Imagem",
+      "url": "Url",
+      "nome": "Nome",
+      "titulo": "Titulo",
+      "cpf": "Cpf",
+      "cnpj": "Cnpj",
+      "rg": "Rg",
+      "celular": "Celular",
+      "textoGrande": "Texto Grande",
+      "snakeCase": "Snake Case",
+      "decimalFacultativo": "Decimal Facultativo",
+      "inteiroFacultativo": "Inteiro Facultativo",
+      "booleanoFacultativo": "Booleano Facultativo",
+      "dataFacultativa": "Data Facultativa",
+      "datahoraFacultativa": "Datahora Facultativa",
+      "dataAlteracao": "Data Alteracao",
+      "preco": "Preco",
+      "senha": "Senha",
+      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk",
+      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk"
     }
   }
 }

@@ -1,6 +1,7 @@
 .btn {
   @apply items-center-center bg-black-300 py-0 px-8 transition border-none;
   @apply text-xs text-black-700 font-semibold cursor-pointer no-underline uppercase;
+
   min-height: 2rem;
   border-radius: 20px;
 

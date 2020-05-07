@@ -1,14 +1,14 @@
 /**
- * Input DefaultSchema of Tag
+ * Input Schema of Tag
  * @author Simpli CLI generator
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
-import {FieldComponent, FieldSet} from '@simpli/meta-schema'
-import {InputSelect, InputText} from '@simpli/vue-input'
+import {FieldSet, FieldComponent} from '@simpli/meta-schema'
+import * as Component from '@simpli/vue-input'
 import {Tag} from '@/model/resource/Tag'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
-/* TODO: review generated DefaultSchema */
+/* TODO: review generated schema */
 export class InputTagSchema extends DefaultSchema {
   collectionPrincipal = new PrincipalCollection().noPagination()
 
@@ -16,14 +16,14 @@ export class InputTagSchema extends DefaultSchema {
 
   readonly fieldSet: FieldSet<Tag> = {
     tagPrincipal: (schema): FieldComponent => ({
-      is: InputSelect,
+      is: Component.InputSelect,
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionPrincipal.items,
       },
     }),
     titulo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,

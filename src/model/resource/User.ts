@@ -2,9 +2,10 @@
  * User
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
+import {Request, ResponseExclude} from '@simpli/serialized-request'
+import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {UserCollection} from '@/model/collection/UserCollection'
-import {ResponseExclude, Request} from '@simpli/serialized-request'
-import {IResource} from '@simpli/resource-collection'
 
 /* TODO: review generated class */
 export class User implements IResource {
@@ -21,12 +22,18 @@ export class User implements IResource {
   set $id(val) {
     this.idUserPk = val
   }
-
   get $tag() {
-    return this.email ?? '-'
+    return String(this.email)
   }
-  set $tag(val) {
-    this.email = val
+
+  /**
+   * Gets a instance of a given ID of User
+   */
+  async getUser(id: number) {
+    return await Request.get(`/user/user/${id}`)
+      .name('getUser')
+      .as(this)
+      .getData()
   }
 
   /**
@@ -51,17 +58,7 @@ export class User implements IResource {
   }
 
   /**
-   * Gets a instance of a given ID of User
-   */
-  async getUser(id: number) {
-    return await Request.get(`/user/user/${id}`)
-      .name('getUser')
-      .as(this)
-      .getData()
-  }
-
-  /**
-   * Lists the instances of User to use it in a XLSX file
+   * Lists the instances of User to export as a file
    */
   static async listExportUser(params: any) {
     return await Request.get(`/user/user/export`, {params})

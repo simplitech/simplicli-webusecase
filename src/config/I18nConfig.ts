@@ -14,6 +14,12 @@ import {Lang} from '@/enums/Lang'
 import {Currency} from '@/enums/Currency'
 
 /**
+ * Moment JS languages pack
+ * Note: US English is already imported by default
+ */
+import 'moment/locale/pt-br'
+
+/**
  * VUE I18n Configuration
  */
 export class I18nConfig implements I18nOptions {

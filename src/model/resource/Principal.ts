@@ -4,6 +4,7 @@
  *
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {
   Request,
   ResponseExclude,
@@ -11,6 +12,7 @@ import {
 } from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
+import {Tag} from '@/model/resource/Tag'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
@@ -18,28 +20,29 @@ export class Principal implements IResource {
   idPrincipalPk: number = 0
 
   @ResponseSerialize(GrupoDoPrincipal)
-  grupoDoPrincipal1: GrupoDoPrincipal | null = null
+  grupoDoPrincipal: GrupoDoPrincipal | null = null
 
   @ResponseSerialize(GrupoDoPrincipal)
-  grupoDoPrincipal2: GrupoDoPrincipal | null = null
+  grupoDoPrincipalFacultativo: GrupoDoPrincipal | null = null
+
+  @ResponseSerialize(Tag)
+  tagPrincipal: Tag[] | null = null
 
   /**
    * principal’s mandatory text
    */
   textoObrigatorio: string | null = null
 
-  inteiroObrigatorio: number | null = null
   unico: string | null = null
   decimalObrigatorio: number | null = null
+  inteiroObrigatorio: number | null = null
   booleanoObrigatorio: boolean | null = null
   dataObrigatoria: string | null = null
   datahoraObrigatoria: string | null = null
   ativo: boolean | null = null
   dataCriacao: string | null = null
-  idGrupoDoPrincipalFk: number | null = null
 
   textoFacultativo: string | null = null
-  inteiroFacultativo: number | null = null
   email: string | null = null
   urlImagem: string | null = null
   url: string | null = null
@@ -52,12 +55,12 @@ export class Principal implements IResource {
   textoGrande: string | null = null
   snakeCase: string | null = null
   decimalFacultativo: number | null = null
+  inteiroFacultativo: number | null = null
   booleanoFacultativo: boolean | null = null
   dataFacultativa: string | null = null
   datahoraFacultativa: string | null = null
   dataAlteracao: string | null = null
   preco: number | null = null
-  idGrupoDoPrincipalFacultativoFk: number | null = null
 
   @ResponseExclude()
   senha: string | null = null
@@ -69,10 +72,26 @@ export class Principal implements IResource {
     this.idPrincipalPk = val
   }
   get $tag() {
-    return String(this.nome)
+    return String(this.email)
   }
-  set $tag(val) {
-    this.nome = val
+
+  get idGrupoDoPrincipalFk() {
+    if (!this.grupoDoPrincipal) return 0
+    return this.grupoDoPrincipal.$id
+  }
+  set idGrupoDoPrincipalFk(val) {
+    if (!this.grupoDoPrincipal) this.grupoDoPrincipal = new GrupoDoPrincipal()
+    this.grupoDoPrincipal.$id = val
+  }
+
+  get idGrupoDoPrincipalFacultativoFk() {
+    if (!this.grupoDoPrincipalFacultativo) return 0
+    return this.grupoDoPrincipalFacultativo.$id
+  }
+  set idGrupoDoPrincipalFacultativoFk(val) {
+    if (!this.grupoDoPrincipalFacultativo)
+      this.grupoDoPrincipalFacultativo = new GrupoDoPrincipal()
+    this.grupoDoPrincipalFacultativo.$id = val
   }
 
   /**
@@ -117,7 +136,7 @@ export class Principal implements IResource {
   }
 
   /**
-   * Lists the instances of Principal to use it in a XLSX file
+   * Lists the instances of Principal to export as a file
    */
   static async listExportPrincipal(params: any) {
     return await Request.get(`/user/principal/export`, {params})

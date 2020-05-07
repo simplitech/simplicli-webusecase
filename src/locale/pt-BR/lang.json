@@ -159,6 +159,50 @@
     "cep": "O campo {0} deve ser um CEP válido",
     "boleto": "O campo {0} deve ser um Boleto válido"
   },
+  "validation": {
+    "messages": {
+      "_default": "O valor do campo {0} não é válido",
+      "after": "O campo {0} deve estar depois do campo {1}",
+      "alpha": "O campo {0} deve conter somente letras",
+      "alpha_dash": "O campo {0} deve conter letras, números e traços",
+      "alpha_num": "O campo {0} deve conter somente letras e números",
+      "alpha_spaces": "O campo {0} só pode conter caracteres alfabéticos e espaços",
+      "before": "O campo {0} deve estar antes do campo {1}",
+      "between": "O campo {0} deve estar entre {1} e {2}",
+      "confirmed": "Os campos {0} e {1} devem ser iguais",
+      "credit_card": "O campo {0} é inválido",
+      "date_between": "O campo {0} deve estar entre {1} e {2}",
+      "date_format": "O campo {0} deve estar no formato {1}",
+      "decimal": "O campo {0} deve ser numérico e deve conter {1} casas decimais",
+      "digits": "O campo {0} deve ser numérico e ter exatamente {1} dígitos",
+      "dimensions": "O campo {0} deve ter {1} pixels de largura por {2} pixels de altura",
+      "email": "O campo {0} deve ser um email válido",
+      "excluded": "O campo {0} deve ser um valor válido",
+      "ext": "O campo {0} deve ser um arquivo válido",
+      "image": "O campo {0} deve ser uma imagem",
+      "included": "O campo {0} deve ter um valor válido",
+      "integer": "O campo {0} deve ser um número inteiro",
+      "ip": "O campo {0} deve ser um endereço IP válido",
+      "is": "O valor inserido no campo {0} não é válido",
+      "length": "O tamanho do campo {0} está entre {1} e {2}",
+      "max": "O campo {0} não deve ter mais que {1} caracteres",
+      "max_value": "O campo {0} precisa ser {1} ou menor",
+      "mimes": "O campo {0} deve ser um tipo de arquivo válido",
+      "min": "O campo {0} deve conter pelo menos {1} caracteres",
+      "min_value": "O campo {0} precisa ser {1} ou maior",
+      "numeric": "O campo {0} deve conter apenas números",
+      "regex": "O campo {0} possui um formato inválido",
+      "required": "O campo {0} é obrigatório",
+      "size": "O campo {0} deve ser menor que NaN undefined",
+      "url": "O campo {0} não é uma URL válida"
+    },
+    "attributes": {},
+    "dateFormat": {
+      "date": "DD/MM/YYYY",
+      "datetime": "DD/MM/YYYY HH:mm",
+      "time": "hh:mm"
+    }
+  },
   "view": {
     "signIn": {
       "title": "Fazer Login",
@@ -207,13 +251,15 @@
     "InputRecoverPasswordByMailRequest": {
       "email": "Email"
     },
-    "ListAuthResponse": {
+    "InputAuthResponse": {
       "token": "Token",
       "user": "User"
     },
     "ExportAuthResponse": {
       "token": "Token",
       "user": "User"
+    },
+    "FilterConectorPrincipal": {
     },
     "InputConectorPrincipal": {
       "idPrincipalFk": "Id Principal Fk",
@@ -236,6 +282,8 @@
       "principal": "Principal",
       "titulo": "Titulo"
     },
+    "FilterUser": {
+    },
     "InputUser": {
       "idUserPk": "Id User Pk",
       "email": "Email",
@@ -251,6 +299,8 @@
       "email": "Email",
       "senha": "Senha"
     },
+    "FilterConectado": {
+    },
     "InputConectado": {
       "idConectadoPk": "Id Conectado Pk",
       "titulo": "Titulo"
@@ -263,14 +313,22 @@
       "idConectadoPk": "Id Conectado Pk",
       "titulo": "Titulo"
     },
+    "FilterEndereco": {
+      "minNro": "Min Nro",
+      "maxNro": "Max Nro",
+      "minLatitude": "Min Latitude",
+      "maxLatitude": "Max Latitude",
+      "minLongitude": "Min Longitude",
+      "maxLongitude": "Max Longitude"
+    },
     "InputEndereco": {
       "idEnderecoPk": "Id Endereco Pk",
       "cep": "Cep",
       "zipcode": "Zipcode",
       "rua": "Rua",
-      "nro": "Nro",
       "cidade": "Cidade",
       "uf": "Uf",
+      "nro": "Nro",
       "latitude": "Latitude",
       "longitude": "Longitude"
     },
@@ -279,9 +337,9 @@
       "cep": "Cep",
       "zipcode": "Zipcode",
       "rua": "Rua",
-      "nro": "Nro",
       "cidade": "Cidade",
       "uf": "Uf",
+      "nro": "Nro",
       "latitude": "Latitude",
       "longitude": "Longitude"
     },
@@ -290,11 +348,13 @@
       "cep": "Cep",
       "zipcode": "Zipcode",
       "rua": "Rua",
-      "nro": "Nro",
       "cidade": "Cidade",
       "uf": "Uf",
+      "nro": "Nro",
       "latitude": "Latitude",
       "longitude": "Longitude"
+    },
+    "FilterGrupoDoPrincipal": {
     },
     "InputGrupoDoPrincipal": {
       "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
@@ -307,6 +367,8 @@
     "ExportGrupoDoPrincipal": {
       "idGrupoDoPrincipalPk": "Id Grupo Do Principal Pk",
       "titulo": "Titulo"
+    },
+    "FilterTag": {
     },
     "InputTag": {
       "idTagPk": "Id Tag Pk",
@@ -323,6 +385,8 @@
       "tagPrincipal": "Tag Principal",
       "titulo": "Titulo"
     },
+    "FilterExtensaoDoPrincipal": {
+    },
     "InputExtensaoDoPrincipal": {
       "idPrincipalFk": "Id Principal Fk",
       "principal": "Principal",
@@ -337,6 +401,9 @@
       "idPrincipalFk": "Id Principal Fk",
       "principal": "Principal",
       "titulo": "Titulo"
+    },
+    "FilterItemDoPrincipal": {
+      "principal": "Principal"
     },
     "InputItemDoPrincipal": {
       "idItemDoPrincipalPk": "Id Item Do Principal Pk",
@@ -356,21 +423,49 @@
       "titulo": "Titulo",
       "idPrincipalFk": "Id Principal Fk"
     },
+    "FilterPrincipal": {
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "startDataObrigatoria": "Start Data Obrigatoria",
+      "endDataObrigatoria": "End Data Obrigatoria",
+      "startDataFacultativa": "Start Data Facultativa",
+      "endDataFacultativa": "End Data Facultativa",
+      "startDatahoraObrigatoria": "Start Datahora Obrigatoria",
+      "endDatahoraObrigatoria": "End Datahora Obrigatoria",
+      "startDatahoraFacultativa": "Start Datahora Facultativa",
+      "endDatahoraFacultativa": "End Datahora Facultativa",
+      "startDataCriacao": "Start Data Criacao",
+      "endDataCriacao": "End Data Criacao",
+      "startDataAlteracao": "Start Data Alteracao",
+      "endDataAlteracao": "End Data Alteracao",
+      "minDecimalObrigatorio": "Min Decimal Obrigatorio",
+      "maxDecimalObrigatorio": "Max Decimal Obrigatorio",
+      "minDecimalFacultativo": "Min Decimal Facultativo",
+      "maxDecimalFacultativo": "Max Decimal Facultativo",
+      "minInteiroObrigatorio": "Min Inteiro Obrigatorio",
+      "maxInteiroObrigatorio": "Max Inteiro Obrigatorio",
+      "minInteiroFacultativo": "Min Inteiro Facultativo",
+      "maxInteiroFacultativo": "Max Inteiro Facultativo",
+      "minPreco": "Min Preco",
+      "maxPreco": "Max Preco",
+      "booleanoObrigatorio": "Booleano Obrigatorio",
+      "booleanoFacultativo": "Booleano Facultativo"
+    },
     "InputPrincipal": {
       "idPrincipalPk": "Id Principal Pk",
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "tagPrincipal": "Tag Principal",
       "textoObrigatorio": "Texto Obrigatorio",
-      "inteiroObrigatorio": "Inteiro Obrigatorio",
       "unico": "Unico",
       "decimalObrigatorio": "Decimal Obrigatorio",
+      "inteiroObrigatorio": "Inteiro Obrigatorio",
       "booleanoObrigatorio": "Booleano Obrigatorio",
       "dataObrigatoria": "Data Obrigatoria",
       "datahoraObrigatoria": "Datahora Obrigatoria",
       "ativo": "Ativo",
       "dataCriacao": "Data Criacao",
       "textoFacultativo": "Texto Facultativo",
-      "inteiroFacultativo": "Inteiro Facultativo",
       "email": "Email",
       "urlImagem": "Url Imagem",
       "url": "Url",
@@ -383,30 +478,31 @@
       "textoGrande": "Texto Grande",
       "snakeCase": "Snake Case",
       "decimalFacultativo": "Decimal Facultativo",
+      "inteiroFacultativo": "Inteiro Facultativo",
       "booleanoFacultativo": "Booleano Facultativo",
       "dataFacultativa": "Data Facultativa",
       "datahoraFacultativa": "Datahora Facultativa",
       "dataAlteracao": "Data Alteracao",
       "preco": "Preco",
       "senha": "Senha",
-      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
-      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
+      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk",
+      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk"
     },
     "ListPrincipal": {
       "idPrincipalPk": "Id Principal Pk",
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "tagPrincipal": "Tag Principal",
       "textoObrigatorio": "Texto Obrigatorio",
-      "inteiroObrigatorio": "Inteiro Obrigatorio",
       "unico": "Unico",
       "decimalObrigatorio": "Decimal Obrigatorio",
+      "inteiroObrigatorio": "Inteiro Obrigatorio",
       "booleanoObrigatorio": "Booleano Obrigatorio",
       "dataObrigatoria": "Data Obrigatoria",
       "datahoraObrigatoria": "Datahora Obrigatoria",
       "ativo": "Ativo",
       "dataCriacao": "Data Criacao",
       "textoFacultativo": "Texto Facultativo",
-      "inteiroFacultativo": "Inteiro Facultativo",
       "email": "Email",
       "urlImagem": "Url Imagem",
       "url": "Url",
@@ -419,30 +515,31 @@
       "textoGrande": "Texto Grande",
       "snakeCase": "Snake Case",
       "decimalFacultativo": "Decimal Facultativo",
+      "inteiroFacultativo": "Inteiro Facultativo",
       "booleanoFacultativo": "Booleano Facultativo",
       "dataFacultativa": "Data Facultativa",
       "datahoraFacultativa": "Datahora Facultativa",
       "dataAlteracao": "Data Alteracao",
       "preco": "Preco",
       "senha": "Senha",
-      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
-      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
+      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk",
+      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk"
     },
     "ExportPrincipal": {
       "idPrincipalPk": "Id Principal Pk",
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
+      "grupoDoPrincipal": "Grupo Do Principal",
+      "grupoDoPrincipalFacultativo": "Grupo Do Principal Facultativo",
+      "tagPrincipal": "Tag Principal",
       "textoObrigatorio": "Texto Obrigatorio",
-      "inteiroObrigatorio": "Inteiro Obrigatorio",
       "unico": "Unico",
       "decimalObrigatorio": "Decimal Obrigatorio",
+      "inteiroObrigatorio": "Inteiro Obrigatorio",
       "booleanoObrigatorio": "Booleano Obrigatorio",
       "dataObrigatoria": "Data Obrigatoria",
       "datahoraObrigatoria": "Datahora Obrigatoria",
       "ativo": "Ativo",
       "dataCriacao": "Data Criacao",
       "textoFacultativo": "Texto Facultativo",
-      "inteiroFacultativo": "Inteiro Facultativo",
       "email": "Email",
       "urlImagem": "Url Imagem",
       "url": "Url",
@@ -455,86 +552,15 @@
       "textoGrande": "Texto Grande",
       "snakeCase": "Snake Case",
       "decimalFacultativo": "Decimal Facultativo",
+      "inteiroFacultativo": "Inteiro Facultativo",
       "booleanoFacultativo": "Booleano Facultativo",
       "dataFacultativa": "Data Facultativa",
       "datahoraFacultativa": "Datahora Facultativa",
       "dataAlteracao": "Data Alteracao",
       "preco": "Preco",
       "senha": "Senha",
-      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk",
-      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk"
-    },
-    "InputPrincipalFilter": {
-      "grupoDoPrincipal1": "Grupo Do Principal 1",
-      "grupoDoPrincipal2": "Grupo Do Principal 2",
-      "minInteiroObrigatorio": "Min Inteiro Obrigatorio",
-      "maxInteiroObrigatorio": "Max Inteiro Obrigatorio",
-      "minDecimalObrigatorio": "Min Decimal Obrigatorio",
-      "maxDecimalObrigatorio": "Max Decimal Obrigatorio",
-      "booleanoObrigatorio": "Booleano Obrigatorio",
-      "minDataObrigatoria": "Min Data Obrigatoria",
-      "maxDataObrigatoria": "Max Data Obrigatoria",
-      "minDatahoraObrigatoria": "Min Datahora Obrigatoria",
-      "maxDatahoraObrigatoria": "Max Datahora Obrigatoria",
-      "minDataCriacao": "Min Data Criacao",
-      "maxDataCriacao": "Max Data Criacao",
-      "minInteiroFacultativo": "Min Inteiro Facultativo",
-      "maxInteiroFacultativo": "Max Inteiro Facultativo",
-      "minDecimalFacultativo": "Min Decimal Facultativo",
-      "maxDecimalFacultativo": "Max Decimal Facultativo",
-      "booleanoFacultativo": "Booleano Facultativo",
-      "minDataFacultativa": "Min Data Facultativa",
-      "maxDataFacultativa": "Max Data Facultativa",
-      "minDatahoraFacultativa": "Min Datahora Facultativa",
-      "maxDatahoraFacultativa": "Max Datahora Facultativa",
-      "minDataAlteracao": "Min Data Alteracao",
-      "maxDataAlteracao": "Max Data Alteracao",
-      "minPreco": "Min Preco",
-      "maxPreco": "Max Preco"
-    }
-  },
-  "validation": {
-    "messages": {
-      "_default": "O valor do campo {0} não é válido",
-      "after": "O campo {0} deve estar depois do campo {1}",
-      "alpha": "O campo {0} deve conter somente letras",
-      "alpha_dash": "O campo {0} deve conter letras, números e traços",
-      "alpha_num": "O campo {0} deve conter somente letras e números",
-      "alpha_spaces": "O campo {0} só pode conter caracteres alfabéticos e espaços",
-      "before": "O campo {0} deve estar antes do campo {1}",
-      "between": "O campo {0} deve estar entre {1} e {2}",
-      "confirmed": "Os campos {0} e {1} devem ser iguais",
-      "credit_card": "O campo {0} é inválido",
-      "date_between": "O campo {0} deve estar entre {1} e {2}",
-      "date_format": "O campo {0} deve estar no formato {1}",
-      "decimal": "O campo {0} deve ser numérico e deve conter {1} casas decimais",
-      "digits": "O campo {0} deve ser numérico e ter exatamente {1} dígitos",
-      "dimensions": "O campo {0} deve ter {1} pixels de largura por {2} pixels de altura",
-      "email": "O campo {0} deve ser um email válido",
-      "excluded": "O campo {0} deve ser um valor válido",
-      "ext": "O campo {0} deve ser um arquivo válido",
-      "image": "O campo {0} deve ser uma imagem",
-      "included": "O campo {0} deve ter um valor válido",
-      "integer": "O campo {0} deve ser um número inteiro",
-      "ip": "O campo {0} deve ser um endereço IP válido",
-      "is": "O valor inserido no campo {0} não é válido",
-      "length": "O tamanho do campo {0} está entre {1} e {2}",
-      "max": "O campo {0} não deve ter mais que {1} caracteres",
-      "max_value": "O campo {0} precisa ser {1} ou menor",
-      "mimes": "O campo {0} deve ser um tipo de arquivo válido",
-      "min": "O campo {0} deve conter pelo menos {1} caracteres",
-      "min_value": "O campo {0} precisa ser {1} ou maior",
-      "numeric": "O campo {0} deve conter apenas números",
-      "regex": "O campo {0} possui um formato inválido",
-      "required": "O campo {0} é obrigatório",
-      "size": "O campo {0} deve ser menor que NaN undefined",
-      "url": "O campo {0} não é uma URL válida"
-    },
-    "attributes": {},
-    "dateFormat": {
-      "date": "DD/MM/YYYY",
-      "datetime": "DD/MM/YYYY HH:mm",
-      "time": "hh:mm"
+      "idGrupoDoPrincipalFk": "Id Grupo Do Principal Fk",
+      "idGrupoDoPrincipalFacultativoFk": "Id Grupo Do Principal Facultativo Fk"
     }
   }
 }

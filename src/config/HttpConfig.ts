@@ -9,10 +9,10 @@
  */
 
 import axios, {AxiosError} from 'axios'
-import {$} from '@/facade'
-import {HttpStatus} from '@/enums/HttpStatus'
-import {Socket} from '@/app/Socket'
 import qs from 'qs'
+import {$} from '@/facade'
+import {Socket} from '@/app/Socket'
+import {HttpStatus} from '@/enums/HttpStatus'
 
 /**
  * HTTP Configuration
@@ -38,8 +38,8 @@ export class HttpConfig {
      * Interceptor for every HTTP request of this app
      */
     this.axiosInstance.interceptors.request.use(config => {
-      const pattern = /^(?:https?:)?\/\/[\w.]+[\w-/]+[\w?&=%]*$/g
-      const isRelativeUrl = !pattern.exec(config.url ?? '')
+      const pattern = /https?:\/\/(www\.)?[-a-zA-Z0-9@:%._+~#=]{1,256}\.[a-zA-Z0-9()]{1,6}\b([-a-zA-Z0-9()@:%_+.~#?&/=]*)/g
+      const isRelativeUrl = !config.url?.match(pattern)
 
       if (isRelativeUrl) {
         config.headers['Accept-Language'] = $.app.language

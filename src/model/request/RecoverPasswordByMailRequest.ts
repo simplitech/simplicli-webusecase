@@ -2,6 +2,7 @@
  * RecoverPasswordByMailRequest
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request} from '@simpli/serialized-request'
 
 /* TODO: review generated class */

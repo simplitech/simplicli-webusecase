@@ -4,7 +4,7 @@
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet, FieldComponent} from '@simpli/meta-schema'
-import {InputText} from '@simpli/vue-input'
+import * as Component from '@simpli/vue-input'
 import {Conectado} from '@/model/resource/Conectado'
 
 /* TODO: review generated schema */
@@ -13,7 +13,7 @@ export class InputConectadoSchema extends DefaultSchema {
 
   readonly fieldSet: FieldSet<Conectado> = {
     titulo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,

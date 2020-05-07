@@ -2,9 +2,8 @@
  * ChangePasswordRequest
  * @author Simpli CLI generator
  */
-import {Request} from '@simpli/serialized-request'
 import {$} from '@/facade'
-import {ResponseExclude} from '@simpli/serialized-request'
+import {Request, ResponseExclude} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
 export class ChangePasswordRequest {

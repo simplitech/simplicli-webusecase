@@ -3,9 +3,14 @@
  *
  * @author Simpli CLI generator
  */
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
 import {Endereco} from '@/model/resource/Endereco'
 
 /* TODO: review generated class */
@@ -14,6 +19,15 @@ export class EnderecoCollection extends PageCollection<Endereco> {
   constructor() {
     super(Endereco)
   }
+
+  resource?: IEnderecoCollectionResourcesHolder
+
+  @RequestExpose() minNro: number | null = null
+  @RequestExpose() maxNro: number | null = null
+  @RequestExpose() minLatitude: number | null = null
+  @RequestExpose() maxLatitude: number | null = null
+  @RequestExpose() minLongitude: number | null = null
+  @RequestExpose() maxLongitude: number | null = null
 
   queryAsPage() {
     return this.listEndereco()
@@ -33,3 +47,5 @@ export class EnderecoCollection extends PageCollection<Endereco> {
       .getResponse()
   }
 }
+
+export interface IEnderecoCollectionResourcesHolder {}

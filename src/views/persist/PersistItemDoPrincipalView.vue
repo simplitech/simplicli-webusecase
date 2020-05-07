@@ -6,13 +6,10 @@
       </h1>
     </header>
 
-    <section class="relative weight-1 bg-black-100">
-      <await
-        name="getItemDoPrincipal"
-        class="absolute inset-0 px-4 py-8 overflow-y-auto"
-      >
-        <form class="container card" @submit.prevent="persist">
-          <div class="mb-8 grid grid-columns lg:grid-columns-2 grid-gap-4">
+    <section class="relative">
+      <await name="getItemDoPrincipal" class="px-4 py-8">
+        <form class="container card w-full lg:w-160" @submit.prevent="persist">
+          <div class="mb-8 grid md:grid-cols-2 gap-4">
             <render-schema
               v-for="field in schema.allFields"
               v-model="itemDoPrincipal"
@@ -56,7 +53,7 @@ export default class PersistItemDoPrincipalView extends Vue {
   }
 
   populateResource() {
-    this.schema.collectionPrincipal.listPrincipal()
+    this.schema.collectionPrincipal.queryAsPage()
   }
 
   async populate() {
@@ -77,7 +74,6 @@ export default class PersistItemDoPrincipalView extends Vue {
     }
 
     await this.itemDoPrincipal.persistItemDoPrincipal()
-
     this.$toast.success('system.success.persist')
     await this.$nav.push('/item-do-principal/list')
   }

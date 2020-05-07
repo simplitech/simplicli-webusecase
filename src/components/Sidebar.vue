@@ -2,27 +2,27 @@
   <aside class="sidebar" :class="sidebarClass">
     <div class="m-0 lg:my-2 horiz items-center-center">
       <div class="sidebar__title">
-        <router-link to="/" class="horiz lg:verti items-center">
+        <div class="horiz lg:verti items-center">
           <img
             src="@/assets/img/logo.png"
             class="mr-2 h-8 lg:mb-2 lg:h-16 object-contain"
             alt="Logo"
           />
           {{ $t('app.title') }}
-        </router-link>
+        </div>
       </div>
 
       <button
         @click="toggleMenu"
-        class="z-10 text-white btn btn--flat btn--icon"
+        class="sidebar__toggle-menu btn btn--flat btn--icon"
       >
         <i class="fa fa-bars" />
       </button>
     </div>
 
     <transition-expand>
-      <div class="verti lg:weight-1" v-if="menu || isDesktop">
-        <ul class="my-4 grid grid-columns-1 grid-gap-1">
+      <div class="verti lg:weight-1" v-if="desktopMenu">
+        <ul class="my-4 grid grid-cols-1 gap-1">
           <li>
             <router-link to="/dashboard" @click.native="menuOff" class="pill">
               <i class="pill__icon fas fa-tachometer-alt mr-1" />
@@ -44,7 +44,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link to="/user/list" @click.native="menuOff" class="pill">
               <i class="pill__icon fas fa-table mr-1" />
@@ -53,7 +52,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link
               to="/conectado/list"
@@ -66,7 +64,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link
               to="/endereco/list"
@@ -79,7 +76,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link
               to="/grupo-do-principal/list"
@@ -92,7 +88,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link to="/tag/list" @click.native="menuOff" class="pill">
               <i class="pill__icon fas fa-table mr-1" />
@@ -101,7 +96,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link
               to="/extensao-do-principal/list"
@@ -114,7 +108,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link
               to="/item-do-principal/list"
@@ -127,7 +120,6 @@
               </div>
             </router-link>
           </li>
-
           <li>
             <router-link
               to="/principal/list"
@@ -142,7 +134,7 @@
           </li>
         </ul>
 
-        <div class="weight-1"></div>
+        <div class="weight-1" />
 
         <a @click="$auth.signOut" class="pill mb-1">
           <i class="pill__icon fas fa-sign-out-alt mr-1" />
@@ -160,7 +152,7 @@
 </template>
 
 <script lang="ts">
-import {Component, Prop, Mixins} from 'vue-property-decorator'
+import {Component, Prop, Watch, Mixins} from 'vue-property-decorator'
 import {MixinScreenSize} from '@/components/mixins/MixinScreenSize'
 
 @Component
@@ -169,18 +161,37 @@ export default class Sidebar extends Mixins(MixinScreenSize) {
 
   get sidebarClass() {
     return {
-      'sidebar--collapse': !this.desktopMenu,
+      'sidebar--collapse': !this.genericMenu,
     }
   }
 
-  get desktopMenu() {
+  get genericMenu() {
     return this.menu || !this.isDesktop
   }
 
+  get desktopMenu() {
+    return this.menu || this.isDesktop
+  }
+
   created() {
-    if (this.isDesktop) {
+    const menu = localStorage.getItem('menu')
+
+    if (this.isDesktop && menu !== null) {
+      this.menu = Boolean(Number(menu))
+    } else if (this.isDesktop && menu === null) {
       this.menu = true
     }
+  }
+
+  @Watch('menu')
+  menuEvent(menu: boolean) {
+    const val = menu ? '1' : '0'
+    localStorage.setItem('menu', val)
+  }
+
+  @Watch('genericMenu', {immediate: true})
+  genericMenuEvent(menu: boolean) {
+    this.$emit('toggle', menu)
   }
 
   toggleMenu() {
@@ -199,8 +210,10 @@ export default class Sidebar extends Mixins(MixinScreenSize) {
 .sidebar {
   @apply transition fixed w-full verti overflow-y-auto p-2 bg-gray-800 shadow-box-md;
 
+  max-height: 100vh;
+
   @screen lg {
-    @apply w-64 relative;
+    @apply w-64;
   }
 
   @screen print {
@@ -208,7 +221,7 @@ export default class Sidebar extends Mixins(MixinScreenSize) {
   }
 
   &.sidebar--collapse {
-    @apply overflow-hidden;
+    @apply overflow-x-hidden;
 
     @screen lg {
       @apply w-20;
@@ -216,23 +229,56 @@ export default class Sidebar extends Mixins(MixinScreenSize) {
 
     .sidebar__title {
       @apply m-0 w-0 opacity-0;
-      flex: 0 !important;
+    }
+
+    .sidebar__toggle-menu {
+      transform: translate(-14px, 0);
     }
 
     .pill {
       .pill__icon {
-        @apply text-lg w-8;
-        padding: 0;
-        margin: auto;
+        @apply p-0 mr-0;
+        transform: translate(0.5rem, 0);
       }
       .pill__content {
-        @apply opacity-0 min-w-0;
+        @apply opacity-0;
       }
     }
   }
 
   .sidebar__title {
-    @apply transition weight-1 mx-2 text-center font-light tracking-widest text-xl text-white opacity-75 select-none;
+    @apply transition mx-2 weight-1 text-center font-light tracking-widest text-xl text-white select-none;
+
+    @screen lg {
+      @apply w-48;
+    }
+  }
+
+  .sidebar__toggle-menu {
+    @apply transition text-white;
+  }
+
+  /* width */
+  &::-webkit-scrollbar {
+    width: 0.25rem;
+    height: 0.25rem;
+  }
+
+  /* Track */
+  &::-webkit-scrollbar-track {
+    background: rgba(255, 255, 255, 0.2);
+  }
+
+  /* Handle */
+  &::-webkit-scrollbar-thumb {
+    @apply bg-secondary;
+  }
+
+  &:hover {
+    /* Track */
+    &::-webkit-scrollbar-thumb {
+      @apply bg-secondary;
+    }
   }
 }
 
@@ -244,8 +290,8 @@ export default class Sidebar extends Mixins(MixinScreenSize) {
   }
 
   .pill__icon {
-    @apply transition pr-2 text-center w-0;
-    min-width: 1.5rem;
+    @apply transition mr-1 pr-2 text-center;
+    font-size: 150%;
   }
 
   .pill__content {

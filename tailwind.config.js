@@ -1,7 +1,6 @@
 const _ = require('lodash')
 const TailwindCssVariables = require('tailwind-css-variables')
 const TailwindTransition = require('tailwindcss-transition')
-const TailwindGrid = require('tailwindcss-grid')
 
 module.exports = {
   important: true,
@@ -13,28 +12,6 @@ module.exports = {
     // transitions
     TailwindTransition({
       standard: 'all 300ms ease',
-    }),
-
-    // grid
-    TailwindGrid({
-      grids: [2, 3, 4, 5, 6, 7, 8, 9, 10, 11, 12],
-      gaps: {
-        0: '0',
-        1: '0.25rem',
-        2: '0.5rem',
-        3: '0.75rem',
-        4: '1rem',
-        6: '1.5rem',
-        8: '2rem',
-        12: '3rem',
-        16: '4rem',
-        20: '5rem',
-      },
-      autoMinWidths: {
-        '16': '4rem',
-        '24': '6rem',
-      },
-      variants: ['responsive'],
     }),
 
     // horiz and verti
@@ -158,6 +135,7 @@ module.exports = {
         '80': '20rem',
         '94': '24rem',
         '110': '28rem',
+        '160': '40rem',
       },
       boxShadow: {
         btn: '0 5px 10px 0 rgba(0, 0, 0, 0.2)',

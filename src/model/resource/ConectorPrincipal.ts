@@ -2,6 +2,7 @@
  * ConectorPrincipal
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request, ResponseSerialize} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Conectado} from '@/model/resource/Conectado'
@@ -27,9 +28,6 @@ export class ConectorPrincipal implements IResource {
   }
   get $tag() {
     return String(this.titulo)
-  }
-  set $tag(val) {
-    this.titulo = val
   }
 
   get idPrincipalFk() {
@@ -82,7 +80,7 @@ export class ConectorPrincipal implements IResource {
   }
 
   /**
-   * Lists the instances of ConectorPrincipal to use it in a XLSX file
+   * Lists the instances of ConectorPrincipal to export as a file
    */
   static async listExportConectorPrincipal(params: any) {
     return await Request.get(`/user/conector-principal/export`, {params})

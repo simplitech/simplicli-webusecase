@@ -1,19 +1,19 @@
 /**
- * Input DefaultSchema of Endereco
+ * Input Schema of Endereco
  * @author Simpli CLI generator
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
-import {FieldComponent, FieldSet} from '@simpli/meta-schema'
-import {InputSelect, InputText} from '@simpli/vue-input'
+import {FieldSet, FieldComponent} from '@simpli/meta-schema'
+import * as Component from '@simpli/vue-input'
 import {Endereco} from '@/model/resource/Endereco'
 
-/* TODO: review generated DefaultSchema */
+/* TODO: review generated schema */
 export class InputEnderecoSchema extends DefaultSchema {
   readonly name = 'InputEndereco'
 
   readonly fieldSet: FieldSet<Endereco> = {
     cep: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'zipcode',
@@ -22,7 +22,7 @@ export class InputEnderecoSchema extends DefaultSchema {
       },
     }),
     zipcode: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'zipcode',
@@ -31,24 +31,15 @@ export class InputEnderecoSchema extends DefaultSchema {
       },
     }),
     rua: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,
         label: this.translateFrom(schema.fieldName),
       },
     }),
-    nro: (schema): FieldComponent => ({
-      is: InputText,
-      bind: {
-        type: 'number',
-        maxlength: 11,
-        step: 1,
-        label: this.translateFrom(schema.fieldName),
-      },
-    }),
     cidade: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,
@@ -56,15 +47,24 @@ export class InputEnderecoSchema extends DefaultSchema {
       },
     }),
     uf: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,
         label: this.translateFrom(schema.fieldName),
       },
     }),
+    nro: (schema): FieldComponent => ({
+      is: Component.InputText,
+      bind: {
+        type: 'number',
+        maxlength: 255,
+        step: 1,
+        label: this.translateFrom(schema.fieldName),
+      },
+    }),
     latitude: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'number',
         maxlength: 255,
@@ -73,7 +73,7 @@ export class InputEnderecoSchema extends DefaultSchema {
       },
     }),
     longitude: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'number',
         maxlength: 255,

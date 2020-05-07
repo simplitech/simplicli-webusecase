@@ -1,15 +1,15 @@
 /**
- * Input DefaultSchema of ConectorPrincipal
+ * Input Schema of ConectorPrincipal
  * @author Simpli CLI generator
  */
-import {FieldComponent, FieldSet} from '@simpli/meta-schema'
-import {InputSelect, InputText} from '@simpli/vue-input'
+import {DefaultSchema} from '@/schema/DefaultSchema'
+import {FieldSet, FieldComponent} from '@simpli/meta-schema'
+import * as Component from '@simpli/vue-input'
 import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
 import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
-import {DefaultSchema} from '@/schema/DefaultSchema'
 
-/* TODO: review generated DefaultSchema */
+/* TODO: review generated schema */
 export class InputConectorPrincipalSchema extends DefaultSchema {
   collectionConectado = new ConectadoCollection().noPagination()
   collectionPrincipal = new PrincipalCollection().noPagination()
@@ -18,21 +18,21 @@ export class InputConectorPrincipalSchema extends DefaultSchema {
 
   readonly fieldSet: FieldSet<ConectorPrincipal> = {
     conectado: (schema): FieldComponent => ({
-      is: InputSelect,
+      is: Component.InputSelect,
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionConectado.items,
       },
     }),
     principal: (schema): FieldComponent => ({
-      is: InputSelect,
+      is: Component.InputSelect,
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionPrincipal.items,
       },
     }),
     titulo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,

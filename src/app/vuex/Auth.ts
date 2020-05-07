@@ -1,7 +1,7 @@
 import {auth, store} from '@/store'
 import {AccessorWrapper} from '@simpli/vuex-typescript'
-import {AuthRequest} from '@/model/request/AuthRequest'
 import {AuthState, RootState} from '@/types/store'
+import {AuthRequest} from '@/model/request/AuthRequest'
 
 export const wrapper = new AccessorWrapper<AuthState, RootState>('auth')
 

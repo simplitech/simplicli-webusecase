@@ -8,7 +8,6 @@ module.exports = {
     'no-console': 'off',
     'no-debugger': 'off',
     'prettier/prettier': 'error',
-    'vue/valid-v-model': 'off',
   },
   parserOptions: {
     parser: '@typescript-eslint/parser',

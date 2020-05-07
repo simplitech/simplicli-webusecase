@@ -6,13 +6,10 @@
       </h1>
     </header>
 
-    <section class="relative weight-1 bg-black-100">
-      <await
-        name="getGrupoDoPrincipal"
-        class="absolute inset-0 px-4 py-8 overflow-y-auto"
-      >
-        <form class="container card" @submit.prevent="persist">
-          <div class="mb-8 grid grid-columns lg:grid-columns-2 grid-gap-4">
+    <section class="relative">
+      <await name="getGrupoDoPrincipal" class="px-4 py-8">
+        <form class="container card w-full lg:w-160" @submit.prevent="persist">
+          <div class="mb-8 grid md:grid-cols-2 gap-4">
             <render-schema
               v-for="field in schema.allFields"
               v-model="grupoDoPrincipal"
@@ -72,7 +69,6 @@ export default class PersistGrupoDoPrincipalView extends Vue {
     }
 
     await this.grupoDoPrincipal.persistGrupoDoPrincipal()
-
     this.$toast.success('system.success.persist')
     await this.$nav.push('/grupo-do-principal/list')
   }

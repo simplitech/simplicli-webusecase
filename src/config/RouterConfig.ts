@@ -7,6 +7,7 @@
  * See https://router.vuejs.org/guide/#javascript
  * This configuration will be set in @/app/Setup.ts
  */
+
 import {RouterOptions} from 'vue-router/types/router'
 
 import DefaultLayout from '@/views/layouts/DefaultLayout.vue'
@@ -83,8 +84,14 @@ export class RouterConfig implements RouterOptions {
           props: true,
         },
 
-        {path: '/user/list', component: ListUserView},
-        {path: '/user/new', component: PersistUserView},
+        {
+          path: '/user/list',
+          component: ListUserView,
+        },
+        {
+          path: '/user/new',
+          component: PersistUserView,
+        },
         {
           path: '/user/edit/:id',
           name: 'editUser',
@@ -92,8 +99,14 @@ export class RouterConfig implements RouterOptions {
           props: true,
         },
 
-        {path: '/conectado/list', component: ListConectadoView},
-        {path: '/conectado/new', component: PersistConectadoView},
+        {
+          path: '/conectado/list',
+          component: ListConectadoView,
+        },
+        {
+          path: '/conectado/new',
+          component: PersistConectadoView,
+        },
         {
           path: '/conectado/edit/:id',
           name: 'editConectado',
@@ -101,8 +114,14 @@ export class RouterConfig implements RouterOptions {
           props: true,
         },
 
-        {path: '/endereco/list', component: ListEnderecoView},
-        {path: '/endereco/new', component: PersistEnderecoView},
+        {
+          path: '/endereco/list',
+          component: ListEnderecoView,
+        },
+        {
+          path: '/endereco/new',
+          component: PersistEnderecoView,
+        },
         {
           path: '/endereco/edit/:id',
           name: 'editEndereco',
@@ -125,8 +144,14 @@ export class RouterConfig implements RouterOptions {
           props: true,
         },
 
-        {path: '/tag/list', component: ListTagView},
-        {path: '/tag/new', component: PersistTagView},
+        {
+          path: '/tag/list',
+          component: ListTagView,
+        },
+        {
+          path: '/tag/new',
+          component: PersistTagView,
+        },
         {
           path: '/tag/edit/:id',
           name: 'editTag',
@@ -149,7 +174,10 @@ export class RouterConfig implements RouterOptions {
           props: true,
         },
 
-        {path: '/item-do-principal/list', component: ListItemDoPrincipalView},
+        {
+          path: '/item-do-principal/list',
+          component: ListItemDoPrincipalView,
+        },
         {
           path: '/item-do-principal/new',
           component: PersistItemDoPrincipalView,
@@ -161,8 +189,14 @@ export class RouterConfig implements RouterOptions {
           props: true,
         },
 
-        {path: '/principal/list', component: ListPrincipalView},
-        {path: '/principal/new', component: PersistPrincipalView},
+        {
+          path: '/principal/list',
+          component: ListPrincipalView,
+        },
+        {
+          path: '/principal/new',
+          component: PersistPrincipalView,
+        },
         {
           path: '/principal/edit/:id',
           name: 'editPrincipal',

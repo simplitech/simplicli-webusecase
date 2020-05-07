@@ -1,14 +1,14 @@
 /**
- * Input DefaultSchema of ExtensaoDoPrincipal
+ * Input Schema of ExtensaoDoPrincipal
  * @author Simpli CLI generator
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
-import {FieldComponent, FieldSet} from '@simpli/meta-schema'
-import {InputSelect, InputText} from '@simpli/vue-input'
+import {FieldSet, FieldComponent} from '@simpli/meta-schema'
+import * as Component from '@simpli/vue-input'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
 import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
-/* TODO: review generated DefaultSchema */
+/* TODO: review generated schema */
 export class InputExtensaoDoPrincipalSchema extends DefaultSchema {
   collectionPrincipal = new PrincipalCollection().noPagination()
 
@@ -16,14 +16,14 @@ export class InputExtensaoDoPrincipalSchema extends DefaultSchema {
 
   readonly fieldSet: FieldSet<ExtensaoDoPrincipal> = {
     principal: (schema): FieldComponent => ({
-      is: InputSelect,
+      is: Component.InputSelect,
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionPrincipal.items,
       },
     }),
     titulo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,

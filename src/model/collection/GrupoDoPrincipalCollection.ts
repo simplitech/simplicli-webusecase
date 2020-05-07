@@ -3,9 +3,14 @@
  *
  * @author Simpli CLI generator
  */
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
 import {GrupoDoPrincipal} from '@/model/resource/GrupoDoPrincipal'
 
 /* TODO: review generated class */
@@ -17,8 +22,17 @@ export class GrupoDoPrincipalCollection extends PageCollection<
     super(GrupoDoPrincipal)
   }
 
+  resource?: IGrupoDoPrincipalCollectionResourcesHolder
+
   queryAsPage() {
-    return this.listExportGrupoDoPrincipal()
+    return this.listGrupoDoPrincipal()
+  }
+
+  async listGrupoDoPrincipal() {
+    return await Request.get(`/user/grupo-do-principal`, {params: this.params})
+      .name('listGrupoDoPrincipal')
+      .as(this)
+      .getResponse()
   }
 
   async listExportGrupoDoPrincipal() {
@@ -29,11 +43,6 @@ export class GrupoDoPrincipalCollection extends PageCollection<
       .as(this)
       .getResponse()
   }
-
-  async listGrupoDoPrincipal() {
-    return await Request.get(`/user/grupo-do-principal`, {params: this.params})
-      .name('listGrupoDoPrincipal')
-      .as(this)
-      .getResponse()
-  }
 }
+
+export interface IGrupoDoPrincipalCollectionResourcesHolder {}

@@ -3,8 +3,7 @@
  * @author Simpli CLI generator
  */
 import {$} from '@/facade'
-import {Request} from '@simpli/serialized-request'
-import {ResponseExclude} from '@simpli/serialized-request'
+import {Request, ResponseExclude} from '@simpli/serialized-request'
 
 /* TODO: review generated class */
 export class ResetPasswordRequest {

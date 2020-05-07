@@ -3,9 +3,14 @@
  *
  * @author Simpli CLI generator
  */
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
 import {User} from '@/model/resource/User'
 
 /* TODO: review generated class */
@@ -14,6 +19,8 @@ export class UserCollection extends PageCollection<User> {
   constructor() {
     super(User)
   }
+
+  resource?: IUserCollectionResourcesHolder
 
   queryAsPage() {
     return this.listUser()
@@ -33,3 +40,5 @@ export class UserCollection extends PageCollection<User> {
       .getResponse()
   }
 }
+
+export interface IUserCollectionResourcesHolder {}

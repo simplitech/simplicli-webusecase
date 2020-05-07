@@ -4,33 +4,42 @@
  */
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet, FieldComponent} from '@simpli/meta-schema'
-import {InputCheckbox, InputSelect, InputText} from '@simpli/vue-input'
+import * as Component from '@simpli/vue-input'
 import {Principal} from '@/model/resource/Principal'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
+import {TagCollection} from '@/model/collection/TagCollection'
 
 /* TODO: review generated schema */
 export class InputPrincipalSchema extends DefaultSchema {
   collectionGrupoDoPrincipal = new GrupoDoPrincipalCollection().noPagination()
+  collectionTag = new TagCollection().noPagination()
 
   readonly name = 'InputPrincipal'
 
   readonly fieldSet: FieldSet<Principal> = {
-    grupoDoPrincipal1: (schema): FieldComponent => ({
-      is: InputSelect,
+    grupoDoPrincipal: (schema): FieldComponent => ({
+      is: Component.InputSelect,
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionGrupoDoPrincipal.items,
       },
     }),
-    grupoDoPrincipal2: (schema): FieldComponent => ({
-      is: InputSelect,
+    grupoDoPrincipalFacultativo: (schema): FieldComponent => ({
+      is: Component.InputSelect,
       bind: {
         label: this.translateFrom(schema.fieldName),
         items: this.collectionGrupoDoPrincipal.items,
+      },
+    }),
+    tagPrincipal: (schema): FieldComponent => ({
+      is: Component.InputSelect,
+      bind: {
+        label: this.translateFrom(schema.fieldName),
+        items: this.collectionTag.items,
       },
     }),
     textoObrigatorio: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 160,
@@ -39,19 +48,8 @@ export class InputPrincipalSchema extends DefaultSchema {
         validation: 'required',
       },
     }),
-    inteiroObrigatorio: (schema): FieldComponent => ({
-      is: InputText,
-      bind: {
-        type: 'number',
-        maxlength: 11,
-        step: 1,
-        label: this.translateFrom(schema.fieldName),
-        required: true,
-        validation: 'required',
-      },
-    }),
     unico: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 40,
@@ -61,7 +59,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     decimalObrigatorio: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'number',
         maxlength: 255,
@@ -71,8 +69,19 @@ export class InputPrincipalSchema extends DefaultSchema {
         validation: 'required',
       },
     }),
+    inteiroObrigatorio: (schema): FieldComponent => ({
+      is: Component.InputText,
+      bind: {
+        type: 'number',
+        maxlength: 255,
+        step: 1,
+        label: this.translateFrom(schema.fieldName),
+        required: true,
+        validation: 'required',
+      },
+    }),
     booleanoObrigatorio: (schema): FieldComponent => ({
-      is: InputCheckbox,
+      is: Component.InputCheckbox,
       bind: {
         label: this.translateFrom(schema.fieldName),
         class: 'pretty p-switch p-fill justify-center mt-8',
@@ -80,7 +89,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     dataObrigatoria: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'datetime',
@@ -90,7 +99,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     datahoraObrigatoria: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'datetime',
@@ -100,7 +109,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     ativo: (schema): FieldComponent => ({
-      is: InputCheckbox,
+      is: Component.InputCheckbox,
       bind: {
         label: this.translateFrom(schema.fieldName),
         class: 'pretty p-switch p-fill justify-center mt-8',
@@ -108,7 +117,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     dataCriacao: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'datetime',
@@ -118,24 +127,15 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     textoFacultativo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,
         label: this.translateFrom(schema.fieldName),
       },
     }),
-    inteiroFacultativo: (schema): FieldComponent => ({
-      is: InputText,
-      bind: {
-        type: 'number',
-        maxlength: 11,
-        step: 1,
-        label: this.translateFrom(schema.fieldName),
-      },
-    }),
     email: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'email',
         label: this.translateFrom(schema.fieldName),
@@ -143,7 +143,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     urlImagem: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 200,
@@ -152,7 +152,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     url: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 200,
@@ -161,7 +161,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     nome: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,
@@ -169,7 +169,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     titulo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 45,
@@ -177,7 +177,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     cpf: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'cpf',
@@ -186,7 +186,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     cnpj: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'cnpj',
@@ -195,7 +195,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     rg: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'rg',
@@ -203,7 +203,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     celular: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'phone',
@@ -212,7 +212,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     textoGrande: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 300,
@@ -220,7 +220,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     snakeCase: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'text',
         maxlength: 200,
@@ -228,7 +228,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     decimalFacultativo: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'number',
         maxlength: 255,
@@ -236,8 +236,17 @@ export class InputPrincipalSchema extends DefaultSchema {
         label: this.translateFrom(schema.fieldName),
       },
     }),
+    inteiroFacultativo: (schema): FieldComponent => ({
+      is: Component.InputText,
+      bind: {
+        type: 'number',
+        maxlength: 255,
+        step: 1,
+        label: this.translateFrom(schema.fieldName),
+      },
+    }),
     booleanoFacultativo: (schema): FieldComponent => ({
-      is: InputCheckbox,
+      is: Component.InputCheckbox,
       bind: {
         label: this.translateFrom(schema.fieldName),
         class: 'pretty p-switch p-fill justify-center mt-8',
@@ -245,7 +254,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     dataFacultativa: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'datetime',
@@ -253,7 +262,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     datahoraFacultativa: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'datetime',
@@ -261,7 +270,7 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     dataAlteracao: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'mask',
         maskPreset: 'datetime',
@@ -269,14 +278,14 @@ export class InputPrincipalSchema extends DefaultSchema {
       },
     }),
     preco: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'currency',
         label: this.translateFrom(schema.fieldName),
       },
     }),
     senha: (schema): FieldComponent => ({
-      is: InputText,
+      is: Component.InputText,
       bind: {
         type: 'password',
         label: this.translateFrom(schema.fieldName),

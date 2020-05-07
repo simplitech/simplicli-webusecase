@@ -1,6 +1,6 @@
 <template>
-  <div class="principal-filter-component">
-    <div class="principal-filter-component__content">
+  <div class="filter-user">
+    <div class="filter-user__content">
       <div v-for="field in schema.allFields" :key="field">
         <render-schema v-model="collection" :schema="schema" :field="field" />
       </div>
@@ -16,14 +16,14 @@
 
 <script lang="ts">
 import {Component, Prop, Watch, Vue} from 'vue-property-decorator'
-import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
-import {InputPrincipalFilterSchema} from '@/schema/filter/InputPrincipalFilterSchema'
+import {UserCollection} from '@/model/collection/UserCollection'
+import {FilterUserSchema} from '@/schema/resource/User/FilterUserSchema'
 
 @Component
-export default class PrincipalFilterComponent extends Vue {
-  @Prop({type: Object, required: true}) collection!: PrincipalCollection
+export default class FilterUser extends Vue {
+  @Prop({type: Object, required: true}) collection!: UserCollection
 
-  schema = new InputPrincipalFilterSchema()
+  schema = new FilterUserSchema()
 
   async created() {
     await this.populateFilterOptions()
@@ -32,9 +32,7 @@ export default class PrincipalFilterComponent extends Vue {
   async populateFilterOptions() {
     this.collection.resource = this.schema
 
-    const promises: Array<Promise<any>> = [
-      this.collection.resource.collectionGrupoDoPrincipal.queryAsPage(),
-    ]
+    const promises: Array<Promise<any>> = []
 
     await this.$await.run('softQuery', () => Promise.all(promises))
   }
@@ -47,22 +45,22 @@ export default class PrincipalFilterComponent extends Vue {
 </script>
 
 <style lang="scss" scoped>
-.principal-filter-component {
+.filter-user {
   @apply verti p-4 border-b border-primary;
 
-  .principal-filter-component__content {
-    @apply mb-4 grid grid-gap-4;
+  .filter-user__content {
+    @apply mb-8 grid gap-4;
 
     @screen sm {
-      @apply grid-columns-2;
+      @apply grid-cols-2;
     }
 
     @screen md {
-      @apply grid-columns-3;
+      @apply grid-cols-3;
     }
 
     @screen lg {
-      @apply grid-columns-5;
+      @apply grid-cols-4;
     }
   }
 }

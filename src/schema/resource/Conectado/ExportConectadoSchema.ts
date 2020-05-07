@@ -2,6 +2,7 @@
  * Export Schema of Conectado
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {DefaultSchema} from '@/schema/DefaultSchema'
 import {FieldSet} from '@simpli/meta-schema'
 import {Conectado} from '@/model/resource/Conectado'

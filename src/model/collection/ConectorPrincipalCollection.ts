@@ -3,10 +3,17 @@
  *
  * @author Simpli CLI generator
  */
-import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
+import {ConectorPrincipal} from '@/model/resource/ConectorPrincipal'
+import {ConectadoCollection} from '@/model/collection/ConectadoCollection'
+import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -16,6 +23,8 @@ export class ConectorPrincipalCollection extends PageCollection<
   constructor() {
     super(ConectorPrincipal)
   }
+
+  resource?: IConectorPrincipalCollectionResourcesHolder
 
   queryAsPage() {
     return this.listConectorPrincipal()
@@ -36,4 +45,9 @@ export class ConectorPrincipalCollection extends PageCollection<
       .as(this)
       .getResponse()
   }
+}
+
+export interface IConectorPrincipalCollectionResourcesHolder {
+  collectionConectado: ConectadoCollection
+  collectionPrincipal: PrincipalCollection
 }

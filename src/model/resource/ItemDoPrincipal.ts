@@ -2,6 +2,7 @@
  * ItemDoPrincipal
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request, ResponseSerialize} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {Principal} from '@/model/resource/Principal'
@@ -25,9 +26,6 @@ export class ItemDoPrincipal implements IResource {
   get $tag() {
     return String(this.titulo)
   }
-  set $tag(val) {
-    this.titulo = val
-  }
 
   get idPrincipalFk() {
     if (!this.principal) return 0
@@ -36,6 +34,16 @@ export class ItemDoPrincipal implements IResource {
   set idPrincipalFk(val) {
     if (!this.principal) this.principal = new Principal()
     this.principal.$id = val
+  }
+
+  /**
+   * Gets a instance of a given ID of ItemDoPrincipal
+   */
+  async getItemDoPrincipal(id: number) {
+    return await Request.get(`/user/item-do-principal/${id}`)
+      .name('getItemDoPrincipal')
+      .as(this)
+      .getData()
   }
 
   /**
@@ -60,22 +68,12 @@ export class ItemDoPrincipal implements IResource {
   }
 
   /**
-   * Lists the instances of ItemDoPrincipal to use it in a XLSX file
+   * Lists the instances of ItemDoPrincipal to export as a file
    */
   static async listExportItemDoPrincipal(params: any) {
     return await Request.get(`/user/item-do-principal/export`, {params})
       .name('listExportItemDoPrincipal')
       .as(ItemDoPrincipalCollection)
-      .getData()
-  }
-
-  /**
-   * Gets a instance of a given ID of ItemDoPrincipal
-   */
-  async getItemDoPrincipal(id: number) {
-    return await Request.get(`/user/item-do-principal/${id}`)
-      .name('getItemDoPrincipal')
-      .as(this)
       .getData()
   }
 }

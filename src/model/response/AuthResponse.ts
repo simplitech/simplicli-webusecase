@@ -2,7 +2,8 @@
  * AuthResponse
  * @author Simpli CLI generator
  */
-import {ResponseSerialize} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {Request, ResponseSerialize} from '@simpli/serialized-request'
 import {User} from '@/model/resource/User'
 
 /* TODO: review generated class */

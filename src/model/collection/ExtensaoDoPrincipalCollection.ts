@@ -3,10 +3,16 @@
  *
  * @author Simpli CLI generator
  */
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
 import {ExtensaoDoPrincipal} from '@/model/resource/ExtensaoDoPrincipal'
+import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -16,6 +22,8 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
   constructor() {
     super(ExtensaoDoPrincipal)
   }
+
+  resource?: IExtensaoDoPrincipalCollectionResourcesHolder
 
   queryAsPage() {
     return this.listExtensaoDoPrincipal()
@@ -38,4 +46,8 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
       .as(this)
       .getResponse()
   }
+}
+
+export interface IExtensaoDoPrincipalCollectionResourcesHolder {
+  collectionPrincipal: PrincipalCollection
 }

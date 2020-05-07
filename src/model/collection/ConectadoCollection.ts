@@ -3,10 +3,15 @@
  *
  * @author Simpli CLI generator
  */
-import {Conectado} from '@/model/resource/Conectado'
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
+import {Conectado} from '@/model/resource/Conectado'
 
 /* TODO: review generated class */
 @HttpExclude()
@@ -15,15 +20,10 @@ export class ConectadoCollection extends PageCollection<Conectado> {
     super(Conectado)
   }
 
-  queryAsPage() {
-    return this.listExportConectado()
-  }
+  resource?: IConectadoCollectionResourcesHolder
 
-  async listExportConectado() {
-    return await Request.get(`/user/conectado/export`, {params: this.params})
-      .name('listExportConectado')
-      .as(this)
-      .getResponse()
+  queryAsPage() {
+    return this.listConectado()
   }
 
   async listConectado() {
@@ -32,4 +32,13 @@ export class ConectadoCollection extends PageCollection<Conectado> {
       .as(this)
       .getResponse()
   }
+
+  async listExportConectado() {
+    return await Request.get(`/user/conectado/export`, {params: this.params})
+      .name('listExportConectado')
+      .as(this)
+      .getResponse()
+  }
 }
+
+export interface IConectadoCollectionResourcesHolder {}

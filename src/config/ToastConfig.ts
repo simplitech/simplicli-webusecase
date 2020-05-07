@@ -1,3 +1,12 @@
+/**
+ * @file
+ * Toast Configuration
+ * Used in library: vue-snotify
+ *
+ * Notification center config
+ * See https://github.com/artemsky/vue-snotify
+ * This configuration will be set in @/app/Setup.ts
+ */
 import {
   SnotifyGlobalConfig,
   SnotifyPosition,

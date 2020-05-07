@@ -3,16 +3,35 @@
  *
  * @author Simpli CLI generator
  */
-import {HttpExclude} from '@simpli/serialized-request'
+import {$} from '@/facade'
+import {
+  HttpExclude,
+  Request,
+  RequestExpose,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {PageCollection} from '@simpli/resource-collection'
-import {Request} from '@simpli/serialized-request'
 import {ItemDoPrincipal} from '@/model/resource/ItemDoPrincipal'
+import {PrincipalCollection} from '@/model/collection/PrincipalCollection'
 
 /* TODO: review generated class */
 @HttpExclude()
 export class ItemDoPrincipalCollection extends PageCollection<ItemDoPrincipal> {
   constructor() {
     super(ItemDoPrincipal)
+  }
+
+  resource?: IItemDoPrincipalCollectionResourcesHolder
+
+  @RequestExpose() idPrincipalFk: number[] = []
+
+  get principal() {
+    return (
+      this.resource?.collectionPrincipal.getManyIds(this.idPrincipalFk) ?? null
+    )
+  }
+  set principal(input) {
+    this.idPrincipalFk = input?.map(item => item?.$id) ?? []
   }
 
   queryAsPage() {
@@ -34,4 +53,8 @@ export class ItemDoPrincipalCollection extends PageCollection<ItemDoPrincipal> {
       .as(this)
       .getResponse()
   }
+}
+
+export interface IItemDoPrincipalCollectionResourcesHolder {
+  collectionPrincipal: PrincipalCollection
 }

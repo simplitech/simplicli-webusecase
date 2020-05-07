@@ -2,6 +2,7 @@
  * GrupoDoPrincipal
  * @author Simpli CLI generator
  */
+import {$} from '@/facade'
 import {Request} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
 import {GrupoDoPrincipalCollection} from '@/model/collection/GrupoDoPrincipalCollection'
@@ -21,9 +22,6 @@ export class GrupoDoPrincipal implements IResource {
   get $tag() {
     return String(this.titulo)
   }
-  set $tag(val) {
-    this.titulo = val
-  }
 
   /**
    * Gets a instance of a given ID of GrupoDoPrincipal
@@ -32,16 +30,6 @@ export class GrupoDoPrincipal implements IResource {
     return await Request.get(`/user/grupo-do-principal/${id}`)
       .name('getGrupoDoPrincipal')
       .as(this)
-      .getData()
-  }
-
-  /**
-   * Lists the instances of GrupoDoPrincipal to use it in a XLSX file
-   */
-  static async listExportGrupoDoPrincipal(params: any) {
-    return await Request.get(`/user/grupo-do-principal/export`, {params})
-      .name('listExportGrupoDoPrincipal')
-      .as(GrupoDoPrincipalCollection)
       .getData()
   }
 
@@ -63,6 +51,16 @@ export class GrupoDoPrincipal implements IResource {
     return await Request.post(`/user/grupo-do-principal`, this)
       .name('persistGrupoDoPrincipal')
       .asNumber()
+      .getData()
+  }
+
+  /**
+   * Lists the instances of GrupoDoPrincipal to export as a file
+   */
+  static async listExportGrupoDoPrincipal(params: any) {
+    return await Request.get(`/user/grupo-do-principal/export`, {params})
+      .name('listExportGrupoDoPrincipal')
+      .as(GrupoDoPrincipalCollection)
       .getData()
   }
 }
