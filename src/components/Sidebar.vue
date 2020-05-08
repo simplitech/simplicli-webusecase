@@ -134,7 +134,7 @@
           </li>
         </ul>
 
-        <div class="weight-1" />
+        <div class="weight-1"></div>
 
         <a @click="$auth.signOut" class="pill mb-1">
           <i class="pill__icon fas fa-sign-out-alt mr-1" />
