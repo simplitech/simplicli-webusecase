@@ -24,7 +24,7 @@
     "@simpli/vuex-typescript": "^1.0.0",
     "@types/lodash": "^4.14.149",
     "@types/papaparse": "^4.5.9",
-    "axios": "^0.19.2",
+    "axios": "^0.21.1",
     "class-transformer": "^0.3.1",
     "compressorjs": "^1.0.5",
     "core-js": "^3.3.2",
