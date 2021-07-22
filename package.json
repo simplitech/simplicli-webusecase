@@ -58,7 +58,7 @@
     "vue-upload-component": "^2.8.20",
     "vuex": "^3.0.1",
     "vuex-class": "^0.3.1",
-    "xlsx": "^0.15.6"
+    "xlsx": "^0.17.0"
   },
   "devDependencies": {
     "@babel/plugin-proposal-nullish-coalescing-operator": "^7.4.4",
