@@ -13,7 +13,7 @@ export class RecoverPasswordByMailRequest {
    * Sends an email requesting to change the password
    */
   async recoverPasswordByMail() {
-    return await Request.put(`/user/auth/password`, this)
+    return await Request.put(`/auth/password`, this)
       .name('recoverPasswordByMail')
       .asNumber()
       .getData()

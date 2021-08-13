@@ -27,7 +27,7 @@ export class Conectado implements IResource {
    * Gets a instance of a given ID of Conectado
    */
   async getConectado(id: number) {
-    return await Request.get(`/user/conectado/${id}`)
+    return await Request.get(`/conectado/${id}`)
       .name('getConectado')
       .as(this)
       .getData()
@@ -37,7 +37,7 @@ export class Conectado implements IResource {
    * Lists the instances of Conectado
    */
   static async listConectado(params: any) {
-    return await Request.get(`/user/conectado`, {params})
+    return await Request.get(`/conectado`, {params})
       .name('listConectado')
       .as(ConectadoCollection)
       .getData()
@@ -48,7 +48,7 @@ export class Conectado implements IResource {
    * or ID > 0 to update a current one
    */
   async persistConectado() {
-    return await Request.post(`/user/conectado`, this)
+    return await Request.post(`/conectado`, this)
       .name('persistConectado')
       .asNumber()
       .getData()
@@ -58,7 +58,7 @@ export class Conectado implements IResource {
    * Lists the instances of Conectado to export as a file
    */
   static async listExportConectado(params: any) {
-    return await Request.get(`/user/conectado/export`, {params})
+    return await Request.get(`/conectado/export`, {params})
       .name('listExportConectado')
       .as(ConectadoCollection)
       .getData()

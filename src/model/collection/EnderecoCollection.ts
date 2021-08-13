@@ -34,14 +34,14 @@ export class EnderecoCollection extends PageCollection<Endereco> {
   }
 
   async listEndereco() {
-    return await Request.get(`/user/endereco`, {params: this.params})
+    return await Request.get(`/endereco`, {params: this.params})
       .name('listEndereco')
       .as(this)
       .getResponse()
   }
 
   async listExportEndereco() {
-    return await Request.get(`/user/endereco/export`, {params: this.params})
+    return await Request.get(`/endereco/export`, {params: this.params})
       .name('listExportEndereco')
       .as(this)
       .getResponse()

@@ -29,14 +29,14 @@ export class GrupoDoPrincipalCollection extends PageCollection<
   }
 
   async listGrupoDoPrincipal() {
-    return await Request.get(`/user/grupo-do-principal`, {params: this.params})
+    return await Request.get(`/grupo-do-principal`, {params: this.params})
       .name('listGrupoDoPrincipal')
       .as(this)
       .getResponse()
   }
 
   async listExportGrupoDoPrincipal() {
-    return await Request.get(`/user/grupo-do-principal/export`, {
+    return await Request.get(`/grupo-do-principal/export`, {
       params: this.params,
     })
       .name('listExportGrupoDoPrincipal')

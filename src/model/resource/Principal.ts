@@ -98,7 +98,7 @@ export class Principal implements IResource {
    * Gets a instance of a given ID of Principal
    */
   async getPrincipal(id: number) {
-    return await Request.get(`/user/principal/${id}`)
+    return await Request.get(`/principal/${id}`)
       .name('getPrincipal')
       .as(this)
       .getData()
@@ -108,7 +108,7 @@ export class Principal implements IResource {
    * Deletes a instance of a given ID of Principal
    */
   async removePrincipal() {
-    return await Request.delete(`/user/principal/${this.$id}`)
+    return await Request.delete(`/principal/${this.$id}`)
       .name('removePrincipal')
       .asNumber()
       .getData()
@@ -118,7 +118,7 @@ export class Principal implements IResource {
    * Lists the instances of Principal
    */
   static async listPrincipal(params: any) {
-    return await Request.get(`/user/principal`, {params})
+    return await Request.get(`/principal`, {params})
       .name('listPrincipal')
       .as(PrincipalCollection)
       .getData()
@@ -129,7 +129,7 @@ export class Principal implements IResource {
    * or ID > 0 to update a current one
    */
   async persistPrincipal() {
-    return await Request.post(`/user/principal`, this)
+    return await Request.post(`/principal`, this)
       .name('persistPrincipal')
       .asNumber()
       .getData()
@@ -139,7 +139,7 @@ export class Principal implements IResource {
    * Lists the instances of Principal to export as a file
    */
   static async listExportPrincipal(params: any) {
-    return await Request.get(`/user/principal/export`, {params})
+    return await Request.get(`/principal/export`, {params})
       .name('listExportPrincipal')
       .as(PrincipalCollection)
       .getData()

@@ -30,7 +30,7 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
   }
 
   async listExtensaoDoPrincipal() {
-    return await Request.get(`/user/extensao-do-principal`, {
+    return await Request.get(`/extensao-do-principal`, {
       params: this.params,
     })
       .name('listExtensaoDoPrincipal')
@@ -39,7 +39,7 @@ export class ExtensaoDoPrincipalCollection extends PageCollection<
   }
 
   async listExportExtensaoDoPrincipal() {
-    return await Request.get(`/user/extensao-do-principal/export`, {
+    return await Request.get(`/extensao-do-principal/export`, {
       params: this.params,
     })
       .name('listExportExtensaoDoPrincipal')

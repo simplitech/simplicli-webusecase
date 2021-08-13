@@ -27,7 +27,7 @@ export class GrupoDoPrincipal implements IResource {
    * Gets a instance of a given ID of GrupoDoPrincipal
    */
   async getGrupoDoPrincipal(id: number) {
-    return await Request.get(`/user/grupo-do-principal/${id}`)
+    return await Request.get(`/grupo-do-principal/${id}`)
       .name('getGrupoDoPrincipal')
       .as(this)
       .getData()
@@ -37,7 +37,7 @@ export class GrupoDoPrincipal implements IResource {
    * Lists the instances of GrupoDoPrincipal
    */
   static async listGrupoDoPrincipal(params: any) {
-    return await Request.get(`/user/grupo-do-principal`, {params})
+    return await Request.get(`/grupo-do-principal`, {params})
       .name('listGrupoDoPrincipal')
       .as(GrupoDoPrincipalCollection)
       .getData()
@@ -48,7 +48,7 @@ export class GrupoDoPrincipal implements IResource {
    * or ID > 0 to update a current one
    */
   async persistGrupoDoPrincipal() {
-    return await Request.post(`/user/grupo-do-principal`, this)
+    return await Request.post(`/grupo-do-principal`, this)
       .name('persistGrupoDoPrincipal')
       .asNumber()
       .getData()
@@ -58,7 +58,7 @@ export class GrupoDoPrincipal implements IResource {
    * Lists the instances of GrupoDoPrincipal to export as a file
    */
   static async listExportGrupoDoPrincipal(params: any) {
-    return await Request.get(`/user/grupo-do-principal/export`, {params})
+    return await Request.get(`/grupo-do-principal/export`, {params})
       .name('listExportGrupoDoPrincipal')
       .as(GrupoDoPrincipalCollection)
       .getData()

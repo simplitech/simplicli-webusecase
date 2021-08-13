@@ -27,14 +27,14 @@ export class UserCollection extends PageCollection<User> {
   }
 
   async listUser() {
-    return await Request.get(`/user/user`, {params: this.params})
+    return await Request.get(`/user`, {params: this.params})
       .name('listUser')
       .as(this)
       .getResponse()
   }
 
   async listExportUser() {
-    return await Request.get(`/user/user/export`, {params: this.params})
+    return await Request.get(`/user/export`, {params: this.params})
       .name('listExportUser')
       .as(this)
       .getResponse()

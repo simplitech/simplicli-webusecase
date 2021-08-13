@@ -31,14 +31,14 @@ export class ConectorPrincipalCollection extends PageCollection<
   }
 
   async listConectorPrincipal() {
-    return await Request.get(`/user/conector-principal`, {params: this.params})
+    return await Request.get(`/conector-principal`, {params: this.params})
       .name('listConectorPrincipal')
       .as(this)
       .getResponse()
   }
 
   async listExportConectorPrincipal() {
-    return await Request.get(`/user/conector-principal/export`, {
+    return await Request.get(`/conector-principal/export`, {
       params: this.params,
     })
       .name('listExportConectorPrincipal')

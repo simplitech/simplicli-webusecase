@@ -1,9 +1,9 @@
 import {ActionContext, Module} from 'vuex'
 import {AccessorHandler} from '@simpli/vuex-typescript'
 import {$} from '@/facade'
-import {AuthState, RootState} from '@/types/store'
 import {AuthRequest} from '@/model/request/AuthRequest'
 import {AuthResponse} from '@/model/response/AuthResponse'
+import {Role} from '@/model/resource/Role'
 
 export type AuthContext = ActionContext<AuthState, RootState>
 
@@ -13,14 +13,24 @@ export class AuthModule implements Module<AuthState, RootState> {
 
   state: AuthState = {
     token: null,
-    user: null,
+    loggedUser: null,
+    options: null,
     cachePath: null,
   }
 
   getters = {
     isLogged: (state: AuthState) => Boolean(state.token),
     token: (state: AuthState) => state.token,
-    user: (state: AuthState) => state.user,
+    loggedUser: (state: AuthState) => state.loggedUser,
+    isAdmin: (state: AuthState) =>
+      state.loggedUser?.roleSlugs.includes(Role.ADMIN),
+    isManager: (state: AuthState) =>
+      state.loggedUser?.roleSlugs.includes(Role.MANAGER),
+    isViewer: (state: AuthState) =>
+      state.loggedUser?.roleSlugs.includes(Role.VIEWER),
+    isGuest: (state: AuthState) =>
+      state.loggedUser?.roleSlugs.includes(Role.GUEST),
+    options: (state: AuthState) => state.options,
     cachePath: (state: AuthState) => state.cachePath,
   }
 
@@ -50,7 +60,7 @@ export class AuthModule implements Module<AuthState, RootState> {
     },
 
     /**
-     * Verifies authorization and refresh user info.
+     * Verifies authorization and refresh loggedUser info.
      */
     async authenticate(context: AuthContext) {
       context.commit('POPULATE_TOKEN')
@@ -70,7 +80,7 @@ export class AuthModule implements Module<AuthState, RootState> {
       // TODO: verify the need of a socket connection
       const connection = $.socket.connect<string>(
         'notification',
-        `/user/notification/${token}`
+        `/notification/${token}`
       )
 
       connection.onOpen(() =>
@@ -85,6 +95,12 @@ export class AuthModule implements Module<AuthState, RootState> {
       connection.onData(resp => $.snotify.info(resp as string))
 
       context.commit('POPULATE', authResponse)
+
+      if (authResponse.requestOptions?.isDirectAuth) {
+        // For direct auths, use the new token provided by server in order to expire early
+        localStorage.setItem('token', authResponse.token ?? '')
+        context.commit('POPULATE_TOKEN')
+      }
 
       return authResponse
     },
@@ -108,12 +124,14 @@ export class AuthModule implements Module<AuthState, RootState> {
     },
 
     POPULATE(state: AuthState, response: AuthResponse) {
-      state.user = response.user
+      state.loggedUser = response.user
+      state.options = response.requestOptions
     },
 
     FORGET(state: AuthState) {
       state.token = null
-      state.user = null
+      state.loggedUser = null
+      state.options = null
 
       localStorage.removeItem('token')
     },

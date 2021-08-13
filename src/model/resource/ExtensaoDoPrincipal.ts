@@ -39,7 +39,7 @@ export class ExtensaoDoPrincipal implements IResource {
    * Gets a instance of a given ID of ExtensaoDoPrincipal
    */
   async getExtensaoDoPrincipal(id: number) {
-    return await Request.get(`/user/extensao-do-principal/${id}`)
+    return await Request.get(`/extensao-do-principal/${id}`)
       .name('getExtensaoDoPrincipal')
       .as(this)
       .getData()
@@ -49,7 +49,7 @@ export class ExtensaoDoPrincipal implements IResource {
    * Lists the instances of ExtensaoDoPrincipal
    */
   static async listExtensaoDoPrincipal(params: any) {
-    return await Request.get(`/user/extensao-do-principal`, {params})
+    return await Request.get(`/extensao-do-principal`, {params})
       .name('listExtensaoDoPrincipal')
       .as(ExtensaoDoPrincipalCollection)
       .getData()
@@ -60,7 +60,7 @@ export class ExtensaoDoPrincipal implements IResource {
    * or ID > 0 to update a current one
    */
   async persistExtensaoDoPrincipal() {
-    return await Request.post(`/user/extensao-do-principal`, this)
+    return await Request.post(`/extensao-do-principal`, this)
       .name('persistExtensaoDoPrincipal')
       .asNumber()
       .getData()
@@ -70,7 +70,7 @@ export class ExtensaoDoPrincipal implements IResource {
    * Lists the instances of ExtensaoDoPrincipal to export as a file
    */
   static async listExportExtensaoDoPrincipal(params: any) {
-    return await Request.get(`/user/extensao-do-principal/export`, {params})
+    return await Request.get(`/extensao-do-principal/export`, {params})
       .name('listExportExtensaoDoPrincipal')
       .as(ExtensaoDoPrincipalCollection)
       .getData()

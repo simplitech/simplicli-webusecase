@@ -61,7 +61,27 @@ export class HttpConfig {
       (error: AxiosError) => {
         const response = error.response
 
-        if (error.config?.headers?.['X-Ignore-Errors']) {
+        /**
+         * You may specify which code errors will ignore separated by comma
+         * e.g. 400,404,500
+         * Or ignore all errors by setting '*'
+         */
+        const ignoreErrors = error.config?.headers?.['X-Ignore-Errors']
+          ? String(error.config?.headers?.['X-Ignore-Errors'])
+          : null
+
+        const ignoreCodeErrors =
+          ignoreErrors
+            ?.split(',')
+            ?.map(it => Number(it))
+            ?.filter(it => it) ?? []
+
+        const conditionsToIgnoreErrors = [
+          ignoreCodeErrors.includes(response?.status ?? 0),
+          ignoreErrors === '*',
+        ]
+
+        if (conditionsToIgnoreErrors.some(it => it)) {
           return Promise.reject(
             response?.data.message ?? response?.statusText ?? ''
           )

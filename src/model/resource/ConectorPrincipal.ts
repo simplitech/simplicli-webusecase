@@ -52,7 +52,7 @@ export class ConectorPrincipal implements IResource {
    * Gets a instance of a given ID of ConectorPrincipal
    */
   async getConectorPrincipal(id1: number, id2: number) {
-    return await Request.get(`/user/conector-principal/${id1}/${id2}`)
+    return await Request.get(`/conector-principal/${id1}/${id2}`)
       .name('getConectorPrincipal')
       .as(this)
       .getData()
@@ -62,7 +62,7 @@ export class ConectorPrincipal implements IResource {
    * Lists the instances of ConectorPrincipal
    */
   static async listConectorPrincipal(params: any) {
-    return await Request.get(`/user/conector-principal`, {params})
+    return await Request.get(`/conector-principal`, {params})
       .name('listConectorPrincipal')
       .as(ConectorPrincipalCollection)
       .getData()
@@ -73,7 +73,7 @@ export class ConectorPrincipal implements IResource {
    * or ID > 0 to update a current one
    */
   async persistConectorPrincipal() {
-    return await Request.post(`/user/conector-principal`, this)
+    return await Request.post(`/conector-principal`, this)
       .name('persistConectorPrincipal')
       .asNumber()
       .getData()
@@ -83,7 +83,7 @@ export class ConectorPrincipal implements IResource {
    * Lists the instances of ConectorPrincipal to export as a file
    */
   static async listExportConectorPrincipal(params: any) {
-    return await Request.get(`/user/conector-principal/export`, {params})
+    return await Request.get(`/conector-principal/export`, {params})
       .name('listExportConectorPrincipal')
       .as(ConectorPrincipalCollection)
       .getData()

@@ -39,14 +39,14 @@ export class ItemDoPrincipalCollection extends PageCollection<ItemDoPrincipal> {
   }
 
   async listItemDoPrincipal() {
-    return await Request.get(`/user/item-do-principal`, {params: this.params})
+    return await Request.get(`/item-do-principal`, {params: this.params})
       .name('listItemDoPrincipal')
       .as(this)
       .getResponse()
   }
 
   async listExportItemDoPrincipal() {
-    return await Request.get(`/user/item-do-principal/export`, {
+    return await Request.get(`/item-do-principal/export`, {
       params: this.params,
     })
       .name('listExportItemDoPrincipal')

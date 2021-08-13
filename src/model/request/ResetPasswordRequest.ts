@@ -23,7 +23,7 @@ export class ResetPasswordRequest {
     request.newPassword = $.utils.sha256(this.newPassword)
     request.confirmPassword = $.utils.sha256(this.confirmPassword)
 
-    return await Request.post(`/user/auth/password`, request)
+    return await Request.post(`/auth/password`, request)
       .name('resetPassword')
       .asString()
       .getData()

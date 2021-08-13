@@ -17,7 +17,7 @@ export class AuthRequest {
    * Gets the user authentication
    */
   static async authenticate() {
-    return await Request.get(`/user/auth`)
+    return await Request.get(`/auth`)
       .name('authenticate')
       .as(AuthResponse)
       .getData()
@@ -30,7 +30,7 @@ export class AuthRequest {
     const request = $.utils.clone(this)
     request.senha = $.utils.sha256(this.senha)
 
-    return await Request.post(`/user/auth`, request)
+    return await Request.post(`/auth`, request)
       .name('signIn')
       .delay(1000)
       .as(AuthResponse)

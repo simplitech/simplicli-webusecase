@@ -1,7 +1,6 @@
 import Vue from 'vue'
 import {root, store} from '@/store'
 import {AccessorWrapper} from '@simpli/vuex-typescript'
-import {RootState} from '@/types/store'
 
 export const wrapper = new AccessorWrapper<RootState, RootState>()
 

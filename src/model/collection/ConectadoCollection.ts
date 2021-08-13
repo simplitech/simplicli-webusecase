@@ -27,14 +27,14 @@ export class ConectadoCollection extends PageCollection<Conectado> {
   }
 
   async listConectado() {
-    return await Request.get(`/user/conectado`, {params: this.params})
+    return await Request.get(`/conectado`, {params: this.params})
       .name('listConectado')
       .as(this)
       .getResponse()
   }
 
   async listExportConectado() {
-    return await Request.get(`/user/conectado/export`, {params: this.params})
+    return await Request.get(`/conectado/export`, {params: this.params})
       .name('listExportConectado')
       .as(this)
       .getResponse()

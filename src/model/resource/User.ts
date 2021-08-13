@@ -3,13 +3,26 @@
  * @author Simpli CLI generator
  */
 import {$} from '@/facade'
-import {Request, ResponseExclude} from '@simpli/serialized-request'
+import {
+  Request,
+  ResponseExclude,
+  ResponseSerialize,
+} from '@simpli/serialized-request'
 import {IResource} from '@simpli/resource-collection/dist/types/IResource'
+import {PermissionGroup} from '@/app/PermissionGroup'
 import {UserCollection} from '@/model/collection/UserCollection'
+import {Role} from '@/model/resource/Role'
+import {Permission} from '@/model/resource/Permission'
 
 /* TODO: review generated class */
-export class User implements IResource {
+export class User extends PermissionGroup implements IResource {
   idUserPk: number = 0
+
+  @ResponseSerialize(Role)
+  roles: Role[] | null = null
+
+  @ResponseSerialize(Permission)
+  permissions: Permission[] | null = null
 
   email: string | null = null
 
@@ -26,11 +39,15 @@ export class User implements IResource {
     return String(this.email)
   }
 
+  get roleSlugs() {
+    return this.roles?.map(it => it.slug ?? '')?.filter(it => it) ?? []
+  }
+
   /**
    * Gets a instance of a given ID of User
    */
   async getUser(id: number) {
-    return await Request.get(`/user/user/${id}`)
+    return await Request.get(`/user/${id}`)
       .name('getUser')
       .as(this)
       .getData()
@@ -40,7 +57,7 @@ export class User implements IResource {
    * Lists the instances of User
    */
   static async listUser(params: any) {
-    return await Request.get(`/user/user`, {params})
+    return await Request.get(`/user`, {params})
       .name('listUser')
       .as(UserCollection)
       .getData()
@@ -51,7 +68,7 @@ export class User implements IResource {
    * or ID > 0 to update a current one
    */
   async persistUser() {
-    return await Request.post(`/user/user`, this)
+    return await Request.post(`/user`, this)
       .name('persistUser')
       .asNumber()
       .getData()
@@ -61,7 +78,7 @@ export class User implements IResource {
    * Lists the instances of User to export as a file
    */
   static async listExportUser(params: any) {
-    return await Request.get(`/user/user/export`, {params})
+    return await Request.get(`/user/export`, {params})
       .name('listExportUser')
       .as(UserCollection)
       .getData()

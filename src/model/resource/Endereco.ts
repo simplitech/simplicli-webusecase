@@ -34,7 +34,7 @@ export class Endereco implements IResource {
    * Gets a instance of a given ID of Endereco
    */
   async getEndereco(id: number) {
-    return await Request.get(`/user/endereco/${id}`)
+    return await Request.get(`/endereco/${id}`)
       .name('getEndereco')
       .as(this)
       .getData()
@@ -44,7 +44,7 @@ export class Endereco implements IResource {
    * Lists the instances of Endereco
    */
   static async listEndereco(params: any) {
-    return await Request.get(`/user/endereco`, {params})
+    return await Request.get(`/endereco`, {params})
       .name('listEndereco')
       .as(EnderecoCollection)
       .getData()
@@ -55,7 +55,7 @@ export class Endereco implements IResource {
    * or ID > 0 to update a current one
    */
   async persistEndereco() {
-    return await Request.post(`/user/endereco`, this)
+    return await Request.post(`/endereco`, this)
       .name('persistEndereco')
       .asNumber()
       .getData()
@@ -65,7 +65,7 @@ export class Endereco implements IResource {
    * Lists the instances of Endereco to export as a file
    */
   static async listExportEndereco(params: any) {
-    return await Request.get(`/user/endereco/export`, {params})
+    return await Request.get(`/endereco/export`, {params})
       .name('listExportEndereco')
       .as(EnderecoCollection)
       .getData()

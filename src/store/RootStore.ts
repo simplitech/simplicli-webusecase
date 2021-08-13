@@ -1,7 +1,6 @@
 import {ActionContext, ModuleTree, StoreOptions} from 'vuex'
 import {AccessorHandler} from '@simpli/vuex-typescript'
 import {Setup} from '@/app/Setup'
-import {RootState} from '@/types/store'
 import {Lang} from '@/enums/Lang'
 import {Currency} from '@/enums/Currency'
 

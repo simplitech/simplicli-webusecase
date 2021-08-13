@@ -31,7 +31,7 @@ export class Tag implements IResource {
    * Lists the instances of Tag
    */
   static async listTag(params: any) {
-    return await Request.get(`/user/tag`, {params})
+    return await Request.get(`/tag`, {params})
       .name('listTag')
       .as(TagCollection)
       .getData()
@@ -42,7 +42,7 @@ export class Tag implements IResource {
    * or ID > 0 to update a current one
    */
   async persistTag() {
-    return await Request.post(`/user/tag`, this)
+    return await Request.post(`/tag`, this)
       .name('persistTag')
       .asNumber()
       .getData()
@@ -52,7 +52,7 @@ export class Tag implements IResource {
    * Lists the instances of Tag to export as a file
    */
   static async listExportTag(params: any) {
-    return await Request.get(`/user/tag/export`, {params})
+    return await Request.get(`/tag/export`, {params})
       .name('listExportTag')
       .as(TagCollection)
       .getData()
@@ -62,7 +62,7 @@ export class Tag implements IResource {
    * Gets a instance of a given ID of Tag
    */
   async getTag(id: number) {
-    return await Request.get(`/user/tag/${id}`)
+    return await Request.get(`/tag/${id}`)
       .name('getTag')
       .as(this)
       .getData()

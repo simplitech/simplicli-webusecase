@@ -28,14 +28,14 @@ export class TagCollection extends PageCollection<Tag> {
   }
 
   async listTag() {
-    return await Request.get(`/user/tag`, {params: this.params})
+    return await Request.get(`/tag`, {params: this.params})
       .name('listTag')
       .as(this)
       .getResponse()
   }
 
   async listExportTag() {
-    return await Request.get(`/user/tag/export`, {params: this.params})
+    return await Request.get(`/tag/export`, {params: this.params})
       .name('listExportTag')
       .as(this)
       .getResponse()

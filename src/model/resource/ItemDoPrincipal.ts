@@ -40,7 +40,7 @@ export class ItemDoPrincipal implements IResource {
    * Gets a instance of a given ID of ItemDoPrincipal
    */
   async getItemDoPrincipal(id: number) {
-    return await Request.get(`/user/item-do-principal/${id}`)
+    return await Request.get(`/item-do-principal/${id}`)
       .name('getItemDoPrincipal')
       .as(this)
       .getData()
@@ -50,7 +50,7 @@ export class ItemDoPrincipal implements IResource {
    * Lists the instances of ItemDoPrincipal
    */
   static async listItemDoPrincipal(params: any) {
-    return await Request.get(`/user/item-do-principal`, {params})
+    return await Request.get(`/item-do-principal`, {params})
       .name('listItemDoPrincipal')
       .as(ItemDoPrincipalCollection)
       .getData()
@@ -61,7 +61,7 @@ export class ItemDoPrincipal implements IResource {
    * or ID > 0 to update a current one
    */
   async persistItemDoPrincipal() {
-    return await Request.post(`/user/item-do-principal`, this)
+    return await Request.post(`/item-do-principal`, this)
       .name('persistItemDoPrincipal')
       .asNumber()
       .getData()
@@ -71,7 +71,7 @@ export class ItemDoPrincipal implements IResource {
    * Lists the instances of ItemDoPrincipal to export as a file
    */
   static async listExportItemDoPrincipal(params: any) {
-    return await Request.get(`/user/item-do-principal/export`, {params})
+    return await Request.get(`/item-do-principal/export`, {params})
       .name('listExportItemDoPrincipal')
       .as(ItemDoPrincipalCollection)
       .getData()

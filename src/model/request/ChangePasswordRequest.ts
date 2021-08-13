@@ -25,7 +25,7 @@ export class ChangePasswordRequest {
     request.newPassword = $.utils.sha256(this.newPassword)
     request.confirmPassword = $.utils.sha256(this.confirmPassword)
 
-    return await Request.post(`/user/auth/me/password`, request)
+    return await Request.post(`/auth/me/password`, request)
       .name('changePassword')
       .asNumber()
       .getData()

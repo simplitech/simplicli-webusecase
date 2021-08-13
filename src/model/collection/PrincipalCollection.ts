@@ -78,14 +78,14 @@ export class PrincipalCollection extends PageCollection<Principal> {
   }
 
   async listPrincipal() {
-    return await Request.get(`/user/principal`, {params: this.params})
+    return await Request.get(`/principal`, {params: this.params})
       .name('listPrincipal')
       .as(this)
       .getResponse()
   }
 
   async listExportPrincipal() {
-    return await Request.get(`/user/principal/export`, {params: this.params})
+    return await Request.get(`/principal/export`, {params: this.params})
       .name('listExportPrincipal')
       .as(this)
       .getResponse()
